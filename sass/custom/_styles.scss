@@ -15,10 +15,14 @@ aside.sidebar a { text-decoration: none; }
 
 body { font-size: 1em; }
 
-//nav[role="navigation"] {
-// ul { 
 #linkedin div{background-image:url("/images/li.png");height:30px;width:30px;float:right}
 #github div{background-image:url("/images/github_octocat.png");height:30px;width:30px;float:left}
 #twitter div{background-image:url("/images/twitter_icon.png");height:30px;width:30px;float:left}
-//    }
-//}
+
+#content .blog-index article h1 {
+  font-size: 1.8em;
+  font-weight: normal;
+}
+
+h1 { font-size: 1.8em; }
+
