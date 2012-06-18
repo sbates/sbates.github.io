@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Favorite JVM Arg EVER - Bratty Redhead</title>
+  <title>Another Chapter Done - Bratty Redhead</title>
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for &hellip;">
+  <meta name="description" content="I&rsquo;m a professional services consultant for a truly enormous corporation; for two more weeks.&nbsp; I turned in my two week notice today.&nbsp; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/">
+  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2011/06/23/another-chapter-done/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">My Favorite JVM Arg EVER</h1>
+      <h1 class="entry-title">Another Chapter Done</h1>
     
     
       <p class="meta">
@@ -103,24 +103,24 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-06-23T00:00:00-05:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
-<p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
-<p><span style="font-size: medium;"><strong>-XX:MaxJavaStackTraceDepth=&lt;num&gt;</strong></span></p>
-<p>It was love at first sight.&nbsp; See, I know developers lurve their stack traces and exceptions.&nbsp; Truly.&nbsp; But I&#8217;ve met some truly horrendous apps.&nbsp; You know the kind.&nbsp; They throw 500 line stack traces every time someone types in a bad password. Or you have an overrun team that, once an app is in production, they don&#8217;t have time to tune the app and so you are stuck with 2000 lines of stack trace for every exception, even though it only takes &lt; 10 to figure out where to look for trouble.</p>
-<p>After I found this and used it, I had bookmarked the page of wonderful jvm options, but it was dead the next time I went there. So I ended up searching the internet for it later and found that my googling led me all over.&nbsp; I found a stackoverflow discussion where a harried admin was asking about it and a herd of VERY ANGRY developers jumped all over him saying things like</p>
-<p>&#8220;How dare you truncate our wonderful stack traces!&#8221;, and</p>
-<p>&#8220;An exception is called that because it&#8217;s <em>exceptional</em>. There&#8217;s a reason for it and you shouldn&#8217;t truncate it!&#8221;&nbsp;</p>
-<p>Oh they were like an angry mob.</p>
-<p>But I have to tell you, this arg is an admin&#8217;s best friend if you have apps in your care that can&#8217;t be bothered with proper tuning on the dev side.&nbsp; Often this was because a client had a contract dev team come in, deliver an app and then leave.&nbsp; There was no one to fix it.</p>
-<p>There&#8217;s no shame in cleaning up your log files so they are readable.&nbsp; It&#8217;s tough to actually dig into a problem if you have thousands of lines of &#8220;benign&#8221; errors filling your world.&nbsp; This option allows you to limit the damage done by excessive logging while still seeing that an exception is being generated. Of course, with all the wonderful logging packages and tools with filters out there today, this sort of thing is less important if you are filtering, but there are lots of admins out there with nothing but the CLI, syslog and vi even today. This post is dedicated to them.</p>
-<p>&nbsp;</p>
+<div class="entry-content"><p>I&rsquo;m a professional services consultant for a truly enormous  corporation; for two more weeks.&nbsp; I turned in my two week notice today.&nbsp;  I think I&rsquo;m all done working for big companies.&nbsp; I spent 8 years at a  major retail chain doing web architecture, middleware and ops and the  last 5 years consulting for the hosting, management and monitoring  portion of a megacorp.&nbsp;</p>
+<p>When I took this job, it was with a group that had been a much  smaller, recently acquired company.&nbsp; The feel was still pretty casual,  annual reviews were barely a formality, attitudes were laid back and  friendly and we rarely had to interact externally to our area. We had  separate time tracking, VPN and client systems access. &nbsp;I was told that  it still had a small-company feel and they were right mostly.&nbsp; I used a  separate VPN for email, travel booking and expense reporting.&nbsp; I was  sheltered from the corporation.&nbsp; All the engineers were.</p>
+<p>This isn&rsquo;t a rant about why corporations suck.&nbsp; They&rsquo;ve got a lot  going for them.&nbsp; This one kept me in a 6 figure salary, great benefits  and a 6% 401k match. I got paid even when I was benched, although that  wasn&rsquo;t often.&nbsp; If you&rsquo;re traditionally ambitious(re: mgmt chain), I hear  they&rsquo;re great for that too.&nbsp; If you&rsquo;re a slacker, you get a pass at a  big company.&nbsp; It&rsquo;s hard to be noticed.</p>
+<p>Yeah.&nbsp; It&rsquo;s hard to be noticed.&nbsp; We&rsquo;ve been through several re-orgs  since I was hired.&nbsp; ProServ was moved out of management and monitoring.&nbsp;  The work started getting monotonous.&nbsp; Half of ProServ was re-orgd out  of our group.&nbsp; We kept getting moved around.&nbsp; All our dedicated PMs were  moved to a central PMO.&nbsp; The ProServ team was largely forgotten except  by a few folks who managed our existing client base.&nbsp; Senior management  probably forgot we existed.&nbsp;&nbsp; We haven&#8217;t had a team meeting in a year.  My manager&#8217;s manager thinks I&#8217;m a man.</p>
+<p>About a year ago I realized I was bored. I realized that, if I had to  architect one more WebSphere install, I might scream.&nbsp; No interesting  work was coming in.&nbsp; Very little work at all was coming in, for that  matter.&nbsp; I never lacked for work myself, but half my team was benched.&nbsp; I  started thinking about quitting.&nbsp; Then a call came in.</p>
+<p>A friend working at one of our current clients was starting a  continuous integration project.&nbsp; He used to work for the same megacorp  and we&rsquo;d been friends for years.&nbsp;&nbsp; The work was outside my immediate  realm of experience.&nbsp; Learn Ruby, learn a new configuration management  tool called Chef and start figuring out how to automate the existing  infrastructure at this client.&nbsp; I was skeptical.&nbsp; I&rsquo;m pretty smart but I  have a realistic assessment of my own abilities and I had no coding  experience beyond some bash and python scripting.</p>
+<p>So I dug in.&nbsp; I learned some Ruby syntax.&nbsp; I started figuring out  Chef.&nbsp; It was a steep curve but it was so interesting, fun and exciting  that I was thrilled with work for the first time in ages.&nbsp; I learned the  term &ldquo;devops.&rdquo;&nbsp; I read a bunch of blogs.&nbsp; I got really excited, in that  born again annoying kind of way.&nbsp; I knew it too and pretty much kept it  to myself, although sometimes at parties, I started gushing if someone  asked about work.&nbsp;</p>
+<p>I&rsquo;ve spent the last year doing some awesome work.&nbsp; The client  experience has been incredible.&nbsp; The dev teams we&rsquo;re working next to are  practicing agile concepts.&nbsp; We work in a large open space, with pairing  monitors everywhere and you can&#8217;t throw a pen without hitting corporate  issue macs.&nbsp; The dev teams pair and we sometimes cross-team pair on  things.&nbsp; Our team has a 10 min standup every morning.&nbsp; We track stories  in a tool and showcase at our weekly planning (usually code review since  Chef configs aren&rsquo;t really &ldquo;featurable&rdquo;).&nbsp; We&rsquo;re getting monitors soon  and trying to figure out how to hook Chef into graphite to start  metricizing.</p>
+<p>Something that really resonated with me at Velocity on the last day  was Adam Jacobs who said, &ldquo;You can tell the people who are doing devops  right because they&rsquo;re HAPPY all the time.&rdquo;&nbsp; That&rsquo;s what it&rsquo;s been like.&nbsp;  I&rsquo;ve never enjoyed anything so much as I have this last year.</p>
+<p>Unfortunately, working for a megacorp has intruded on my professional  happiness too many times this year for me to ignore it any longer.&nbsp;  I&rsquo;ve known for a few months that this was coming.&nbsp; The project work I&rsquo;ve  been doing for the last year has been awesome and I don&rsquo;t want to leave  it behind.&nbsp; Growing my Ruby development skills has been super fun and a  big challenge.&nbsp; I hope to do more of that going forward and am planning  to work on my own projects as well.&nbsp;</p>
+<p>In the meantime, I&rsquo;m going to take a little time off, ride my bike,  write some code, evaluate my options and see what&rsquo;s out there for me.</p>
 </div>
 
 
@@ -143,7 +143,7 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-06-23T00:00:00-05:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
       
 
 
@@ -151,7 +151,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2011/06/23/another-chapter-done/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2011/06/23/another-chapter-done/" >Tweet</a>
   
   
   
@@ -160,8 +160,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/26/the-alien-technology-tuning-challenge/" title="Previous Post: The Alien Technology Tuning Challenge">&laquo; The Alien Technology Tuning Challenge</a>
       
+        <a class="basic-alignment right" href="/blog/2011/06/24/59995517/" title="Next Post: My ohai plugin">My ohai plugin &raquo;</a>
       
     </p>
   </footer>

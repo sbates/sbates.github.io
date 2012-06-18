@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Favorite JVM Arg EVER - Bratty Redhead</title>
+  <title>Puppet for Chef Users - Part 2 - When is a node a node?  - Bratty Redhead</title>
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for &hellip;">
+  <meta name="description" content="Disclaimer: I have been working with Chef for about 18 months and Puppet for about 5 minutes.&nbsp; I don&#8217;t claim to be an expert on Puppet nor &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/">
+  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">My Favorite JVM Arg EVER</h1>
+      <h1 class="entry-title">Puppet for Chef Users - Part 2 - When Is a Node a Node?</h1>
     
     
       <p class="meta">
@@ -103,24 +103,18 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-11-19T00:00:00-06:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
-<p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
-<p><span style="font-size: medium;"><strong>-XX:MaxJavaStackTraceDepth=&lt;num&gt;</strong></span></p>
-<p>It was love at first sight.&nbsp; See, I know developers lurve their stack traces and exceptions.&nbsp; Truly.&nbsp; But I&#8217;ve met some truly horrendous apps.&nbsp; You know the kind.&nbsp; They throw 500 line stack traces every time someone types in a bad password. Or you have an overrun team that, once an app is in production, they don&#8217;t have time to tune the app and so you are stuck with 2000 lines of stack trace for every exception, even though it only takes &lt; 10 to figure out where to look for trouble.</p>
-<p>After I found this and used it, I had bookmarked the page of wonderful jvm options, but it was dead the next time I went there. So I ended up searching the internet for it later and found that my googling led me all over.&nbsp; I found a stackoverflow discussion where a harried admin was asking about it and a herd of VERY ANGRY developers jumped all over him saying things like</p>
-<p>&#8220;How dare you truncate our wonderful stack traces!&#8221;, and</p>
-<p>&#8220;An exception is called that because it&#8217;s <em>exceptional</em>. There&#8217;s a reason for it and you shouldn&#8217;t truncate it!&#8221;&nbsp;</p>
-<p>Oh they were like an angry mob.</p>
-<p>But I have to tell you, this arg is an admin&#8217;s best friend if you have apps in your care that can&#8217;t be bothered with proper tuning on the dev side.&nbsp; Often this was because a client had a contract dev team come in, deliver an app and then leave.&nbsp; There was no one to fix it.</p>
-<p>There&#8217;s no shame in cleaning up your log files so they are readable.&nbsp; It&#8217;s tough to actually dig into a problem if you have thousands of lines of &#8220;benign&#8221; errors filling your world.&nbsp; This option allows you to limit the damage done by excessive logging while still seeing that an exception is being generated. Of course, with all the wonderful logging packages and tools with filters out there today, this sort of thing is less important if you are filtering, but there are lots of admins out there with nothing but the CLI, syslog and vi even today. This post is dedicated to them.</p>
-<p>&nbsp;</p>
+<div class="entry-content"><p><em>Disclaimer: I have been working with Chef for about 18 months and Puppet for about 5 minutes.&nbsp; I don&#8217;t claim to be an expert on Puppet nor warranty this information in any way.&nbsp; It could all be egregiously wrong.&nbsp; This is simply a blog exploring what I&#8217;m learning.</em><p />When is a node a node?&nbsp; And when is it a thought?&nbsp; Or a regex? When is it a description of a certain state of being?<p />When I first started working in someone else&#8217;s existing puppet domain, I was confused.&nbsp; Everything was described in puppet/manifests/site.pp.&nbsp; There was a lot of description.&nbsp; Everything was called a node, regardless of what kind of object it was describing. Lists of manifests/classes were nodes, named servers were nodes, there were some regexs also designated nodes.&nbsp; I was confused.<p />Check it out.&nbsp; In Chef there are nodes.&nbsp; A node is always the endpoint in question.&nbsp; It&#8217;s a concrete item.&nbsp; It just&#8230;.is.&nbsp; A VM is a node.&nbsp; An AWS instance is a node.&nbsp; If you want to describe a node, you add recipes or roles to it.&nbsp; A recipe is a single thing.&nbsp; A role is a collection of recipes, attributes and information that comprises a functional entity.<p />In Puppet, a node is a much more nebulous concept.&nbsp; A node is still always the client endpoint.&nbsp; But, the node can also be a described end state.<p />Let&#8217;s use the ubiquitous webserver example.&nbsp; In my webserver, I will probably need a set of base OS modules/cookbooks and some webserver stuff.&nbsp; I might have a requirement set that looks like this:<p />[ dns, ntp, ssh, syslog, puppet-agent|chef-client, apache, openssl, memcached ]<p />There are some differences in Puppet and Chef management structure.&nbsp; In Chef, a node is a client, an endpoint. It&#8217;s pretty much always a server, whether hardware, VM or cloud instance.<p />In Chef I would write cookbooks for each of the items in my set.&nbsp; Then I would probably create two roles: dotcom_base and webserver<p /><strong>roles/com_base.rb</strong><br /><strong>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</strong><br />name &#8220;dotcom_base&#8221;<br />description &#8220;The base role for ALL systems&#8221;<br />run_list(<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[chef-client]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[syslog]&#8221;, &nbsp;<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[ssh]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[ntp]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[dns]&#8221;<br />)<p /><strong>roles/webserver.rb</strong><br /><strong>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</strong><br />name &#8220;webserver&#8221;<br />description &#8220;Role for Webservers&#8221;<br />run_list(<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[apache]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[openssl]&#8221;, &nbsp;<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[memcached]&#8221;<br />)<p />At this point I would then add both roles to any webserver node in my farm.&nbsp; Or the roles would be added at bootstrap or your choice.&nbsp; This information goes into node attributes stored in the attribute database.&nbsp; There is no flat file representation of actual named nodes.<p />Puppet is all flat file management, requiring node management to be described in flat files.&nbsp; Puppet has also chosen a flexible concept of <strong>node</strong>.<p /> A node can be a collection of similar items:  <br /><strong>node &#8220;dotcom_base&#8221;</strong> { <br /> &nbsp; include dns<br />&nbsp; include ntp<br />&nbsp; include syslog<br />&nbsp; include puppet_agent<br />}<p />A node can be a type:<br /><strong>node &#8220;webserver&#8221;</strong>&nbsp; inherits &#8220;dotcom_base&#8221; {<br />&nbsp; include apache<br />&nbsp; include openssl<br />&nbsp; include memcached<br />&nbsp;}<p />Given dotcom_web1.domain.com, dotcom_web2.domain.com, dotcom_web3.domain.com:<p />A node can just be a single endpoint:<br /><strong>node dotcom_web1.domain.com </strong>inherits &#8220;webserver&#8221;{ }<p />A node can be a collection of nodes matched with regex.<br /><strong>node /^dotcom_web\d+&#46;domain&#46;com$/</strong> inherits &#8220;webserver&#8221; { }</p>
+<p>A thought on node construction: To be more transparent, these could also say <p /><em>inherits &#8220;dotcom_base&#8221; { webserver }</em><p />While I have not seen this notation, it&#8217;s what I would do if I were designing from the bottom up.&nbsp; This may or may not be correct style-wise, but I&#8217;m a fan of transparency in my config statements.</p>
+<p>Puppet node information can either be described in the top level puppet/manifests/site.pp or site.pp can include a second file traditionally called nodes.pp.&nbsp; Site.pp can also include puppet conditionals, environment descriptions and params that might be specific to an environment, similar to Chef&#8217;s override attributes.</p>
+<p>So, to recap, Chef and Puppet both have nodes.&nbsp; Puppet describes many different objects which are all designated nodes.&nbsp; Chef has chosen to break out object descriptions into roles and runlists for nodes.</p>
+<p><strong>Chef progression: </strong>cookbook/recipe=&gt; role =&gt; node <br /><strong>Puppet progression: </strong>module/manifest =&gt; typed node description =&gt; specific/regex matched node description</p>
 </div>
 
 
@@ -143,7 +137,7 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-11-19T00:00:00-06:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
       
 
 
@@ -151,7 +145,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/" >Tweet</a>
   
   
   
@@ -160,8 +154,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/26/the-alien-technology-tuning-challenge/" title="Previous Post: The Alien Technology Tuning Challenge">&laquo; The Alien Technology Tuning Challenge</a>
+        <a class="basic-alignment left" href="/blog/2011/11/07/puppet-for-chef-users/" title="Previous Post: Puppet for Chef Users">&laquo; Puppet for Chef Users</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2012/03/23/i-am-not-a-fangirl/" title="Next Post: I am not a fangirl">I am not a fangirl &raquo;</a>
       
     </p>
   </footer>

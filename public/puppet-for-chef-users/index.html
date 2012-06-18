@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Favorite JVM Arg EVER - Bratty Redhead</title>
+  <title>Puppet for Chef Users - Bratty Redhead</title>
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for &hellip;">
+  <meta name="description" content="I picked up a Puppet gig recently.&nbsp; The client already has an OS level Puppet install working.&nbsp; My job is to use my understanding of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/">
+  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2011/11/07/puppet-for-chef-users/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">My Favorite JVM Arg EVER</h1>
+      <h1 class="entry-title">Puppet for Chef Users</h1>
     
     
       <p class="meta">
@@ -103,24 +103,36 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-11-07T00:00:00-06:00" pubdate data-updated="true">Nov 7<span>th</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
-<p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
-<p><span style="font-size: medium;"><strong>-XX:MaxJavaStackTraceDepth=&lt;num&gt;</strong></span></p>
-<p>It was love at first sight.&nbsp; See, I know developers lurve their stack traces and exceptions.&nbsp; Truly.&nbsp; But I&#8217;ve met some truly horrendous apps.&nbsp; You know the kind.&nbsp; They throw 500 line stack traces every time someone types in a bad password. Or you have an overrun team that, once an app is in production, they don&#8217;t have time to tune the app and so you are stuck with 2000 lines of stack trace for every exception, even though it only takes &lt; 10 to figure out where to look for trouble.</p>
-<p>After I found this and used it, I had bookmarked the page of wonderful jvm options, but it was dead the next time I went there. So I ended up searching the internet for it later and found that my googling led me all over.&nbsp; I found a stackoverflow discussion where a harried admin was asking about it and a herd of VERY ANGRY developers jumped all over him saying things like</p>
-<p>&#8220;How dare you truncate our wonderful stack traces!&#8221;, and</p>
-<p>&#8220;An exception is called that because it&#8217;s <em>exceptional</em>. There&#8217;s a reason for it and you shouldn&#8217;t truncate it!&#8221;&nbsp;</p>
-<p>Oh they were like an angry mob.</p>
-<p>But I have to tell you, this arg is an admin&#8217;s best friend if you have apps in your care that can&#8217;t be bothered with proper tuning on the dev side.&nbsp; Often this was because a client had a contract dev team come in, deliver an app and then leave.&nbsp; There was no one to fix it.</p>
-<p>There&#8217;s no shame in cleaning up your log files so they are readable.&nbsp; It&#8217;s tough to actually dig into a problem if you have thousands of lines of &#8220;benign&#8221; errors filling your world.&nbsp; This option allows you to limit the damage done by excessive logging while still seeing that an exception is being generated. Of course, with all the wonderful logging packages and tools with filters out there today, this sort of thing is less important if you are filtering, but there are lots of admins out there with nothing but the CLI, syslog and vi even today. This post is dedicated to them.</p>
-<p>&nbsp;</p>
+<div class="entry-content"><p>I picked up a Puppet gig recently.&nbsp; The client already has an OS level Puppet install working.&nbsp; My job is to use my understanding of automation tooling to configure an app stack.&nbsp; I was pretty cocky.&nbsp; I thought, well, I really know Chef after over a year working with it and extending it at another client, how hard can Puppet be?&nbsp;</p>
+<p>It&#8217;s not hard really.&nbsp; But it&#8217;s not cooperative either.&nbsp; They look really similar, Puppet and Chef, but I&#8217;m finding it hard to get Puppet to do what I want.&nbsp; First, I need to figure out what I want to do.&nbsp; Then I automatically consider how I would do it in chef.&nbsp; Then I have to figure out how to do it in Puppet.&nbsp; This is harder than it sounds as a direct translation of something is not always the most useful, graceful or appropriate method.</p>
+<p>I keep wishing I could find an article or manual on the Interwebs called something like &#8220;Puppet for Chef Users,&#8221; where it would translate all the things done in Chef to what they do in Puppet.&nbsp; I haven&#8217;t found it.&nbsp; And I don&#8217;t have all the answers.&nbsp; As you can see here, I actually have very few answers.&nbsp; None really.&nbsp; But I&#8217;m eking out answers as I go.</p>
+<p>Example: I want to set a node attribute.&nbsp;</p>
+<p>Well, hm.&nbsp; Ok.&nbsp; A node is still a node(mostly) in Puppet.&nbsp; Puppet has Facter instead of Ohai.&nbsp; Right, I knew that.&nbsp; So, then I have to address the philosophical question, is that the correct way to do what I want?&nbsp; Do I add things like myapp_home, java_install_dir to Facter?&nbsp; Yah, I think I do.&nbsp; I want stuff outside the myapp module to know where the myapp log dir is, maybe (it could happen).</p>
+<p>Let&#8217;s say I do want to add custom facts.&nbsp; That&#8217;s just like node attributes aren&#8217;t they?&nbsp; I&#8217;m still not positive, but I&#8217;ve got to make a decision and start coding something.&nbsp; I can always revise if I&#8217;m wrong.</p>
+<p>Alright, where&#8217;s the attributes file?&nbsp; Whoops!&nbsp; No attribute file.&nbsp; I <a href="http://forge.puppetlabs.com/tags/webserversdownloaded" target="_blank">downloaded a sample Apache module from puppet labs </a>in order to have an example to work with.&nbsp; I needed the example to be complex enough to have custom attributes but not so complicated I couldn&#8217;t read it.&nbsp; I figured an Apache server was a good compromise.&nbsp;</p>
+<p>I found that Puppet modules can define new facts in the lib directory of the module.&nbsp; Strangely, at first I thought it was defined in a directory called &#8216;plugins&#8217; as I first noticed the new facts defined there.&nbsp; But as I read the <a href="http://docs.puppetlabs.com/guides/plugins_in_modules.html" target="_blank">documentation on defining new facts</a>, I realized that was the old directory. The new way dictates that all custom code goes in modules/myapp/lib.&nbsp;</p>
+<p>The directory storing new facts has small rb files with code similar to ohai snippets.&nbsp; This seemed like more coding than I needed, but I&#8217;m still not sure how to just set an attribute without writing a code snippet.&nbsp; Here&#8217;s the code example I found:</p>
+<p>require &#8216;facter&#8217;<br />Facter.add(:gem_passenger_version) do<br />&nbsp;&nbsp;&nbsp; setcode do %x{rpmquery &#8211;qf=&#8217;%{VERSION}&#8217; rubygem-passenger} end<br />end</p>
+<p>here&#8217;s my experimental code:</p>
+<p>require &#8216;facter&#8217;<br />myapp_facts={&#8220;myapp_home&#8221; =&gt; &#8220;/opt/myapp&#8221;, &#8220;myapp_server_dir&#8221; =&gt; &#8220;/opt/myapp/server&#8221;,&#8221;myapp_log_dir&#8221; =&gt; &#8220;/var/log/myapp&#8221;}<p />myapp_facts.each do |k,v|<br />&nbsp; Facter.add(k) do<br />&nbsp;&nbsp;&nbsp; setcode do { k=v } end<br />&nbsp; end<br />end</p>
+<p>This is what came out of testing:</p>
+<p>[root@pixel rubylib]#&nbsp; RUBYLIB=. facter|grep myapp<br />myapp_home =&gt; /opt/myapp<br />myapp_log_dir =&gt; /var/log/myapp<br />myapp_server_dir =&gt; /opt/myapp/server</p>
+<p>So yay!&nbsp; I figured it out. I added my puppet equivalent of node attributes.&nbsp; Kind of.&nbsp; As far as I can tell, Facter is not hierarchical a la Ohai, so my node attributes are flattened instead of in a hierarchy.</p>
+<p>To recap, in Chef/In Puppet:</p>
+<ul>
+<li>Ohai/Facter</li>
+<li>node attributes/facts</li>
+<li>ohai is hierarchical json: facter is flat key =&gt; value pairs</li>
+<li>chef node attributes are defined in myapp/attributes/attribute.rb/Puppet facts are defined in myapp/lib/facts&nbsp;</li>
+</ul>
+<p>Coming soon, my adventures with Hiera and data storage, also Puppet ruby DSL vs Puppet Puppet DSL.</p>
 </div>
 
 
@@ -143,7 +155,7 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-11-07T00:00:00-06:00" pubdate data-updated="true">Nov 7<span>th</span>, 2011</time>
       
 
 
@@ -151,7 +163,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2011/11/07/puppet-for-chef-users/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2011/11/07/puppet-for-chef-users/" >Tweet</a>
   
   
   
@@ -160,8 +172,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/26/the-alien-technology-tuning-challenge/" title="Previous Post: The Alien Technology Tuning Challenge">&laquo; The Alien Technology Tuning Challenge</a>
+        <a class="basic-alignment left" href="/blog/2011/10/02/things-i-learned-at-surge/" title="Previous Post: Things I learned at Surge">&laquo; Things I learned at Surge</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/" title="Next Post: Puppet for Chef Users - Part 2 - When is a node a node? ">Puppet for Chef Users - Part 2 - When is a node a node?  &raquo;</a>
       
     </p>
   </footer>

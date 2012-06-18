@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>My Favorite JVM Arg EVER - Bratty Redhead</title>
+  <title>Things I learned at Surge - Bratty Redhead</title>
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for &hellip;">
+  <meta name="description" content="Generalists are awesome. &nbsp;Value them or you&#8217;re doomed. &nbsp;They make the best diagnosticians, especially when systems are large, complex &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/">
+  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2011/10/02/things-i-learned-at-surge/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +87,7 @@
   
   <header>
     
-      <h1 class="entry-title">My Favorite JVM Arg EVER</h1>
+      <h1 class="entry-title">Things I Learned at Surge</h1>
     
     
       <p class="meta">
@@ -103,23 +103,25 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-10-02T00:00:00-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
-<p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
-<p><span style="font-size: medium;"><strong>-XX:MaxJavaStackTraceDepth=&lt;num&gt;</strong></span></p>
-<p>It was love at first sight.&nbsp; See, I know developers lurve their stack traces and exceptions.&nbsp; Truly.&nbsp; But I&#8217;ve met some truly horrendous apps.&nbsp; You know the kind.&nbsp; They throw 500 line stack traces every time someone types in a bad password. Or you have an overrun team that, once an app is in production, they don&#8217;t have time to tune the app and so you are stuck with 2000 lines of stack trace for every exception, even though it only takes &lt; 10 to figure out where to look for trouble.</p>
-<p>After I found this and used it, I had bookmarked the page of wonderful jvm options, but it was dead the next time I went there. So I ended up searching the internet for it later and found that my googling led me all over.&nbsp; I found a stackoverflow discussion where a harried admin was asking about it and a herd of VERY ANGRY developers jumped all over him saying things like</p>
-<p>&#8220;How dare you truncate our wonderful stack traces!&#8221;, and</p>
-<p>&#8220;An exception is called that because it&#8217;s <em>exceptional</em>. There&#8217;s a reason for it and you shouldn&#8217;t truncate it!&#8221;&nbsp;</p>
-<p>Oh they were like an angry mob.</p>
-<p>But I have to tell you, this arg is an admin&#8217;s best friend if you have apps in your care that can&#8217;t be bothered with proper tuning on the dev side.&nbsp; Often this was because a client had a contract dev team come in, deliver an app and then leave.&nbsp; There was no one to fix it.</p>
-<p>There&#8217;s no shame in cleaning up your log files so they are readable.&nbsp; It&#8217;s tough to actually dig into a problem if you have thousands of lines of &#8220;benign&#8221; errors filling your world.&nbsp; This option allows you to limit the damage done by excessive logging while still seeing that an exception is being generated. Of course, with all the wonderful logging packages and tools with filters out there today, this sort of thing is less important if you are filtering, but there are lots of admins out there with nothing but the CLI, syslog and vi even today. This post is dedicated to them.</p>
+<div class="entry-content"><p>Generalists are awesome. &nbsp;Value them or you&#8217;re doomed. &nbsp;They make the best diagnosticians, especially when systems are large, complex, distributed and workgroups reside in silos.</p>
+<p>Cloud is awesome. &nbsp;Except when it&#8217;s not. &nbsp;Understand your vulnerabilities. Plan for failure. Don&#8217;t abuse your ops guys. Don&#8217;t abuse your devs. &nbsp;Be interested in what others are doing even if it doesn&#8217;t (seem to) directly apply to your job.</p>
+<p>Buy a fucking SSD. &nbsp;Hack your kernel. &nbsp;</p>
+<p>DNS is sexy. &nbsp;</p>
+<p>Just because it&#8217;s up doesn&#8217;t mean it&#8217;s working.</p>
+<p>Why use IBM when we have Rabbit?</p>
+<p>Often the best solution is a hybrid. &nbsp;Don&#8217;t reinvent the internets unless you&#8217;re feeling clever.</p>
+<p>Sales guys employ dragons and fire to prosecute leads. &nbsp;Shun assholes. &nbsp;OS projects should never skip over the governance role. &nbsp;You can always tell who&#8217;s doing devops right because they are genuinely happy.</p>
+<p>Etsy used to be the anti-pattern for awesome until they experienced a culture shift causing them to become our role model for even more awesome. &nbsp;LOLcats and LOLgoats make presentations even better.</p>
+<p>The best part about Surge is knowing that I was surrounded by so many smart people. &nbsp;I love the hallway track and listening to others talk about their systems, the challenges and solutions. &nbsp;I love hearing about project goals that would never have occurred to me. &nbsp;I love all the ideas I get from all the smart people talking around me all the time.</p>
+<p>The only unfortunate part of the week was that there were several opposing talks where I would have liked to see both. &nbsp;I hope that there are some videos posted eventually.</p>
+<p />
 <p>&nbsp;</p>
 </div>
 
@@ -143,7 +145,7 @@
   
 
 
-<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2011-10-02T00:00:00-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
       
 
 
@@ -151,7 +153,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2011/10/02/things-i-learned-at-surge/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2011/10/02/things-i-learned-at-surge/" >Tweet</a>
   
   
   
@@ -160,8 +162,10 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/04/26/the-alien-technology-tuning-challenge/" title="Previous Post: The Alien Technology Tuning Challenge">&laquo; The Alien Technology Tuning Challenge</a>
+        <a class="basic-alignment left" href="/blog/2011/07/21/wherein-sascha-ponders-a-question-thats-alrea/" title="Previous Post: Wherein Sascha ponders a question that's already been asked a million times">&laquo; Wherein Sascha ponders a question that's already been asked a million times</a>
       
+      
+        <a class="basic-alignment right" href="/blog/2011/11/07/puppet-for-chef-users/" title="Next Post: Puppet for Chef Users">Puppet for Chef Users &raquo;</a>
       
     </p>
   </footer>
