@@ -1,6 +1,7 @@
 ---
 layout: post
-title: "Learning to Let Go"
+title: "Learning to Let Go (or how I stopped worrying and learned to love the
+bomb)"
 date: 2012-07-11 15:54
 comments: true
 sharing: true
