@@ -76,7 +76,7 @@
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about">About Me</a></li>
-  <li><a href="/contact">Contact</a></li>
+  <li><a href="/cv">CV</a></li>
 </ul>
  
 </nav>
@@ -113,7 +113,7 @@
 <div class="entry-content"><p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
 <p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
 <p>Technical debt is a choice and can happen to anyone.&nbsp; Here the client allowed their configuration management to run away from them.&nbsp; They haven&#8217;t been maintaining their Puppet nodes and so don&#8217;t have a good list of what servers they are managing.&nbsp; They also let some config files slip through unmanaged.&nbsp; I generally don&#8217;t point fingers about it as there&#8217;s usually a sane tradeoff involved, but the first issue makes fixing the second one harder.</p>
-<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p>
+<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p><!-- more -->
 <p><strong>Situation</strong><br />An org uses Puppet. The org has files unmanaged by Puppet that need to be gathered, analyzed and brought under Puppet control. I expected this to take a couple of hours.</p>
 <p><strong>What made it challenging:</strong> <br />Actual list of servers, uncertain. Generated from Puppet but unverified.<p />The files are secured from being read by anyone except root. 600 as it were.<p />There  are no other management tools - no Rundeck, no Func, no Ansible, no  Salt, no Knife, not even a home grown, lovingly maintained perl  management script, no passwordless ssh.<p />The client apparently expects admins to log into boxes one by one for administrative activities.</p>
 <p><strong>What I have:<br /></strong>My user ID.&nbsp; <br />Sudo on any server I can log into. <br />Passwordless SSH works even if it&#8217;s considered insecure.&nbsp; (really?)<br /><a href="http://sourceforge.net/projects/sshpass/" title="SSHPass" target="_blank">SSHPass</a><br /><a href="http://code.google.com/p/sshsudo/" title="sshsudo" target="_blank">SSHSudo</a><br />Ruby 1.8.5 installed from RPM</p>
@@ -184,6 +184,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/07/11/learning-to-let-go/">Learning to Let Go</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/27/my-favorite-jvm-arg-ever/">My Favorite JVM Arg EVER</a>
       </li>
     
@@ -217,10 +221,6 @@
     
       <li class="post">
         <a href="/blog/2011/10/02/things-i-learned-at-surge/">Things I learned at Surge</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/21/wherein-sascha-ponders-a-question-thats-alrea/">Wherein Sascha ponders a question that's already been asked a million times</a>
       </li>
     
   </ul>

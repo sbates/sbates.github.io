@@ -9,7 +9,8 @@
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for &hellip;">
+  <meta name="description" content="Today I was having a conversation about consulting and how important it is to
+not be emotionally attached to your solutions. As a consultant, you &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,7 +77,7 @@
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
   <li><a href="/about">About Me</a></li>
-  <li><a href="/contact">Contact</a></li>
+  <li><a href="/cv">CV</a></li>
 </ul>
  
 </nav>
@@ -84,6 +85,66 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/11/learning-to-let-go/">Learning to Let Go</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-11T15:54:00-05:00" pubdate data-updated="true">Jul 11<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Today I was having a conversation about consulting and how important it is to
+not be emotionally attached to your solutions. As a consultant, you exist to be
+an enabler. You help others succeed with tasks that, without your expertise, they
+might fail instead.  As consultants, our value comes from a long history of
+observing and participating in spectacular failures and fantastic
+successes. We know what works and what doesn&#8217;t work and we can articulate the
+reasons why.  But our value can be compromised if we can&#8217;t interact effectively
+with our clients. This means checking your emotions and inner schadenfreude at
+the door and working with clients to discover a solution that is practical for
+their environment.</p>
+
+<h5>BOFH</h5>
+
+<p>Back in the day, I worked on a silo&#8217;d web operations team at a big retail
+company. We knew how we liked things done and, although we might argue amongst
+ourselves, we presented a united bullying front to the dev teams.  For example,
+  we didn&#8217;t allow them to deploy apps into production when they came with the
+  caveat of &#8220;you have to restart the app every night.&#8221; We drank developer tears
+  with breakfast, and we liked it that way.</p>
+
+<p>  Guess what? Consultants don&#8217;t have that luxury.
+  </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/07/11/learning-to-let-go/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -159,43 +220,12 @@
   </header>
 
 
-  <div class="entry-content"><p>A friend challenged me tonight to write a brilliant blog post on tuning a technology about which I know nothing. Actually I don&rsquo;t think you can really do that. I don&rsquo;t think you can write a brilliant blog post unless you&rsquo;ve participated in some kind of failure/stress activity with a product.&nbsp; <p />Until you&rsquo;ve seen real life interact with your infrastructure, it&rsquo;s all just theories and beer.&nbsp; But after a long day debugging Chef code I wrote in a way I wish I&rsquo;d never written (no really, I don&rsquo;t want my name anywhere on some of this stuff!), I thought I&rsquo;d take a little downtime to read about a product I&rsquo;m utterly clueless about.&nbsp; Because that&#8217;s fun.&nbsp; YES IT IS.<p />How clueless? After he challenged me, I opted to get in a bike ride while the weather was nice (rumor predicts snow this weekend). While pondering things on my bike, I finally stopped for a sec, took out my phone and googled &#8216;Redis Rescue Throughput.&#8217;&nbsp; And when I found nothing at all useful, I sent him a text &ldquo;Did you actually use the words &#8216;rescue throughput&#8217; earlier?&rdquo;<p />Can you guess what he said to me? He said, &ldquo;Go write a brilliant blog post on Optimizing Redis for Resque Throughput.&rdquo;&nbsp; Now you know how much I know about <a href="https://github.com/defunkt/resque" title="resque" target="_blank">Resque</a>.&nbsp; That would be a big, embarrassing ZERO.&nbsp; As for Redis, I know it&#8217;s an in-memory data store.&nbsp; That&#8217;s it.<p />So now it might not surprise anyone who knows me that this evening did not turn into a big brainstorming session for Redis tuning params.&nbsp; Once I tracked down the Resque github page I was all</p>
-<p>&nbsp;</p>
-<p><img src="/images/allthethings.jpg"</img></p>
-<p>And it&rsquo;s written in Ruby. This is kind of dorky of me, but I still get a little thrill whenever I read source code and know what&rsquo;s going. I looked at some of the examples and thought, OH HEY, I see what you did there! Not that I&rsquo;m any kind of a genius. But it&rsquo;s fun to realize I can read it.<p />And so then I spent the evening reading about Resque, looking at the source code and reading blog posts about it.&nbsp; I adore queuing software. I love the idea that we can pop little bits of data into a store and have it consumed asynchronously, without having other processes blocked while waiting for something to complete. It always makes me happy to have asynchronicity in place.<p />This of course is mostly from years of supporting projects in the early years where devs didn&rsquo;t understand or know about asynchronous communication. Lots of our problems back in the day were related to synchronous calls blocking until the app crashed.&nbsp; Good times.<p />When I encounter open source queuing applications, I get a warm fuzzy.&nbsp; I grew up professionally in a world that only acknowledged one queuing tool: IBM MQ. IBM built an enormous industry around high availability messaging and I had no idea there were other, easy-to-use tools available in the wild, until I got involved with open source.&nbsp; When I first came across RabbitMQ I was enchanted just because it was the first free, easy to use queuing tool I met; when I come from a world where so many are led to believe that you should pay millions of dollars for a decent, reliable tool.</p>
-<p>Then I remembered! o craps! I&rsquo;m supposed to be thinking about in memory database optimization for this queuing stuff, NOT reading about the queuing!&nbsp; Unfortunately, it&rsquo;s now late and I have to get up early tomorrow, so I guess I lose the alien tuning challenge. But I can leave you with common sense and thoughts based on what I see in the redis.conf.<p />Tuning your in memory data store for performance throughput:<p /></p>
-<p><span style="font-size: medium;"><strong>Don&rsquo;t be stupid. </strong></span></p>
-<ul>
-<li>Read the config options.&nbsp; Am I the only one who loves reading config files? Probably. </li>
-<li>Also read the <a href="http://redis.io/topics/virtual-memory" title="Redis VM" target="_blank">Redis page on virtual memory</a>.&nbsp; </li>
-<li>Dedicate instances to your queuing activities.&nbsp; Don&rsquo;t cause data with disparate requirements to co-exist. Competing data sets could also cause developer hair pulling fights over whose app is breaking things.</li>
-</ul>
-<p><span style="font-size: medium;"><strong>Disk I/O and resource contention</strong></span></p>
-<ul>
-<li>Avoid frequent disk writes, esp if you have multiple instances, because you risk I/O contention</li>
-<li>Avoid excessive logging for the same reason</li>
-<li>Avoid virtual machines </li>
-<li><a href="http://www.youtube.com/watch?v=H7PJ1oeEyGg" target="_blank">Get a fucking ssd?</a> Maybe not if you avoid needing to write to disk much, since we&#8217;re more concerned with ALL THE RAMS.</li>
-<li>Know how much memory you will need and MONITOR usage and trending BEFORE you use it all up.</li>
-<li>Your data lives in a Memory-based container.&nbsp; Understand the Max Memory policy</li>
-</ul>
-<p><span style="font-size: medium;"><strong>Connections</strong></span></p>
-<ul>
-<li>Manage your max clients - just because it defaults to 10,000 doesn&rsquo;t make it right.</li>
-<li>Ensure you have enough file descriptors for all your connections plus whatever else the DB needs to keep functioning.&nbsp; If you limit your max connections, you can probably leave the FD unlimited. Or you can limit your FDs as it looks like Redis is smart enough to use those to set connections.</li>
-<li><span style="color: #ff0000;">Either way - be aware of the relationship between number of potential clients connecting, max file descriptors and max client connections.&nbsp; Or you will be sad.</span></li>
-<li>Connection timeouts - this is a tricky topic. If your data store is separated from your queue manager by a firewall, you probably can&rsquo;t leave it on infinite. Firewalls will timeout your connection and not tell you about it. This will either confuse the queue manager and cause it to error or it will possibly be smart enough to open a new connection.</li>
-</ul>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; If the latter, you will eventually run out of file descriptors or allowed connections on the data store side unless the data store is also smart.</p>
-<p><span style="font-size: medium;"><strong>Redis</strong> </span>(did I mention I know nothing about Redis? It&#8217;s an in-memory data store, right?) I read the redis.conf and skimmed the Virtual Memory page.</p>
-<ul>
-<li>Disable active rehashing </li>
-<li>Understand your VM options</li>
-<li>Understand your typical message sizes and size your paging accordingly</li>
-</ul>
-<p>That&#8217;s all I got. You should verify anything you read here against your own requirements and get a second opinion.&nbsp; Every situation is unique. All of these relate to production environments and could be specific to a low latency goal. Memory conservation and data criticality may be conflicting priorities or require compromise.&nbsp;</p>
-</div>
+  <div class="entry-content"><p>A friend challenged me tonight to write a brilliant blog post on tuning a technology about which I know nothing. Actually I don&rsquo;t think you can really do that. I don&rsquo;t think you can write a brilliant blog post unless you&rsquo;ve participated in some kind of failure/stress activity with a product.&nbsp; <p />Until you&rsquo;ve seen real life interact with your infrastructure, it&rsquo;s all just theories and beer.&nbsp; But after a long day debugging Chef code I wrote in a way I wish I&rsquo;d never written (no really, I don&rsquo;t want my name anywhere on some of this stuff!), I thought I&rsquo;d take a little downtime to read about a product I&rsquo;m utterly clueless about.&nbsp; Because that&#8217;s fun.&nbsp; YES IT IS.</div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/04/26/the-alien-technology-tuning-challenge/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -232,18 +262,12 @@
   <div class="entry-content"><p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
 <p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
 <p>Technical debt is a choice and can happen to anyone.&nbsp; Here the client allowed their configuration management to run away from them.&nbsp; They haven&#8217;t been maintaining their Puppet nodes and so don&#8217;t have a good list of what servers they are managing.&nbsp; They also let some config files slip through unmanaged.&nbsp; I generally don&#8217;t point fingers about it as there&#8217;s usually a sane tradeoff involved, but the first issue makes fixing the second one harder.</p>
-<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p>
-<p><strong>Situation</strong><br />An org uses Puppet. The org has files unmanaged by Puppet that need to be gathered, analyzed and brought under Puppet control. I expected this to take a couple of hours.</p>
-<p><strong>What made it challenging:</strong> <br />Actual list of servers, uncertain. Generated from Puppet but unverified.<p />The files are secured from being read by anyone except root. 600 as it were.<p />There  are no other management tools - no Rundeck, no Func, no Ansible, no  Salt, no Knife, not even a home grown, lovingly maintained perl  management script, no passwordless ssh.<p />The client apparently expects admins to log into boxes one by one for administrative activities.</p>
-<p><strong>What I have:<br /></strong>My user ID.&nbsp; <br />Sudo on any server I can log into. <br />Passwordless SSH works even if it&#8217;s considered insecure.&nbsp; (really?)<br /><a href="http://sourceforge.net/projects/sshpass/" title="SSHPass" target="_blank">SSHPass</a><br /><a href="http://code.google.com/p/sshsudo/" title="sshsudo" target="_blank">SSHSudo</a><br />Ruby 1.8.5 installed from RPM</p>
-<p>With  the thought of using sshsudo, I wrote a <a href="https://github.com/sbates/scripts/blob/master/getfiles.rb" title="ruby script" target="_blank">ruby script</a> that runs on  the client node, checks for file existence, copies the files to a temp  folder, makes them available for scp and even tries to scp them back to  the admin server.&nbsp; The script should be runnable via sshsudo/sshpass.&nbsp;  BUT&#8230;<p />The servers also do not allow sudo without a tty. SSH -t  doesn&#8217;t work.&nbsp; SSH -t -t kind of works but hangs without the occasional  keyboard intervention. Trying to scp from the script invokes another request for password which can&#8217;t be handled discreetly on the client.<p />SSHpass works but can&#8217;t execute anything  with sudo on the other end because of the secure tty issue.&nbsp; So this  doesn&#8217;t do me any good because all the files are root-readable only.<p />SSHSudo works but suffers from similar issues.<p />The  servers are RH5 running puppet installed with RPMs so no rubygem  installs exist, even if I were rude enough to install things on servers  belonging to someone else. I had been looking at the use of net-ssh/scp  for some of my scripting, but it wasn&#8217;t really useful.<p /><em>Did any of that make sense?</em><p />None  of this addresses the pre-work I did either.&nbsp; I was given a list of 200  or so servers (generated from Puppet I believe). with the caveat that  &#8220;some may have been retired.&#8221;&nbsp; So I wrote a <a href="https://github.com/sbates/scripts/blob/master/connection_test.rb" title="tcp test script" target="_blank">tcp script </a>to check  listening sockets on port 22 and a few others if desired.&nbsp; I then sorted my servers  into ones that responded, ones that timed out and ones that issued a  &#8216;name or service not known&#8217; message and consulted with the client&#8217;s full  time sysadmin. It turns out that the ones in DNS but not responding  were retired and the ones with connection timeouts needed to be reached  from another server. omg.<p /><strong>What I finally did:</strong><br />Several unscripted actions on the command line because I was doing them as troubleshooting/discovery  steps while figuring out wtf to do to get the files I needed.</p>
-<p><strong>Assembled a servers.good list based on the tcp testing.</strong><p /><strong>Updated the sshsudo script to -t -t wherever it ssh&#8217;d</strong> (oi!)<br /><strong></strong><br /><strong>make a local dir for the files, separated by host name: </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; mkdir -p /tmp/sascha/files/$i<br />done<p /><strong>Put  the file manipulation script down on all the servers and run it;</strong> originally it was going to scp them back to the admin server too, but  that wasn&#8217;t working out for me<br />./sshsudo -r -v -u sascha servers.good getfiles.rb <p /><strong>Get the files I snagged out of their root-read-only existence </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp;sshpass -f ~/mypassfile scp -q sascha@$i:/tmp/files/* /tmp/sascha/files/$i<br />done<p /><strong>Delete the files from remote tmp</strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; sshpass -f ~/mypassfile ssh -q sascha@$i rm -rf /tmp/files<br />done</p>
-<p>I also spent some time making a temporary keyset for passwordless ssh but that turned out to be no real diff from using sshpass. But messing around with moving it to the servers highlighted another issue - I could only log into about 10 of 100.&nbsp; Lovely.</p>
-<p>OMG.&nbsp;  I need an orchestration tool or something, STAT.&nbsp; I should probably go  script this, but I will probably never do anything similar for this client again  unless they ask me to implement an orchestration tool for them.&nbsp;</p>
-<p>All of this work, just to get the files to me so I can work work with them. How do people live like this???</p>
-<p><strong>****Lesson Learned</strong>: ask more questions when accepting work, even when it&#8217;s ad hoc, tiny project work for someone I know.&nbsp; I assumed they would have management tooling.&nbsp; After all, they were smart enough to use configuration management.</p>
-</div>
+<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p></div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/04/15/yak-hacking/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -525,53 +549,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/07/21/wherein-sascha-ponders-a-question-thats-alrea/">Wherein Sascha Ponders a Question That&#8217;s Already Been Asked a Million Times</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-21T00:00:00-05:00" pubdate data-updated="true">Jul 21<span>st</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>What is DevOps?<span>&nbsp; </span>2 years ago I had no idea.<span>&nbsp; </span>I was living the cycle of poorly planned, crappily implemented projects where artisan server builds were the only way anything was built, even when it meant 125 servers. <span>&nbsp;&nbsp;</span>I actually had a PM say to my team, &ldquo;We don&rsquo;t have TIME to plan!<span>&nbsp; </span>You need to start building servers!&rdquo;<span>&nbsp; </span>I was gone for two weeks to Europe right after that and when I came back, one of my sysadmins had indeed kickstarted all 125 servers. We then spent the next 6 months fixing configurations via ssh cli foo (for i in servers; do ssh $i some monkeypatch;done).</p>
-<p>I tell you this anecdote so you can understand the utter delight and abandon with which I embraced the DevOps movment when introduced 18 months ago.<span>&nbsp; </span>I was immediately wowed by the positive, inclusive attitude.<span>&nbsp; </span>I read about continuous deployment, continuous integration, test driven deployment, configuration management tools and the personal experiences of several people.<span>&nbsp; </span>I found the<a href="http://dev2ops.org/blog" title="DTO Blog" target="_blank"> DTO blog</a>, the <a href="http://theagileadmin.com/" title="Agile Admin" target="_blank">Agile Admin</a> and, of course, the Etsy <a href="http://codeascraft.etsy.com/" title="Code as Craft" target="_blank">Code as Craft</a> blog.<span>&nbsp; </span></p>
-<p><span>&nbsp;</span>It&#8217;s great to see people engaged, animated and motivated to make things awesome.<span>&nbsp; </span>Instead of being beat down, embracing the ops-as-victims lifestyle, they&#8217;ve taken charge of their world and started trying to change what&#8217;s not working instead of just turning into the troll under the bridge.<span>&nbsp; </span>I&rsquo;ve spent over 10 years in corporate and I know how easy it is to feel beat down by the constant cycle of develop, implement, fail, support the failure forever.<span>&nbsp; </span>So I love me a movement that engages and tries to proactively to end the failure cycle.<span>&nbsp; </span></p>
-<p>In June I had my first community interaction events at Velocity and Devopsdays, in San Jose. The atmosphere was different from any other industry conference I&rsquo;ve attended in the past.<span>&nbsp; </span>It was awesome.<span>&nbsp; </span>The energy was amazing.<span>&nbsp; </span>Many of the talks were inspiring(<a href="http://www.kitchensoap.com/" title="John Allspaw" target="_blank">John Allspaw</a>, Adam Jacob, I&rsquo;m talking to you).<span>&nbsp; </span>I finished the week with a hyperactive energy and desire to channel that energy into about 10 new things I&rsquo;d learned about.</p>
-<p>A common theme during presentations, panels <span>&nbsp;</span>and over beer was the attempt to define the DevOps movement. <span>&nbsp;</span>I heard a lot of people at Velocity tell me what it&#8217;s not.<span>&nbsp; </span>It&#8217;s not a tool, it&#8217;s not a job, it&#8217;s not a job description; it&#8217;s not a title.<span>&nbsp; </span>I heard a lot of, &#8220;if you claim to be &#8216;devops,&#8217; yer doin it wrong.&#8221;</p>
-<p><span>&nbsp;</span>Interestingly, in high school and college, I ran with a punk rock/goth crowd with a similar attitude.<span>&nbsp; </span>&#8220;If you claim you&#8217;re punk rock or goth, yer doin it wrong.&#8221;<span>&nbsp; </span>We were too cool for labels.<span>&nbsp; </span>In our own minds, we were outside the labeling system.<span>&nbsp; </span>Sticking a label on us or on yourself was lame and small minded.<span>&nbsp; </span>We&#8217;d say things like, &#8220;I&#8217;m not goth.<span>&nbsp; </span>I&#8217;m just myself.<span>&nbsp; </span>I don&rsquo;t conform to labels.&#8221;<span>&nbsp; </span>We were pretentious by pretending that only pretentious people actually labeled themselves.<span>&nbsp; </span>If you claimed to be punk, obviously you were a poser.</p>
-<p>I&#8217;m sensing a lot of that same attitude from the folks who say, &#8220;if you call yourself a devop, yer doin it wrong.&#8221;<span>&nbsp; </span>I understand some of the desire to protect the movement from spoilage and the term from overuse.<span>&nbsp; </span>We want to keep our counterculture to ourselves.<span>&nbsp; </span>It&rsquo;s not for the likes of HP and IBM and their re-branding of old, tired products.<span>&nbsp; </span></p>
-<p>I understand what people mean.<span>&nbsp; </span>Labels get in the way of the movement.<span>&nbsp; </span>Labels are limiting and, if you say you &#8220;do devops&#8221; you risk limiting yourself and the perceptions of others. I can even empathize.<span>&nbsp; </span>Every time a job comes through my inbox labeled &ldquo;devops,&rdquo; I cynically assume it&rsquo;s someone who wants to rope some poor sap of a sysadmin into a crap job by labeling it with something cool, probably hoping to get two kinds of work for the price of one.<span> </span></p>
-<p>Everyone claims to be living in the DevOps moment, but what does it really mean?<span>&nbsp; Several people have asked this question and tried to answer it.&nbsp; </span>My business card has &lsquo;DevOps&rsquo; on it.<span>&nbsp; </span>But it also says Problem Solving, Middleware and other things.<span>&nbsp; </span>How dare I list Devops among my skill set? <span>&nbsp;</span>Here&#8217;s the thing.<span>&nbsp; </span>If DevOps isn&#8217;t a tool, if it isn&#8217;t a job description, if it isn&#8217;t a title, it still must describe something right?<span>&nbsp; </span>It can&rsquo;t be an empty set.<span>&nbsp; </span>Here&#8217;s what I was thinking when I put it on my card.<span>&nbsp; </span>DevOps is a framework and a philosophy.<span>&nbsp; </span>It&#8217;s a lightly codified framework for an attitude and approach to solving problems. DevOps contains the seeds from which a better culture can grow. <span>&nbsp;</span>It assumes inclusiveness, accountability and that everyone is smart. It dismisses boundaries. When I put DevOps on my business card, what I&#8217;m saying is, the word defines part of the way I think, the way I approach problem solving and it also defines the attitude I&#8217;m looking for when evaluating engagements.</p>
-<p>Because of all the positive vibe around DevOps, it bothers me when I see snotty tweets or hear snarky remarks during conference presentations.&nbsp; You can call bullshit when HP starts trying to claim that its monitoring suite is &#8220;devops friendly,&#8221; or when Gartner starts writing articles that could be subtitled &#8220;How to cash in on the DevOps movement.&#8221;&nbsp; But projecting an attitude of exclusivity or just plain snark because you&#8217;re feeling protective can only hurt things.&nbsp; New folks are continually stumbling upon parts of DevOps or agile infrastructure as a movement.&nbsp; Some of them have been living the attitude for years and maybe just now realizing there are others out there.&nbsp; I guess I&#8217;d rather be a hippy flashing a peace sign at people who happen across DevOps than a hipster turning my nose up at anyone who doesn&#8217;t meet my specific criteria for cool.</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -589,6 +566,10 @@
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/07/11/learning-to-let-go/">Learning to Let Go</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/04/27/my-favorite-jvm-arg-ever/">My Favorite JVM Arg EVER</a>
@@ -624,10 +605,6 @@
     
       <li class="post">
         <a href="/blog/2011/10/02/things-i-learned-at-surge/">Things I learned at Surge</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/07/21/wherein-sascha-ponders-a-question-thats-alrea/">Wherein Sascha ponders a question that&#8217;s already been asked a million times</a>
       </li>
     
   </ul>
