@@ -30,7 +30,9 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   caveat of "you have to restart the app every night." We drank developer tears
   with breakfast, and we liked it that way. 
 
-  Guess what? Consultants don't have that luxury. 
+  Guess what? Consultants don't have that luxury. I might also argue that
+  internal operations teams no longer have that luxury, but that's a blog for
+  another day. 
   <!-- more -->
 
   In that job, I saw every kind of connection leak, OOM and spectacular
