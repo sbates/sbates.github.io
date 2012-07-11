@@ -64,8 +64,8 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   was, "Why do you want to make me cry?"
 
 ##### Don't Get Attached
-  Something that challenged me is that there is no absolute right or wrong way
-  to design something. Its corollary is you will always disagree with at least
+   A concept that challenged me is that there is no absolute right or wrong way
+  to design something. The corollary to that is you will always disagree with at least
   one thing the client wants to do. Sometimes you will disagree with many.
   Sometimes they will disagree with your solutions and expect you to implement
   what they want, not what you want.  
