@@ -7,7 +7,7 @@ categories: [Chef, automation, ATG, JBoss]
 ---
 
 I just want to take a moment to point you at an epic new Chef cookbook undertaking. John Larsen has been working on a [cookbook to configure a full ATG stack with JBoss](http://community.opscode.com/cookbooks/atg) and has finished a first version. This is something I always wanted to work on but never got around to, and so I'm being extra appreciative of someone who did take the time to get it working.
-<!–more–> 
+<!-- more -->
 Anyone who works on ATG projects knows that installing and configuring the
 first instances of ATG is hella complex and nearly impossible to do even with
 documentation.  With all the options, variables and components, it mostly takes repetition and mistakes to get an initial ATG install correct.
