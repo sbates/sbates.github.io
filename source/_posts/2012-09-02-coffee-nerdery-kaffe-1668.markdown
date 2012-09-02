@@ -7,7 +7,7 @@ categories: [coffee nerdery, new york, kaffe 1668, tribeca]
 ---
 
 **[Kaffe 1668](http://kaffe1668.com)**  
-**Location:** Tribeca a few blocks from the GZ Memorial
+**Location:** Tribeca a few blocks from the GZ Memorial  
 **Espresso:** Intellegentsia  
 **Hardware:** Synesso & Mazzer  
 **Coffee Art:** Yes  
