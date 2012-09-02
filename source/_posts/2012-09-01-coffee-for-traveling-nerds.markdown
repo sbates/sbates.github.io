@@ -11,7 +11,7 @@ logistics are often driven by my need for acceptable espresso drinks. Over the
 years I've raised the bar several times for what I want in a coffee shop. I used to just get excited that
 I could find Starbucks on road trips through Nebraska and Oklahoma or had
 a Starbucks across the street from my hotel.
-
+<!-- more -->
 These days I look a little harder for local shops serving artisan espresso
 drinks. I have been know to pore over Google Maps and search the internet for
 hours before choosing a hotel for a trip. For road trips I look ahead of time
@@ -24,7 +24,7 @@ straight espresso. I prefer my drinks to be about cappuccino strength. I don't
 roast my own beans although I've met those who have. I can't make very good
 coffee art, although I enjoy trying.
 
-These days I drink most of my espresso at home, which is part of what's raised the
+I drink most of my espresso at home, which is part of what's raised the
 bar when I look for coffee shops. If you spend a lot of time pursuing a great
 shot, you start noticing when you're served bitter espresso or scalded milk. I went from religiously drinking
 Caribou cappuccinos to actively loathing them over a period of a few years.
