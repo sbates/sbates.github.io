@@ -1,0 +1,86 @@
+---
+layout: post
+title: "Coffee for Traveling Nerds"
+date: 2012-09-01 09:01
+comments: true
+categories: [coffee, nerds, travel, kaffe 1668 ]
+---
+I'm embarking on something I've wanted to do for a long time. Coffee reviews
+for traveling nerds. I don't travel extensively but I do go places and my trip
+logistics are often driven by my need for acceptable espresso drinks. Over the
+years I've raised the bar several times for what I want in a coffee shop. I used to just get excited that
+I could find Starbucks on road trips through Nebraska and Oklahoma or had
+a Starbucks across the street from my hotel.
+
+These days I look a little harder for local shops serving artisan espresso
+drinks. I have been know to pore over Google Maps and search the internet for
+hours before choosing a hotel for a trip. For road trips I look ahead of time
+at where we might be able to stop for coffee, mostly because I'm afraid we'll
+miss the only coffee shop within 300 miles (this can happen in Texas!).
+
+I'm not a top of the line coffee snob. I don't attend cuppings and I'm not sure
+I could tell the diff between espresso shots. To be honest, I'm not too fond of
+straight espresso. I prefer my drinks to be about cappuccino strength. I don't
+roast my own beans although I've met those who have. I can't make very good
+coffee art, although I enjoy trying.
+
+These days I drink most of my espresso at home, which is part of what's raised the
+bar when I look for coffee shops. If you spend a lot of time pursuing a great
+shot, you start noticing when you're served bitter espresso or scalded milk. I went from religiously drinking
+Caribou cappuccinos to actively loathing them over a period of a few years.
+
+Many years ago I had a Krups pot boiler espresso machine and a blade grinder.
+I used that for years and considered it fine. Then I started thinking I wanted
+a nicer espresso maker and started reading.  That's when I learned about
+grinders. Instead of buying a new espresso machine, I ended up buying a [Mazzer
+Mini](http://www.mazzer.com/scheda.asp?idprod=2). This was before the Euro and when things were less expensive. I believe
+it cost me around $350 at the time. That was all the money I could afford to
+spend for a long time, so I had a super nice grinder and a crappy pot boiler
+espresso machine.
+
+Eventually my boyfriend and I each got Starbucks Barista machines on sale for
+$200 and they were great for their price point until they died. At that point,
+I was making more money and decided I wanted something nicer. I opted for
+a [Rancilio Silivia](http://www.rancilio.it/rancilio/prod_model.jsp?id_model=49&id_language=3&id_category=26)
+which I later modded with a [PID](http://www.pidsilvia.com/) that allows you to see and
+regulate the brewing temperature for espresso.  This is where I'm at today:
+Mazzer Mini, Rancilio Sivia. I tend to use the same espresso beans as
+calibrating the grinder for different kinds requires wasting about half a pound
+and too much time.  So I stick with a local provider: [Peace Coffee
+espresso beans](http://www.peacecoffee.com/).
+What do I consider an artisan shop? There are several optional
+components but a few obvious things: 
+
+* **Their espresso machine aren't automatic**:
+If you push a button to make the espresso, chances are good it's going to taste
+like ass, no matter how beautifully the beans were roasted. Example: I ended up
+at a Pete's Coffee in Santa Clara and was surprised at how downright yummy my
+latte tasted. This shop was using a La Marzocco. I was so pleased that when
+I went to the airport, I ordered some there.  The same drink came out of an
+automated machine and was so vile I threw it out.  Seriously.  So this one
+isn't negotiable. You can't have an automatic and call yourself artisan. Please
+point me in the direction of anyone making sublime drinks with an automatic if
+you disagree.
+* **Beans are ground for each drink, not hours in advance**:
+Yes this really happens. I have stopped at a few places and had them make
+espresso with grounds from a bin. 
+* **Coffee Art**:
+I consider this mandatory although not necessarily every single time if I go
+often. What this tells a first time visitor though is that your baristas have
+been trained on more than how to look at a theromometer and push a button. It
+also adds a nice finishing touch to the drink, communicating that each drink is
+an individual effort.
+
+Less mandatory, I like it when the barista can talk about calibration and taste
+notes with their espresso(s). Another thing you'll find in serious artisan
+shops is milk snobbery.  When the Angry Catfish opened in Minneapolis, they did
+several taste tests before settling on a local milk provider. They also only
+serve whole milk, no arguments, although they'll also use soy.  
+
+So anyway, I've started writing up my NYC coffee shop experiences and will post
+a separate snippet for each shop. I'll also create entries for places like that
+awesome shop we found in Denton, TX and other recent trips to Baltimore,
+Seattle and Santa Clara. I know this is
+a technical blog, but coffee is so much a part of our lifestyles that it seems
+a natural add-on. I hope you enjoy it and if you have suggestions for places
+for me to visit, please let me know.
