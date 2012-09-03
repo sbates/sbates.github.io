@@ -30,7 +30,7 @@ categories: [coffee nerdery, new york, kaffe 1668, tribeca]
  next. The scone was good, the baguette was chewy(I know nothing about french
 breads so take that fwiw). 
 
- Your wait for coffee can be significant. The lined moved a bit slow and it
+ Your wait for coffee can be significant. The line moved a bit slow and it
  took a while for my drinks to be made.  However, it's worth it as the
  baristas are perfectionists and won't serve a substandard drink. On my first
  visit I was informed that my second cup was late because they were remaking
