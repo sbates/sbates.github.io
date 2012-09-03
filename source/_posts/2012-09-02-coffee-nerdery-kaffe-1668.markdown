@@ -3,18 +3,19 @@ layout: post
 title: "Coffee Nerdery: Kaffe 1668"
 date: 2012-09-02 17:42
 comments: true
-categories: [coffee nerdery, new york, kaffe 1668, tribeca] 
+categories: [coffee nerdery, new york, kaffe 1668, tribeca, espresso in new
+york] 
 ---
 
 **[Kaffe 1668](http://kaffe1668.com)**  
-**Location:** Tribeca a few blocks from the GZ Memorial  
+**Location:** New York, Tribeca a few blocks from the GZ Memorial  
 **Espresso:** Intelligentsia   
 **Hardware:** Synesso & Mazzer  
 **Coffee Art:** Yes  
 **WiFi:** yes  
 **Drink:** skim cappuccino  
 **Served in:** 6oz ceramic cups  
-**Visited:** 30Aug2012 & 1Sept2012  
+**Visited:** 2012 Aug30, Sep1 & 3  
 
   <img src="/images/kaffe1668.jpg"/>  
  This coffee shop was recommended to me by a casual Facebook friend who moved to NYC

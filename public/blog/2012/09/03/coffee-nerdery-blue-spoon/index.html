@@ -5,11 +5,16 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Puppet for Chef Users - Part 2 - When is a node a node?  - Bratty Redhead</title>
+  <title>Coffee Nerdery: Blue Spoon - Bratty Redhead</title>
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="Disclaimer: I have been working with Chef for about 18 months and Puppet for about 5 minutes.&nbsp; I don&#8217;t claim to be an expert on Puppet nor &hellip;">
+  <meta name="description" content="Blue Spoon
+Location: New York, Downtown (Williams and Platt)
+Espresso: Intelligentsia
+Hardware: La Marzocco + Mazzer
+Coffee Art: No
+WiFi: yes, from &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +23,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/">
+  <link rel="canonical" href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -87,7 +92,7 @@
   
   <header>
     
-      <h1 class="entry-title">Puppet for Chef Users - Part 2 - When Is a Node a Node?</h1>
+      <h1 class="entry-title">Coffee Nerdery: Blue Spoon</h1>
     
     
       <p class="meta">
@@ -103,18 +108,50 @@
   
 
 
-<time datetime="2011-11-19T00:00:00-05:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
+<time datetime="2012-09-03T09:38:00-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p><em>Disclaimer: I have been working with Chef for about 18 months and Puppet for about 5 minutes.&nbsp; I don&#8217;t claim to be an expert on Puppet nor warranty this information in any way.&nbsp; It could all be egregiously wrong.&nbsp; This is simply a blog exploring what I&#8217;m learning.</em><p />When is a node a node?&nbsp; And when is it a thought?&nbsp; Or a regex? When is it a description of a certain state of being?<p />When I first started working in someone else&#8217;s existing puppet domain, I was confused.&nbsp; Everything was described in puppet/manifests/site.pp.&nbsp; There was a lot of description.&nbsp; Everything was called a node, regardless of what kind of object it was describing. Lists of manifests/classes were nodes, named servers were nodes, there were some regexs also designated nodes.&nbsp; I was confused.<p />Check it out.&nbsp; In Chef there are nodes.&nbsp; A node is always the endpoint in question.&nbsp; It&#8217;s a concrete item.&nbsp; It just&#8230;.is.&nbsp; A VM is a node.&nbsp; An AWS instance is a node.&nbsp; If you want to describe a node, you add recipes or roles to it.&nbsp; A recipe is a single thing.&nbsp; A role is a collection of recipes, attributes and information that comprises a functional entity.<p />In Puppet, a node is a much more nebulous concept.&nbsp; A node is still always the client endpoint.&nbsp; But, the node can also be a described end state.<p />Let&#8217;s use the ubiquitous webserver example.&nbsp; In my webserver, I will probably need a set of base OS modules/cookbooks and some webserver stuff.&nbsp; I might have a requirement set that looks like this:<p />[ dns, ntp, ssh, syslog, puppet-agent|chef-client, apache, openssl, memcached ]<p />There are some differences in Puppet and Chef management structure.&nbsp; In Chef, a node is a client, an endpoint. It&#8217;s pretty much always a server, whether hardware, VM or cloud instance.<p />In Chef I would write cookbooks for each of the items in my set.&nbsp; Then I would probably create two roles: dotcom_base and webserver<p /><strong>roles/com_base.rb</strong><br /><strong>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</strong><br />name &#8220;dotcom_base&#8221;<br />description &#8220;The base role for ALL systems&#8221;<br />run_list(<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[chef-client]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[syslog]&#8221;, &nbsp;<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[ssh]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[ntp]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[dns]&#8221;<br />)<p /><strong>roles/webserver.rb</strong><br /><strong>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</strong><br />name &#8220;webserver&#8221;<br />description &#8220;Role for Webservers&#8221;<br />run_list(<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[apache]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[openssl]&#8221;, &nbsp;<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[memcached]&#8221;<br />)<p />At this point I would then add both roles to any webserver node in my farm.&nbsp; Or the roles would be added at bootstrap or your choice.&nbsp; This information goes into node attributes stored in the attribute database.&nbsp; There is no flat file representation of actual named nodes.<p />Puppet is all flat file management, requiring node management to be described in flat files.&nbsp; Puppet has also chosen a flexible concept of <strong>node</strong>.<p /> A node can be a collection of similar items:  <br /><strong>node &#8220;dotcom_base&#8221;</strong> { <br /> &nbsp; include dns<br />&nbsp; include ntp<br />&nbsp; include syslog<br />&nbsp; include puppet_agent<br />}<p />A node can be a type:<br /><strong>node &#8220;webserver&#8221;</strong>&nbsp; inherits &#8220;dotcom_base&#8221; {<br />&nbsp; include apache<br />&nbsp; include openssl<br />&nbsp; include memcached<br />&nbsp;}<p />Given dotcom_web1.domain.com, dotcom_web2.domain.com, dotcom_web3.domain.com:<p />A node can just be a single endpoint:<br /><strong>node dotcom_web1.domain.com </strong>inherits &#8220;webserver&#8221;{ }<p />A node can be a collection of nodes matched with regex.<br /><strong>node /^dotcom_web\d+&#46;domain&#46;com$/</strong> inherits &#8220;webserver&#8221; { }</p>
-<p>A thought on node construction: To be more transparent, these could also say <p /><em>inherits &#8220;dotcom_base&#8221; { webserver }</em><p />While I have not seen this notation, it&#8217;s what I would do if I were designing from the bottom up.&nbsp; This may or may not be correct style-wise, but I&#8217;m a fan of transparency in my config statements.</p>
-<p>Puppet node information can either be described in the top level puppet/manifests/site.pp or site.pp can include a second file traditionally called nodes.pp.&nbsp; Site.pp can also include puppet conditionals, environment descriptions and params that might be specific to an environment, similar to Chef&#8217;s override attributes.</p>
-<p>So, to recap, Chef and Puppet both have nodes.&nbsp; Puppet describes many different objects which are all designated nodes.&nbsp; Chef has chosen to break out object descriptions into roles and runlists for nodes.</p>
-<p><strong>Chef progression: </strong>cookbook/recipe=&gt; role =&gt; node <br /><strong>Puppet progression: </strong>module/manifest =&gt; typed node description =&gt; specific/regex matched node description</p>
+<div class="entry-content"><p><a href="http://www.bluespooncoffee.com/">Blue Spoon</a><br/>
+<strong>Location</strong>: New York, Downtown (Williams and Platt)<br/>
+<strong>Espresso</strong>: Intelligentsia<br/>
+<strong>Hardware</strong>: La Marzocco + Mazzer<br/>
+<strong>Coffee Art</strong>: No<br/>
+<strong>WiFi</strong>: yes, from the park across the street (NY DTA), sketchy<br/>
+<strong>Served In</strong>: 8oz cardboard<br/>
+<strong>Drink</strong>: skim cappuccino<br/>
+<strong>Visited</strong>: 8/31/2012</p>
+
+<p><img src="/images/bluespoon.jpg"></p>
+
+<p>This is a small shop at corner of William and Platt in the Financial
+District.  The coffee is too hot leading me to guess they overcook the milk. I ate
+half a bagel waiting for it to cool off. If I had been walking, I would have
+wanted a sleeve, which I generally never need with artisan coffee joints. It
+was interesting that the beans were Intelligentsia as the taste seemed to
+have a lot more licorice or citrus than the other locations serving the same
+beans. Reminded me a bit of Stumptown when it&#8217;s pulled too long.</p>
+
+<p>Other, non-coffee specific: It&#8217;s hot in here. It&#8217;s a very small space and
+I think there&#8217;s some a/c near the counter, but I&#8217;m about 8 feet away at
+a window bar and sweating while drinking my coffee. Also, despite ordering
+&#8220;for here,&#8221; I received cups with lids on them and a bagel toasted but wrapped
+up in wax paper and a lunch bag.</p>
+
+<p><strong>Pros</strong>: They&#8217;re 2 blocks from where I&#8217;m staying and bagel noms.<br/>
+<strong>Cons</strong>: scalded milk, bitter, citric taste, location heat.</p>
+
+<p>Followup: It was 90 degrees Friday afternoon, so I opted to walk back here
+despite the meh experience of the morning.  I got the same kind of drink that
+I think had even more milk than my morning cups. Very disappointing
+experience for a shop that actually has a La Marzocco in residence.</p>
+
+<p>Final word: Despite the La Marzocco, this shop is not serving artisan coffee
+and I don&#8217;t recommend it. It beats Starbucks, but just barely. Intelligentsia
+should investigate the crimes being committed against their beans in this location.</p>
 </div>
 
 
@@ -137,15 +174,21 @@
   
 
 
-<time datetime="2011-11-19T00:00:00-05:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
+<time datetime="2012-09-03T09:38:00-04:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
       
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/blue-spoon/'>Blue Spoon</a>, <a class='category' href='/blog/categories/coffee-nerdery/'>coffee nerdery</a>, <a class='category' href='/blog/categories/downtown/'>downtown</a>, <a class='category' href='/blog/categories/espresso-in-new-york/'>espresso in new york</a>, <a class='category' href='/blog/categories/financial-district/'>financial district</a>, <a class='category' href='/blog/categories/new-york/'>new york</a>
+  
+</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/" data-via="sascha_d" data-counturl="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/" >Tweet</a>
   
   
   
@@ -154,14 +197,18 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/11/07/puppet-for-chef-users/" title="Previous Post: Puppet for Chef Users">&laquo; Puppet for Chef Users</a>
+        <a class="basic-alignment left" href="/blog/2012/09/02/coffee-nerdery-kaffe-1668/" title="Previous Post: Coffee Nerdery: Kaffe 1668">&laquo; Coffee Nerdery: Kaffe 1668</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/03/23/i-am-not-a-fangirl/" title="Next Post: I am not a fangirl">I am not a fangirl &raquo;</a>
       
     </p>
   </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -273,7 +320,10 @@
       var disqus_shortname = 'brattyredhead';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/';
+        var disqus_url = 'http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
