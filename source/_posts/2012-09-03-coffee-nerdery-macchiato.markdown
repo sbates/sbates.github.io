@@ -36,6 +36,7 @@ have been lovely.
 
 Final word: I would go here if I were near but wouldn't go out of my way to get
 some and I might look around for something different if I were planning ahead.
-It makes me interested in checking out Fonte Coffee Roasters in Seattle!
+I think 12oz cups are way too big for most drinks, but it did taste good, so
+YMMV.  It makes me interested in checking out Fonte Coffee Roasters in Seattle!
 
 
