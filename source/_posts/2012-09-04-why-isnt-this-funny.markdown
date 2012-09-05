@@ -8,6 +8,12 @@ categories: [devops, culture]
 
 <img src="/images/cczqi.jpg"/>
 
+**tl;dr**: As a sysadmin, whenever someone tweets something snarky about sysadmins,
+I feel a little put down. As a result, I try to think twice about snarky stuff
+I might tweet about devs or other teams. And so, I think sysadmins posting snarky captioned
+images about devs and then adding the devops hashtag is mean and
+inappropriate. 
+
 I've seen this captioned image circulating all day with the devops hashtag on Twitter. For the
 record, I don't think this picture is funny. In the right context, it might
 be funny. If it were, say, a slide in a deck pointing to how things are or
