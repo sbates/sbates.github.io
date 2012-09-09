@@ -324,69 +324,6 @@ actually funny at all.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/09/03/coffee-nerdery-la-colombe/">Coffee Nerdery: La Colombe</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-03T19:38:00-05:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://lacolombe.com">La Colombe</a><br/>
-<strong>Location</strong>: New York, NoHo@400 Lafayette<br/>
-<strong>Espresso</strong>: La Colombe<br/>
-<strong>Machines</strong>: La Marzocco &amp; Mazzer<br/>
-<strong>Coffee Art</strong>: yes<br/>
-<strong>Wifi</strong>: unknown<br/>
-<strong>Served in</strong>: 8oz ceramic <br/>
-<strong>Drink</strong>: skim cap<br/>
-<strong>Visited</strong>: 9/2/12</p>
-
-<p>This was a quick stop while out shopping with a friend. There&#8217;s ample seating
-and it&#8217;s a light, airy space. My coffee was ok, although it was a smidge
-bitter. I&#8217;d probably have to try again to see how I liked the coffee.
-However, it&#8217;s a great place, good for meeting a friend or stopping in and
-they take their coffee production pretty seriously. I didn&#8217;t actually see
-a menu anywhere although I wasn&#8217;t looking.</p>
-
-<p>They did have an adorable water &#8220;fountain&#8221; that offered room temperature,
-cold or carbonated water and they&#8217;ll offer you a water cup no problem.  The
-staff is professional and fast. This coffee shop had the most starbucksian
-feel to it of all the shops I&#8217;ve been too, but I don&#8217;t really mean that in
-a derogatory way. I just mean that they turned out product quickly. The
-product they turned out was definitely far superior to anything Starbucks
-will serve you. I still prefer low-lit, shabby, hipster joints, but I&#8217;d have
-no problem coming back here.</p>
-
-<p><strong>Pros</strong>: Fast, good coffee<br/>
-<strong>Cons</strong>: None really</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/blog/2012/09/03/coffee-nerdery-macchiato/">Coffee Nerdery: Macchiato, NYC</a></h1>
     
     
@@ -688,7 +625,7 @@ a Starbucks across the street from my hotel.</p>
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/28/attributes-origami/">Attributes Origami</a></h1>
+      <h1 class="entry-title"><a href="/blog/2012/07/11/learning-to-let-go/">Learning to Let Go (or How I Stopped Worrying and Learned to Love the Bomb)</a></h1>
     
     
       <p class="meta">
@@ -704,43 +641,86 @@ a Starbucks across the street from my hotel.</p>
   
 
 
-<time datetime="2012-07-28T23:00:00-05:00" pubdate data-updated="true">Jul 28<span>th</span>, 2012</time>
+<time datetime="2012-07-11T15:54:00-05:00" pubdate data-updated="true">Jul 11<span>th</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
+  <div class="entry-content"><p>Today I was having a conversation about consulting and how important it is to
+not be emotionally attached to your solutions. As a consultant, you exist to be
+an enabler. You help others succeed with tasks that, without your expertise, they
+might fail instead.  As consultants, our value comes from a long history of
+observing and participating in spectacular failures and fantastic
+successes. We know what works and what doesn&#8217;t work and we can articulate the
+reasons why.  But our value can be compromised if we can&#8217;t interact effectively
+with our clients. This means checking your emotions and inner schadenfreude at
+the door and working with clients to discover a solution that is practical for
+their environment.</p>
 
-<p>This post assumes some basic familiarity with Chef and node attributes. I assume that most people are going to be bored with the subject matter unless you care about nerdy details or why strings are the official preferred notation. You can get the <a href="http://wiki.opscode.com/display/chef/Cookbook+Attributes#CookbookAttributes-Notation">short version</a> on the Chef Wiki Cookbook Attributes page. I have a longer discussion here that focuses on my discovery process and evolution of thought.</p>
+<h5>BOFH</h5>
 
-<h4>A Quick Attribute Notation Overview</h4>
+<p>Back in the day, I worked on a silo&#8217;d web operations team at a big retail
+company. We knew how we liked things done and, although we might argue amongst
+ourselves, we presented a united bullying front to the dev teams.  For example,
+  we didn&#8217;t allow them to deploy apps into production when they came with the
+  caveat of &#8220;you have to restart the app every night.&#8221; We drank developer tears
+  with breakfast, and we liked it that way.</p>
 
-<p>When I first started working with Chef, the publicly available cookbooks and wiki documentation were written in different styles.</p>
+<p>  Guess what? Consultants don&#8217;t have that luxury. I might also argue that
+  internal operations teams no longer have that luxury, but that&#8217;s a blog for
+  another day.
+  </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/07/11/learning-to-let-go/">Read on &rarr;</a>
+    </footer>
+  
 
-<ul>
-<li>Some used <strong>symbols</strong>: node[:some][:symbol]</li>
-<li>some used <strong>strings</strong>: node[&#8216;some&#8217;][&#8216;string&#8217;]</li>
-<li>some used <strong>method_missing</strong>: node.dot.notation</li>
-</ul>
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/04/27/my-favorite-jvm-arg-ever/">My Favorite JVM Arg EVER</a></h1>
+    
+    
+      <p class="meta">
+        
 
 
-<p>I usually refer to this last as &#8220;dot notation,&#8221; mostly because I had no idea what else to call it at first. I still call it that as it&#8217;s an intuitive reference for someone who doesn&#8217;t know much Ruby. I read up on <a href="http://ruby-doc.org/docs/ProgrammingRuby/html/ref_c_object.html#Object.method_missing">method_missing</a> in prep for this blog post, but it was a new term and concept to me.</p>
 
-<h4>O dot notation, how do I love thee?</h4>
 
-<p>Getting back to it, I <em>lurved</em> my dot notation. It was easy to type. It was easy to read. It was harder to make typos. I am the queen of typos. Anything that helps me make fewer is my favorite friend. Then Chef Summit happened and recaps happened and I was like:</p>
 
-<p><img src="images/yutakeawaymaidots.jpg" float: left /></p>
 
-<p>At first I was outraged that they were <em>oppressing</em> my dot notation and I was terrified they would deprecate it, which would make me sad. For a long time after that, I was just mad and still loved my dot notation and resolved to just keep using it anyway. This was the first time I had the urge to blog about it. I was planning to tell everyone to piss off. I loved my dot notation and I didn&#8217;t want it taken away.</p>
 
-<p><img src="images/nocanheerz.jpg" float: right /></p>
 
-<p>I mean, yeah, dot notation didn&#8217;t always work and I probably never understood why. I was like this when I first learned chef:</p>
+  
 
-<p><img src="images/babylol.jpg" /></p>
+
+<time datetime="2012-04-27T00:00:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
+<p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
+<p><span style="font-size: medium;"><strong>-XX:MaxJavaStackTraceDepth=&lt;num&gt;</strong></span></p>
+<p>It was love at first sight.&nbsp; See, I know developers lurve their stack traces and exceptions.&nbsp; Truly.&nbsp; But I&#8217;ve met some truly horrendous apps.&nbsp; You know the kind.&nbsp; They throw 500 line stack traces every time someone types in a bad password. Or you have an overrun team that, once an app is in production, they don&#8217;t have time to tune the app and so you are stuck with 2000 lines of stack trace for every exception, even though it only takes &lt; 10 to figure out where to look for trouble.</p>
+<p>After I found this and used it, I had bookmarked the page of wonderful jvm options, but it was dead the next time I went there. So I ended up searching the internet for it later and found that my googling led me all over.&nbsp; I found a stackoverflow discussion where a harried admin was asking about it and a herd of VERY ANGRY developers jumped all over him saying things like</p>
+<p>&#8220;How dare you truncate our wonderful stack traces!&#8221;, and</p>
+<p>&#8220;An exception is called that because it&#8217;s <em>exceptional</em>. There&#8217;s a reason for it and you shouldn&#8217;t truncate it!&#8221;&nbsp;</p>
+<p>Oh they were like an angry mob.</p>
+<p>But I have to tell you, this arg is an admin&#8217;s best friend if you have apps in your care that can&#8217;t be bothered with proper tuning on the dev side.&nbsp; Often this was because a client had a contract dev team come in, deliver an app and then leave.&nbsp; There was no one to fix it.</p>
+<p>There&#8217;s no shame in cleaning up your log files so they are readable.&nbsp; It&#8217;s tough to actually dig into a problem if you have thousands of lines of &#8220;benign&#8221; errors filling your world.&nbsp; This option allows you to limit the damage done by excessive logging while still seeing that an exception is being generated. Of course, with all the wonderful logging packages and tools with filters out there today, this sort of thing is less important if you are filtering, but there are lots of admins out there with nothing but the CLI, syslog and vi even today. This post is dedicated to them.</p>
+<p>&nbsp;</p>
 </div>
   
   
@@ -779,10 +759,6 @@ a Starbucks across the street from my hotel.</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/09/03/coffee-nerdery-la-colombe/">Coffee Nerdery: La Colombe</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2012/09/03/coffee-nerdery-macchiato/">Coffee Nerdery: Macchiato, NYC</a>
       </li>
     
@@ -803,7 +779,11 @@ a Starbucks across the street from my hotel.</p>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/07/28/attributes-origami/">Attributes Origami</a>
+        <a href="/blog/2012/07/11/learning-to-let-go/">Learning to Let Go (or how I stopped worrying and learned to love the bomb)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/04/27/my-favorite-jvm-arg-ever/">My Favorite JVM Arg EVER</a>
       </li>
     
   </ul>
