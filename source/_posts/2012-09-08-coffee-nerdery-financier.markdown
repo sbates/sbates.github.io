@@ -4,7 +4,7 @@ layout: post
 title: "Coffee Nerdery: Financier, New York"
 date: 2012-09-08 19:55
 comments: true
-categories: 
+categories: [coffee nerdery, new york, Financier, Downtown, Financial District, espresso in new york]
 ---
 
 [Financier Coffee](http://financierpastries.com/)  
