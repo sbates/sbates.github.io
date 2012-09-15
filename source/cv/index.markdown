@@ -12,6 +12,7 @@ footer: true
   * <http://www.brattyredhead.com>
   * github: <http://www.github.com/sbates>
 
+## DevOps Enthusiast, Automator of Things
 ## Objective
   Never to be bored
 ## Personal Profile
