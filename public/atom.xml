@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2012-09-15T15:17:59-05:00</updated>
+  <updated>2012-12-13T22:47:50-06:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Shell Scripts Are Like Gremlins]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins/"/>
+    <updated>2012-12-13T20:15:00-06:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins</id>
+    <content type="html"><![CDATA[<p><img src="images/gremlins.jpg"/>
+Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don&#8217;t stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn&#8217;t the first time.</p>
+
+<p>The source of this discussion was brought on while we were reviewing some chef work I&#8217;m doing with a development team.  My work was mainly to assist them in getting to functioning cookbooks that also had their app logic separate from global cookbooks. I basically copied their intent wherever it made sense while shoring up design and Chef styling. One of the things they were doing was making a call to our Artifactory server for a latest snapshot of a WAR file, downloading it into the Tomcat directory and restarting Tomcat. Works for me.</p>
+
+<p>Getting to this point in the review triggered a long, heated debate over</p>
+
+<ol>
+<li>whether you ever wanted this to happen,</li>
+<li>whether you should use Chef to manage deployments, use Jenkins to kick off shell scripts or use some other orchestration tool to do something else or</li>
+<li>just copy the world by hand (well, no one really believes that last is a good idea).</li>
+</ol>
+
+
+<p>I was like, geez guys, I&#8217;m just mimicking the dev team&#8217;s functionality, why are we are arguing about this? But this has been a topic of discussion often recently and, with another team announcing yesterday they were writing a homegrown tool to manage jboss, deploy ATG ears and manage config files all retrieved from Artifactory, I don&#8217;t expect the subject to die soon.</p>
+
+<p>I don&#8217;t think there&#8217;s one right answer to how you deploy your code, but I think there are many poorly thought out ones. I&#8217;m not here to necessarily make an argument for Chef as a deployment orchestrator.  While there are people deploying with Chef at scale, I am not one of them, nor have I been. My work with Chef has been mainly in development with some provisioning and so I have a lot of theories, but that&#8217;s really all.  What I do want to talk about is why I don&#8217;t like shell scripts for deployments or orchestration and what I want in a deployment system. This is the first part of at least a 2 on this topic.</p>
+
+<p><strong>Shell Scripts are like Gremlins</strong>. You start out with one adorably cute shell script. You commented it and it does one thing really well. It&#8217;s easy to read, everyone can use it. It&#8217;s awesome! Then you accidentally spill some water on it, or feed it late one night and omgwtf is happening!?</p>
+
+<p><strong>The Fixer</strong>: Someone else comes along and found an edge case your shell script doesn&#8217;t deal with. They add in some logic for the edge case, voila, problem solved.</p>
+
+<p><strong>The Refiner</strong>: Eventually someone realizes the logic for the edge case is not specific enough and is causing deployments to fail sometimes, so they refine the logic.</p>
+
+<p><strong> The Slippery Slope</strong>: After that, someone might decide it&#8217;s a good idea to automate stopping the apache server from sending traffic during deployments and decides to do it in the same script.  Great idea! That&#8217;s such an awesome idea that everyone starts adding functionality to the tiny beautiful shell script, now no longer tiny nor beautiful.</p>
+
+<p><strong>OMG GREMLINS!</strong>  Then you come back along and find all the extra stuff in your shell script that doesn&#8217;t belong there.  You&#8217;re horrified. You might even be feeling a little bit violated (come on, we&#8217;ve all been there at least once).  So what do you do? You pour some water on it. You break out the shell script into several functional bits. Now we have LOTS of gremlins instead of just one. Now you have a <em>suite</em> of scripts that are once again beautiful. But now the deployment is complex. You have a suite of <del>bash</del> <del>perl</del> <del>ruby</del> <del>python</del> scripts that also need a wiki page to describe intended flow, what to do if something doesn&#8217;t work and any edge cases that you haven&#8217;t gotten around to scripting yet.</p>
+
+<p><strong>The Exodus</strong>: Next up: You get a call from a buddy who is dying to have you come work for his Next Big Thing startup. So you quit your job, pack your bags and move to Silicon Valley Sitcom with ne&#8217;er a backwards glance, leaving a couple of forlorn junior sysadmins desperately reading wiki pages trying to figure out what to do with your shell scripts as a new application is launched that requires a bunch of new logic for deployment. These guys do the best they can and start tacking on if statements everywhere they need to in order to make the deployments go.</p>
+
+<p><strong>Subsistance Living</strong>: 6 months later, one of these guys leaves and the company hires 3 more guys with no understanding of the history of the deployment scripts.  Sometimes they work, sometimes they don&#8217;t, people aren&#8217;t entirely sure why and just self correct by hand at the command line until things work(phew!). Everyone is afraid to touch them because they are fragile, the code connecting them is obscure and there are similar logic blocks found in several sections, sometimes commented out, sometimes used, but you&#8217;re not really sure whether it&#8217;s necessary. The original wiki page gets updated sometimes but not often and not usually by the person maintaining the scripts but by the people using them in the middle of the night.</p>
+
+<p>And that&#8217;s why I hate shell scripts and think you should never use them for deployment scaffolding.</p>
+
+<p><strong>True story</strong>: my first venture with Chef involved deconstructing an organically grown Kickstart post that had been originally written for Red Hat 3 and subsequently updated for RH 4, 5 and 6.  I was removing functionality from the postscript and rewriting it in Chef blocks when one of the admins came and yelled at me for omitting a block of host names from /etc/hosts and I was like, GUYS, those host names are for servers in a data center that was decommissioned  when I started here 3 years ago.</p>
+
+<p>You can tune in for the second half of this blog post, what I want in a decent deployment system, when it goes up next week on the <a href="http://sysadvent.blogspot.com">Sysadvent blog</a>.  Woohoo!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Ox, Minneapolis]]></title>
@@ -873,37 +918,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <p>Puppet node information can either be described in the top level puppet/manifests/site.pp or site.pp can include a second file traditionally called nodes.pp.&nbsp; Site.pp can also include puppet conditionals, environment descriptions and params that might be specific to an environment, similar to Chef&#8217;s override attributes.</p>
 <p>So, to recap, Chef and Puppet both have nodes.&nbsp; Puppet describes many different objects which are all designated nodes.&nbsp; Chef has chosen to break out object descriptions into roles and runlists for nodes.</p>
 <p><strong>Chef progression: </strong>cookbook/recipe=&gt; role =&gt; node <br /><strong>Puppet progression: </strong>module/manifest =&gt; typed node description =&gt; specific/regex matched node description</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Puppet for Chef Users]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2011/11/07/puppet-for-chef-users/"/>
-    <updated>2011-11-07T00:00:00-06:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2011/11/07/puppet-for-chef-users</id>
-    <content type="html"><![CDATA[<p>I picked up a Puppet gig recently.&nbsp; The client already has an OS level Puppet install working.&nbsp; My job is to use my understanding of automation tooling to configure an app stack.&nbsp; I was pretty cocky.&nbsp; I thought, well, I really know Chef after over a year working with it and extending it at another client, how hard can Puppet be?&nbsp;</p>
-<p>It&#8217;s not hard really.&nbsp; But it&#8217;s not cooperative either.&nbsp; They look really similar, Puppet and Chef, but I&#8217;m finding it hard to get Puppet to do what I want.&nbsp; First, I need to figure out what I want to do.&nbsp; Then I automatically consider how I would do it in chef.&nbsp; Then I have to figure out how to do it in Puppet.&nbsp; This is harder than it sounds as a direct translation of something is not always the most useful, graceful or appropriate method.</p>
-<p>I keep wishing I could find an article or manual on the Interwebs called something like &#8220;Puppet for Chef Users,&#8221; where it would translate all the things done in Chef to what they do in Puppet.&nbsp; I haven&#8217;t found it.&nbsp; And I don&#8217;t have all the answers.&nbsp; As you can see here, I actually have very few answers.&nbsp; None really.&nbsp; But I&#8217;m eking out answers as I go.</p>
-<p>Example: I want to set a node attribute.&nbsp;</p>
-<p>Well, hm.&nbsp; Ok.&nbsp; A node is still a node(mostly) in Puppet.&nbsp; Puppet has Facter instead of Ohai.&nbsp; Right, I knew that.&nbsp; So, then I have to address the philosophical question, is that the correct way to do what I want?&nbsp; Do I add things like myapp_home, java_install_dir to Facter?&nbsp; Yah, I think I do.&nbsp; I want stuff outside the myapp module to know where the myapp log dir is, maybe (it could happen).</p>
-<p>Let&#8217;s say I do want to add custom facts.&nbsp; That&#8217;s just like node attributes aren&#8217;t they?&nbsp; I&#8217;m still not positive, but I&#8217;ve got to make a decision and start coding something.&nbsp; I can always revise if I&#8217;m wrong.</p>
-<p>Alright, where&#8217;s the attributes file?&nbsp; Whoops!&nbsp; No attribute file.&nbsp; I <a href="http://forge.puppetlabs.com/tags/webserversdownloaded" target="_blank">downloaded a sample Apache module from puppet labs </a>in order to have an example to work with.&nbsp; I needed the example to be complex enough to have custom attributes but not so complicated I couldn&#8217;t read it.&nbsp; I figured an Apache server was a good compromise.&nbsp;</p>
-<p>I found that Puppet modules can define new facts in the lib directory of the module.&nbsp; Strangely, at first I thought it was defined in a directory called &#8216;plugins&#8217; as I first noticed the new facts defined there.&nbsp; But as I read the <a href="http://docs.puppetlabs.com/guides/plugins_in_modules.html" target="_blank">documentation on defining new facts</a>, I realized that was the old directory. The new way dictates that all custom code goes in modules/myapp/lib.&nbsp;</p>
-<p>The directory storing new facts has small rb files with code similar to ohai snippets.&nbsp; This seemed like more coding than I needed, but I&#8217;m still not sure how to just set an attribute without writing a code snippet.&nbsp; Here&#8217;s the code example I found:</p>
-<p>require &#8216;facter&#8217;<br />Facter.add(:gem_passenger_version) do<br />&nbsp;&nbsp;&nbsp; setcode do %x{rpmquery &#8211;qf=&#8217;%{VERSION}&#8217; rubygem-passenger} end<br />end</p>
-<p>here&#8217;s my experimental code:</p>
-<p>require &#8216;facter&#8217;<br />myapp_facts={&#8220;myapp_home&#8221; =&gt; &#8220;/opt/myapp&#8221;, &#8220;myapp_server_dir&#8221; =&gt; &#8220;/opt/myapp/server&#8221;,&#8221;myapp_log_dir&#8221; =&gt; &#8220;/var/log/myapp&#8221;}<p />myapp_facts.each do |k,v|<br />&nbsp; Facter.add(k) do<br />&nbsp;&nbsp;&nbsp; setcode do { k=v } end<br />&nbsp; end<br />end</p>
-<p>This is what came out of testing:</p>
-<p>[root@pixel rubylib]#&nbsp; RUBYLIB=. facter|grep myapp<br />myapp_home =&gt; /opt/myapp<br />myapp_log_dir =&gt; /var/log/myapp<br />myapp_server_dir =&gt; /opt/myapp/server</p>
-<p>So yay!&nbsp; I figured it out. I added my puppet equivalent of node attributes.&nbsp; Kind of.&nbsp; As far as I can tell, Facter is not hierarchical a la Ohai, so my node attributes are flattened instead of in a hierarchy.</p>
-<p>To recap, in Chef/In Puppet:</p>
-<ul>
-<li>Ohai/Facter</li>
-<li>node attributes/facts</li>
-<li>ohai is hierarchical json: facter is flat key =&gt; value pairs</li>
-<li>chef node attributes are defined in myapp/attributes/attribute.rb/Puppet facts are defined in myapp/lib/facts&nbsp;</li>
-</ul>
-<p>Coming soon, my adventures with Hiera and data storage, also Puppet ruby DSL vs Puppet Puppet DSL.</p>
 ]]></content>
   </entry>
   

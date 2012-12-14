@@ -1,0 +1,41 @@
+---
+layout: post
+title: "Shell Scripts Are Like Gremlins"
+date: 2012-12-13 20:15
+comments: true
+categories: [chef, deployments, jenkins, gremlins] 
+---
+<img src="/images/gremlins.jpg"/>
+Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don't stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn't the first time. 
+
+The source of this discussion was brought on while we were reviewing some chef work I'm doing with a development team.  My work was mainly to assist them in getting to functioning cookbooks that also had their app logic separate from global cookbooks. I basically copied their intent wherever it made sense while shoring up design and Chef styling. One of the things they were doing was making a call to our Artifactory server for a latest snapshot of a WAR file, downloading it into the Tomcat directory and restarting Tomcat. Works for me.
+
+Getting to this point in the review triggered a long, heated debate over 
+
+1. whether you ever wanted this to happen, 
+1. whether you should use Chef to manage deployments, use Jenkins to kick off shell scripts or use some other orchestration tool to do something else or 
+1. just copy the world by hand (well, no one really believes that last is a good idea).  
+
+I was like, geez guys, I'm just mimicking the dev team's functionality, why are we are arguing about this? But this has been a topic of discussion often recently and, with another team announcing yesterday they were writing a homegrown tool to manage jboss, deploy ATG ears and manage config files all retrieved from Artifactory, I don't expect the subject to die soon.  
+
+I don't think there's one right answer to how you deploy your code, but I think there are many poorly thought out ones. I'm not here to necessarily make an argument for Chef as a deployment orchestrator.  While there are people deploying with Chef at scale, I am not one of them, nor have I been. My work with Chef has been mainly in development with some provisioning and so I have a lot of theories, but that's really all.  What I do want to talk about is why I don't like shell scripts for deployments or orchestration and what I want in a deployment system. This is the first part of at least a 2 on this topic.
+
+**Shell Scripts are like Gremlins**. You start out with one adorably cute shell script. You commented it and it does one thing really well. It's easy to read, everyone can use it. It's awesome! Then you accidentally spill some water on it, or feed it late one night and omgwtf is happening!?  
+
+**The Fixer**: Someone else comes along and found an edge case your shell script doesn't deal with. They add in some logic for the edge case, voila, problem solved.
+
+**The Refiner**: Eventually someone realizes the logic for the edge case is not specific enough and is causing deployments to fail sometimes, so they refine the logic. 
+
+** The Slippery Slope**: After that, someone might decide it's a good idea to automate stopping the apache server from sending traffic during deployments and decides to do it in the same script.  Great idea! That's such an awesome idea that everyone starts adding functionality to the tiny beautiful shell script, now no longer tiny nor beautiful.
+
+**OMG GREMLINS!**  Then you come back along and find all the extra stuff in your shell script that doesn't belong there.  You're horrified. You might even be feeling a little bit violated (come on, we've all been there at least once).  So what do you do? You pour some water on it. You break out the shell script into several functional bits. Now we have LOTS of gremlins instead of just one. Now you have a *suite* of scripts that are once again beautiful. But now the deployment is complex. You have a suite of <del>bash</del> <del>perl</del> <del>ruby</del> <del>python</del> scripts that also need a wiki page to describe intended flow, what to do if something doesn't work and any edge cases that you haven't gotten around to scripting yet.
+
+**The Exodus**: Next up: You get a call from a buddy who is dying to have you come work for his Next Big Thing startup. So you quit your job, pack your bags and move to Silicon Valley Sitcom with ne'er a backwards glance, leaving a couple of forlorn junior sysadmins desperately reading wiki pages trying to figure out what to do with your shell scripts as a new application is launched that requires a bunch of new logic for deployment. These guys do the best they can and start tacking on if statements everywhere they need to in order to make the deployments go.  
+
+**Subsistance Living**: 6 months later, one of these guys leaves and the company hires 3 more guys with no understanding of the history of the deployment scripts.  Sometimes they work, sometimes they don't, people aren't entirely sure why and just self correct by hand at the command line until things work(phew!). Everyone is afraid to touch them because they are fragile, the code connecting them is obscure and there are similar logic blocks found in several sections, sometimes commented out, sometimes used, but you're not really sure whether it's necessary. The original wiki page gets updated sometimes but not often and not usually by the person maintaining the scripts but by the people using them in the middle of the night.
+
+And that's why I hate shell scripts and think you should never use them for deployment scaffolding.
+
+**True story**: my first venture with Chef involved deconstructing an organically grown Kickstart post that had been originally written for Red Hat 3 and subsequently updated for RH 4, 5 and 6.  I was removing functionality from the postscript and rewriting it in Chef blocks when one of the admins came and yelled at me for omitting a block of host names from /etc/hosts and I was like, GUYS, those host names are for servers in a data center that was decommissioned  when I started here 3 years ago.
+
+You can tune in for the second half of this blog post, what I want in a decent deployment system, when it goes up next week on the [Sysadvent blog](http://sysadvent.blogspot.com).  Woohoo! 
