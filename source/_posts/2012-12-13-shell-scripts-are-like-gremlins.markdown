@@ -5,7 +5,7 @@ date: 2012-12-13 20:15
 comments: true
 categories: [chef, deployments, jenkins, gremlins] 
 ---
-<img src="/images/gremlins.jpg"/>
+<img src="/images/gremlins3.jpg"/>
 Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don't stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn't the first time. 
 
 The source of this discussion was brought on while we were reviewing some chef work I'm doing with a development team.  My work was mainly to assist them in getting to functioning cookbooks that also had their app logic separate from global cookbooks. I basically copied their intent wherever it made sense while shoring up design and Chef styling. One of the things they were doing was making a call to our Artifactory server for a latest snapshot of a WAR file, downloading it into the Tomcat directory and restarting Tomcat. Works for me.
