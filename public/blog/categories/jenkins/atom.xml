@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jenkins | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2012-12-13T22:47:23-06:00</updated>
+  <updated>2012-12-13T22:57:01-06:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -18,7 +18,9 @@
     <link href="http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins/"/>
     <updated>2012-12-13T20:15:00-06:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins</id>
-    <content type="html"><![CDATA[<p>Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don't stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn't the first time.</p>
+    <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/gremlin3.jpg"/></p>
+
+<p>Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don't stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn't the first time.</p>
 
 <p>The source of this discussion was brought on while we were reviewing some chef work I'm doing with a development team.  My work was mainly to assist them in getting to functioning cookbooks that also had their app logic separate from global cookbooks. I basically copied their intent wherever it made sense while shoring up design and Chef styling. One of the things they were doing was making a call to our Artifactory server for a latest snapshot of a WAR file, downloading it into the Tomcat directory and restarting Tomcat. Works for me.</p>
 
