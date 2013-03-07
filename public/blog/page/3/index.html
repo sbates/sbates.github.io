@@ -9,7 +9,7 @@
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="I picked up a Puppet gig recently.&nbsp; The client already has an OS level Puppet install working.&nbsp; My job is to use my understanding of &hellip;">
+  <meta name="description" content="Disclaimer: I have been working with Chef for about 18 months and Puppet for about 5 minutes.&nbsp; I don&#8217;t claim to be an expert on Puppet nor &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +89,46 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2011/11/19/puppet-for-chef-users-part-2-when-is-a-node-a/">Puppet for Chef Users - Part 2 - When Is a Node a Node?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-19T00:00:00-08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Disclaimer: I have been working with Chef for about 18 months and Puppet for about 5 minutes.&nbsp; I don&#8217;t claim to be an expert on Puppet nor warranty this information in any way.&nbsp; It could all be egregiously wrong.&nbsp; This is simply a blog exploring what I&#8217;m learning.</em><p />When is a node a node?&nbsp; And when is it a thought?&nbsp; Or a regex? When is it a description of a certain state of being?<p />When I first started working in someone else&#8217;s existing puppet domain, I was confused.&nbsp; Everything was described in puppet/manifests/site.pp.&nbsp; There was a lot of description.&nbsp; Everything was called a node, regardless of what kind of object it was describing. Lists of manifests/classes were nodes, named servers were nodes, there were some regexs also designated nodes.&nbsp; I was confused.<p />Check it out.&nbsp; In Chef there are nodes.&nbsp; A node is always the endpoint in question.&nbsp; It&#8217;s a concrete item.&nbsp; It just&#8230;.is.&nbsp; A VM is a node.&nbsp; An AWS instance is a node.&nbsp; If you want to describe a node, you add recipes or roles to it.&nbsp; A recipe is a single thing.&nbsp; A role is a collection of recipes, attributes and information that comprises a functional entity.<p />In Puppet, a node is a much more nebulous concept.&nbsp; A node is still always the client endpoint.&nbsp; But, the node can also be a described end state.<p />Let&#8217;s use the ubiquitous webserver example.&nbsp; In my webserver, I will probably need a set of base OS modules/cookbooks and some webserver stuff.&nbsp; I might have a requirement set that looks like this:<p />[ dns, ntp, ssh, syslog, puppet-agent|chef-client, apache, openssl, memcached ]<p />There are some differences in Puppet and Chef management structure.&nbsp; In Chef, a node is a client, an endpoint. It&#8217;s pretty much always a server, whether hardware, VM or cloud instance.<p />In Chef I would write cookbooks for each of the items in my set.&nbsp; Then I would probably create two roles: dotcom_base and webserver<p /><strong>roles/com_base.rb</strong><br /><strong>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</strong><br />name &#8220;dotcom_base&#8221;<br />description &#8220;The base role for ALL systems&#8221;<br />run_list(<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[chef-client]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[syslog]&#8221;, &nbsp;<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[ssh]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[ntp]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[dns]&#8221;<br />)<p /><strong>roles/webserver.rb</strong><br /><strong>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</strong><br />name &#8220;webserver&#8221;<br />description &#8220;Role for Webservers&#8221;<br />run_list(<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[apache]&#8221;,<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[openssl]&#8221;, &nbsp;<br />&nbsp;&nbsp;&nbsp; &#8220;recipe[memcached]&#8221;<br />)<p />At this point I would then add both roles to any webserver node in my farm.&nbsp; Or the roles would be added at bootstrap or your choice.&nbsp; This information goes into node attributes stored in the attribute database.&nbsp; There is no flat file representation of actual named nodes.<p />Puppet is all flat file management, requiring node management to be described in flat files.&nbsp; Puppet has also chosen a flexible concept of <strong>node</strong>.<p /> A node can be a collection of similar items:  <br /><strong>node &#8220;dotcom_base&#8221;</strong> { <br /> &nbsp; include dns<br />&nbsp; include ntp<br />&nbsp; include syslog<br />&nbsp; include puppet_agent<br />}<p />A node can be a type:<br /><strong>node &#8220;webserver&#8221;</strong>&nbsp; inherits &#8220;dotcom_base&#8221; {<br />&nbsp; include apache<br />&nbsp; include openssl<br />&nbsp; include memcached<br />&nbsp;}<p />Given dotcom_web1.domain.com, dotcom_web2.domain.com, dotcom_web3.domain.com:<p />A node can just be a single endpoint:<br /><strong>node dotcom_web1.domain.com </strong>inherits &#8220;webserver&#8221;{ }<p />A node can be a collection of nodes matched with regex.<br /><strong>node /^dotcom_web\d+&#46;domain&#46;com$/</strong> inherits &#8220;webserver&#8221; { }</p>
+<p>A thought on node construction: To be more transparent, these could also say <p /><em>inherits &#8220;dotcom_base&#8221; { webserver }</em><p />While I have not seen this notation, it&#8217;s what I would do if I were designing from the bottom up.&nbsp; This may or may not be correct style-wise, but I&#8217;m a fan of transparency in my config statements.</p>
+<p>Puppet node information can either be described in the top level puppet/manifests/site.pp or site.pp can include a second file traditionally called nodes.pp.&nbsp; Site.pp can also include puppet conditionals, environment descriptions and params that might be specific to an environment, similar to Chef&#8217;s override attributes.</p>
+<p>So, to recap, Chef and Puppet both have nodes.&nbsp; Puppet describes many different objects which are all designated nodes.&nbsp; Chef has chosen to break out object descriptions into roles and runlists for nodes.</p>
+<p><strong>Chef progression: </strong>cookbook/recipe=&gt; role =&gt; node <br /><strong>Puppet progression: </strong>module/manifest =&gt; typed node description =&gt; specific/regex matched node description</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2011/11/07/puppet-for-chef-users/">Puppet for Chef Users</a></h1>
     
     
@@ -105,7 +145,7 @@
   
 
 
-<time datetime="2011-11-07T00:00:00-06:00" pubdate data-updated="true">Nov 7<span>th</span>, 2011</time>
+<time datetime="2011-11-07T00:00:00-08:00" pubdate data-updated="true">Nov 7<span>th</span>, 2011</time>
         
       </p>
     
@@ -163,7 +203,7 @@
   
 
 
-<time datetime="2011-10-02T00:00:00-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
+<time datetime="2011-10-02T00:00:00-07:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
         
       </p>
     
@@ -211,7 +251,7 @@
   
 
 
-<time datetime="2011-07-21T00:00:00-05:00" pubdate data-updated="true">Jul 21<span>st</span>, 2011</time>
+<time datetime="2011-07-21T00:00:00-07:00" pubdate data-updated="true">Jul 21<span>st</span>, 2011</time>
         
       </p>
     
@@ -258,7 +298,7 @@
   
 
 
-<time datetime="2011-06-24T00:00:00-05:00" pubdate data-updated="true">Jun 24<span>th</span>, 2011</time>
+<time datetime="2011-06-24T00:00:00-07:00" pubdate data-updated="true">Jun 24<span>th</span>, 2011</time>
         
       </p>
     
@@ -300,7 +340,7 @@
   
 
 
-<time datetime="2011-06-24T00:00:00-05:00" pubdate data-updated="true">Jun 24<span>th</span>, 2011</time>
+<time datetime="2011-06-24T00:00:00-07:00" pubdate data-updated="true">Jun 24<span>th</span>, 2011</time>
         
       </p>
     
@@ -362,7 +402,7 @@
   
 
 
-<time datetime="2011-06-23T00:00:00-05:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
+<time datetime="2011-06-23T00:00:00-07:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
         
       </p>
     
@@ -406,6 +446,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/07/coffee-nerdery-chromatic-coffee/">Coffee Nerdery: Chromatic Coffee</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/12/13/shell-scripts-are-like-gremlins/">Shell Scripts Are Like Gremlins</a>
       </li>
     
@@ -439,10 +483,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/02/coffee-nerdery-kaffe-1668/">Coffee Nerdery: Kaffe 1668</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/01/coffee-for-traveling-nerds/">Coffee for Traveling Nerds</a>
       </li>
     
   </ul>
@@ -490,7 +530,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Sascha Bates -
+  Copyright &copy; 2013 - Sascha Bates -
   The sarcasm is free! - - -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
