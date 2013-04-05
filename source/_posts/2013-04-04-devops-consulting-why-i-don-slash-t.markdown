@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "devops Consulting: Why I Don\'t"
+title: "Devops Consulting: Why I Don\'t"
 date: 2013-04-05 20:33
 comments: true
 categories: [devops, consulting]
