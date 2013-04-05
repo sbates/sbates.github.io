@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Consulting | Bratty Redhead]]></title>
+  <title><![CDATA[Category: consulting | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/consulting/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-03-07T08:51:17-08:00</updated>
+  <updated>2013-04-05T07:49:46-07:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -14,192 +14,59 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
-    <updated>2012-07-11T15:54:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go</id>
-    <content type="html"><![CDATA[<p>Today I was having a conversation about consulting and how important it is to
-not be emotionally attached to your solutions. As a consultant, you exist to be
-an enabler. You help others succeed with tasks that, without your expertise, they
-might fail instead.  As consultants, our value comes from a long history of
-observing and participating in spectacular failures and fantastic
-successes. We know what works and what doesn't work and we can articulate the
-reasons why.  But our value can be compromised if we can't interact effectively
-with our clients. This means checking your emotions and inner schadenfreude at
-the door and working with clients to discover a solution that is practical for
-their environment.</p>
+    <title type="html"><![CDATA[devops Consulting: Why I Don't]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t/"/>
+    <updated>2013-04-05T20:33:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t</id>
+    <content type="html"><![CDATA[<p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It's a topic I've discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I'm motivated to say a few words about devops consulting, not because there was an argument, but because it's something I've thought about often since I started independent consulting and I think it's important.</p>
 
-<h5>BOFH</h5>
+<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>"What is devops"</em> and <em>"The No Assholes Rule"</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I'd been having and form the base for how I approach devops today.</p>
 
-<p>Back in the day, I worked on a silo'd web operations team at a big retail
-company. We knew how we liked things done and, although we might argue amongst
-ourselves, we presented a united bullying front to the dev teams.  For example,
-  we didn't allow them to deploy apps into production when they came with the
-  caveat of "you have to restart the app every night." We drank developer tears
-  with breakfast, and we liked it that way.</p>
+<p>My trolling quickly transformed into an exchange as to whether devops consulting is a valid thing.  Here's my take:</p>
 
-<p>  Guess what? Consultants don't have that luxury. I might also argue that
-  internal operations teams no longer have that luxury, but that's a blog for
-  another day.
-  <!-- more --></p>
+<h4>Devops is The New Black</h4>
 
-<p>  In that job, I saw every kind of connection leak, OOM and spectacular
-  cascading infrastructure disaster you can think of and I participated in
-  resolving several.  Eventually I moved on to consulting for a large company
-  where I designed and deployed infrastructure for large web-based
-  applications. My previous experience was not just invaluable for designing
-  infrastructure in diverse environments, It also enabled me to advise client
-  development teams on how to write robust applications and assist them in
-  tracking down performance problems during the development process.  I was
-  full of ideas! They were all brilliant! Wait, what!? Where is everyone going?
-  How can you not like my ideas?</p>
+<p>As far as toolmakers, tool-consumers and recruiters are all concerned, devops is the new black. I get frustrated with the "slap a devops on it and they will come" attitude we see prevailing. It makes me want to never use the word <em>"devops"</em> to describe anything ever because of things like this:</p>
 
-<h5>Keep your WTFs to yourself</h5>
-
-<p>  As a new consultant, I had excellent technical knowledge, some decent
-  communication skills, and a host of opinions.  I knew the right way to get
-  things done and people should listen to me because <em>I was the consultant</em>.
-  But technical knowledge and opinions can only take you so far. Some people
-  aren't suited to life with clients. Often there is no one to shield you from
-  difficult people they way your manager would in a normal job. You need to
-  work with all types of personalities, while maintaining a calm demeanor. You
-  need to be able to not take things personally. You must be capable of
-  articulating the why's behind your ideas and speak objectively about ideas
-  from the client, even if you think it's the worst idea since Greedo shooting
-  first.</p>
-
-<p>  You can't say things like, "That's the dumbest thing I've ever heard," or
-  "Why in god's name would you ever do that?"  A favorite that I had to give up
-  was, "Why do you want to make me cry?"</p>
-
-<h5>Don't Get Attached</h5>
-
-<p>   A concept that challenged me is that there is no absolute right or wrong way
-  to design something. The corollary to that is you will always disagree with at least
-  one thing the client wants to do. Sometimes you will disagree with many.
-  Sometimes they will disagree with your solutions and expect you to implement
-  what they want, not what you want.</p>
-
-<p>  Well, WTF? You think to yourself, how am I supposed to do that? Newsflash:
-  You need to figure it out because that's why you get paid the big bucks. As
-  an independent consultant now, I have some leeway to do my due diligence and
-  decline projects that look risky or are implementing tech stacks of which
-  I don't approve. As an employee for a consulting company, I went where they
-  pointed me and I liked it. And I figured it out, because they paid me
-  a boatload of money to use my brain.</p>
-
-<p>  Something you will hear often as a consultant: "That's a great idea, but
-  we're not going to it." A client once decided to implement mission critical
-  queuing on WebSphere Application Server's internal message bus. I could and
-  did explain that this solution was not robust until I was blue in the face,
-  but the fact is, WebSphere MQ software is expensive and open source wasn't an
-  option(because). <em>Retail order fulfillment queuing</em> was implemented where
-  they wanted it and I spent my days and nights reading up on how to ensure as
-  little data loss (orders, right?!) as possible if the unclustered,
-  non-redundant server went down. As an aside, I should note that this client
-  has since gone out of business.</p>
-
-<p>  You can't be emotionally attached to your ideas. I know you think you have
-  the one true path to success.  You don't. Regardless of how smart you are,
-  the customer knows their systems better and they know their politics better.
-  They know what can be accomplished.  Get used to having your ideas shot down
-  and don't let it upset you. Don't hang on to them.  You need to get over it
-  and move on. If you're still hanging on to today's disagreements tomorrow,
-  you won't be able to think clearly tomorrow about new technical challenges.</p>
-
-<h5>Pick Your Battles</h5>
-
-<p>  Sometimes you'll encounter strong opposing opinions. If you're an IT
-  consultant, it's guaranteed. Remember, 95% of battles do not need to be
-  fought. Just because you don't approve of a naming convention is no reason to
-  argue, especially if another engineer is in love with it.  You might
-  implement applications that need nightly rolling restarts, even if you could
-  prove they don't need it, just because management has been burned in the
-  past. Don't fight it. Nightly restarts aren't the end of the world.  You
-  might meet a team who wants to migrate all of their bash scripts verbatim
-  into configuration management. This would be a hard one for me to let go, and
-  I might try to convince people not to do it, but I would concede in the end,
-  because <strong>refactoring exists</strong>.</p>
-
-<p>  Save up your argues for when it matters. Eventually you will come upon
-  something you absolutely won't want to compromise. If you haven't been
-  arguing about everything up to this point, it's likely people will actually
-  listen when you bring it up.</p>
-
-<p>  Your job isn't to say no.  It's to say yes.  If your first inclination is to
-  dismiss an idea or say no, stop and think about why. Do you have valid
-  concerns? What is a valid concern? A valid concern might be a high
-  availability requirement with only one database server in the plan.  That's
-  a problem. But you still don't get to say no. That's not your job.  Instead
-  you should point out the very obvious risk involved in zero redundancy.
-  Several years ago, I was presented with a client's server plan that I knew
-  would never survive the first engagement. In this case, we knew they were
-  trying to save as much money as possible, so the consulting team got together
-  in a room and came up with a perfect world scenario and then two less
-  expensive alternatives that allowed for some robustness while saving on
-  hardware expenses. I then power pointed the entire thing and presented to
-  senior management. I had been consulting for all of 3 months at the time and
-  was petrified but we won them over to one of our solutions in the end.</p>
-
-<h5>This isn't relevant to me, I'm a full time employee</h5>
-
-<p>  Are you on an ops team? Do you work with development teams to get apps into
-  production? How about a monitoring team? Do you work with devs to create
-  coherent actionable alerts? Then you are a consultant. Developers care about
-  one thing: writing code. Some developers do care about more and have the
-  background to be interested in more, but in general, especially in big
-  companies or outsourced development, all devs care about is writing code.
-  They don't know how anything else works. It doesn't make them dumb, it makes
-  them part of a world of which you only see a part.</p>
-
-<p>  This makes you their enabler and a consultant. You have knowledge critical to
-  their success. It's not just your job to provide them with an app container
-  and now buzz off.  You're their lifeline to the rest of the infrastructure.
-  Telling them "no" or ridiculing an idea will only make them angry and
-  determined to circumvent all the sane safeguards you've put into place for
-  everyone's good.</p>
-
-<p>  Instead of treating development teams like they know nothing, take a moment
-  to find out why they want to do what they're doing.  Many times you'll find
-  that they've actually just spent two solid days trying to solve a prickly
-  problem and this is the only working viable option they've found. Maybe your
-  perspective will help you advise them on a better way, or they could be right
-  and you could be stuck with something suboptimal. At this point, instead of
-  being grumpy about it, start figuring out ways to limit the damage or make it
-  more robust and work with your dev instead of against him.  Full time
-  employees, I'm talking to you.</p>
-
-<p>  Consulting isn't for everyone. If you can't learn to take deep breaths and
-  count to ten, it might not be for you. I still make mistakes and have often
-  been grateful for working remote where I can wear my rage face in private.
-  In the end, you have to be able to let it all roll over you. This isn't your
-  infrastructure and sometimes compromises must be made.</p>
-
-<p>  For me, consulting is emotionally easier in some ways because I can accept
-  decisions with which I don't necessarily agree, knowing that I won't be
-  around to see the heartache in a year. All I can do is my best with whatever
-  is under my control. And my best is impressive. I am a master tweaker and
-  I document the hell out of ALL THE THINGS.  But I often see sacrifices of
-  stability for expediency and it does hurt me.  I've just learned to not let
-  it hurt too much. The great thing about consulting is, if this project
-  didn't work out exactly the way you wished, the next one is right around the
-  corner, waiting for you bring it all your awesomeness.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Annoying Recruiter Call #45]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/03/26/annoying-recruiter-call-45/"/>
-    <updated>2012-03-26T00:00:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/03/26/annoying-recruiter-call-45</id>
-    <content type="html"><![CDATA[<p><img src="http://fuuu.us/362.png" alt="" /></p>
+<ul>
+<li><p>If it's a tool for scaling or automation or monitoring or cloud, it's now a "devops tool".</p></li>
+<li><p>If you have a job for some poor schlub to do production support for the dev team, you call it "looking for a devops engineer with build experience."</p></li>
+<li><p>A tooling company has a giant virtual sticker on the website: "Designed by devops."</p></li>
+<li><p>If you want to get some other poor schlub to join your overworked ops team you call it a "devops engineering" position but it's really just another day in the life of duct-taping together prod.</p></li>
+</ul>
 
 
-<p>&nbsp;</p>
+<p>I already hear colleagues succumbing to the terminology "devops Tool" because it's a phrase understood by (or at least familiar to) upper management and business users. I can even see the day when I give in and start calling things devops tools. This makes me sad.</p>
 
+<h4>Emo Devops</h4>
 
-<p>I enjoy independent consulting.&nbsp; For that matter, I enjoyed consulting for a consulting company.&nbsp; I&rsquo;ve been doing it in one form or another since 2006.&nbsp; I love the variety and the challenge that comes from never knowing wtf will be thrown at me on any given day or project.&nbsp; Some days it&rsquo;s terrifying and some days I want to slap people around, but I won&rsquo;t deny that I like it.<p />Currently my LinkedIn profile, a business card and a terse web site are all I use for self-promotion. I never lack for work. I get calls every week from larger businesses looking to recruit for FTEs.&nbsp; This is rarely something I&rsquo;m interested in.&nbsp; I dislike the inevitable silo and I&rsquo;m not able to engage in the cognitive dissonance required to believe in all the meaningless BS that is part of corporate baggage.&nbsp; So I politely tell all these recruiters that, while I appreciate the contact, I&rsquo;m not looking for full time work at this time.<p />Once in a while I get contacted by recruiters looking to hire for smaller startups.&nbsp; I always listen to the pitch for these because, if the right small company comes along, I'd probably go work for them.&nbsp; <p />Sometimes they&rsquo;re way off the mark with my skillset or with people who want a culture match - like the recruiter looking to hire someone to work at a social network sports startup.&nbsp; When I told her that, unless it was bicycle racing, I wasn&rsquo;t interested, I could hear the awkward just floating through the phone.&nbsp; Obviously these guys trying to use ESPN APIs and social networking to bring people together would have nothing to say to me.<p />I had a call in December from a recruiter from a brand new startup local to the area, using a tech stack of which I approved.&nbsp; They tried to set me up but it never worked out.&nbsp; The place was all chaos and key people kept going on vacation and one thing after another.&nbsp; Eventually I forgot about it.&nbsp; Until I got a call the other day from the same recruiting company.&nbsp; They left me a voice mail, telling me they had a question and would I call.&nbsp; So I did.&nbsp; I called them today.<p />I got on the phone with the recruiter, a new one, and he literally stumbled all over himself for over a minute, trying to spit out a complete sentence.&nbsp; He finally did and I nearly hung up on him.&nbsp; The conversation went something like this:<p /><strong>Him</strong>: &ldquo;ah, um...so...you know that company we were trying to...remember you worked with my boss last year and that company....they um, were looking for...remember we tried to set you up with X company?&rdquo;<br /><strong>Me</strong>: Yes<br /><strong>Him</strong>: Would you happen to....they&rsquo;re looking for...it&rsquo;s really hard to find people who are into startup culture....um....ah...they&rsquo;re looking for....um...developers....and so um...I was wondering....if, um<br /><strong>Me</strong>: I don&rsquo;t know any developers looking for work<br /><strong>Him</strong>: Oh, um...right, well, if you happen to think of anyone...could I um...send you a followup email...just in um case?<br /><strong>Me</strong>: sure &lt;click&gt;<p />Then I sent an email to his manager, the very nice, polite and professional person I&rsquo;d been talking to in December:<p />&ldquo;Hi Harry, I would appreciate it if you could let your colleagues know not to call me for the sole purpose of asking if I know anyone looking for work.&nbsp; It would probably also help their delivery if they not preface their requests with "remember the job last year we were trying to get for you but couldn't?" and follow up with "do you know anyone else who might like to work there?"<p />Thanks,<br />Sascha</p>
+<p> Call me cynical, but this sort of devaluation discourages me and has turned me into something of a hipster goth. You know, the girl in all black with the black nail polish listening to Bauhaus and denying she's goth because she transcends labels in her non-originality. I can make fun of this girl because I was her in high school.</p>
 
+<p> But as I see tool companies and recruiters slapping devops across everything and large companies begging for the devops panacea, I become less and less inclined to talk about devops and the hipster goth in me is damned if she's going to cash in on all the quick bucks of devops consulting.</p>
+
+<h4>devops Consulting - Why I Don't</h4>
+
+<p>Last year I had a company try to hire me as a devops consultant, but the very idea made me shudder. It felt utterly pretentious even though they had the best of intentions and were knowledgeable about devops.  My business card says Devops Enthusiast. That's it. I love it and I try to live it every day I walk into an office, whether it's my home office, a client office or any other place with people in it.</p>
+
+<p>But my business card will never say Devops Consultant. Why not?</p>
+
+<p><em>devops Isn't a Deliverable</em> - When I get done with you, you don't have a devops. It's possible that the things we're working on will bring you closer to a lifestyle and culture that is devops. And that's super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
+
+<p><em>Consultants Have No Moral Authority</em> - This is the classic water and horse thing. You can hire someone to tell you how to do devops, but unless everyone is signed on and excited, it's going to be the consultant and the person who hired the consultant drinking from the trough and a bunch of other horses standing around dehydrating.  I have no desire to earn a living doing this.</p>
+
+<p><em>I'm Not Qualified</em> - I learn new things every day and I often remind myself that devops isn't just me preaching DevOplyness, but also involves me actively empathizing with and trusting people I find difficult or frustrating to work with.  This stuff is hard, and I'm not even close to perfect. I'd rather lead by example than preach. I feel like a hypocrite telling other people how to put their house in order when I'm still cleaning my own.</p>
+
+<p><em>I'd Rather Be Crafting</em> - Let's face it. If I say Devops Consultant, that's management consulting. As much as I've considered going into management because of the ignorance I see in charge of stuff, <strong>I'd rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don't get to do that if I'm teaching senior management about devops. It's why I like consulting. There's always a new problem solve.</p>
+
+<h4>Is Continuous Delivery a valid Euphemism for devops?</h4>
+
+<p>This was also touched on yesterday. Jeff Sussna wrote a <a href="http://blog.ingineering.it/post/43356457789/devops-er-continuous-delivery">well-articulated article</a> for why we should just call it Continuous Delivery instead of devops.  I think Adam and I were not actually disagreeing about anything in our chat today, unless he was postulating that CD is as nebulous as devops. I don't think it is. I think Continuous Delivery is a measurable deliverable and a valid consulting field. If done right, it results in not just a great pipeline, but also devops culture because CD should be impossible with crappy culture.</p>
+
+<h4>What About devops?</h4>
+
+<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in <a href="htt%20%20%20%20p://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that's what you really want to do.</p>
+
+<p>There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I'm not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I'd be a perfect fit.</p>
 ]]></content>
   </entry>
   
