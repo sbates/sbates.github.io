@@ -30,12 +30,12 @@ I already hear colleagues succumbing to the terminology "devops Tool" because it
  
  But as I see tool companies and recruiters slapping devops across everything and large companies begging for the devops panacea, I become less and less inclined to talk about devops and the hipster goth in me is damned if she's going to cash in on all the quick bucks of devops consulting. 
 
-#### devops Consulting - Why I Don't
+#### Devops Consulting - Why I Don't
 Last year I had a company try to hire me as a devops consultant, but the very idea made me shudder. It felt utterly pretentious even though they had the best of intentions and were knowledgeable about devops.  My business card says Devops Enthusiast. That's it. I love it and I try to live it every day I walk into an office, whether it's my home office, a client office or any other place with people in it.
 
 But my business card will never say Devops Consultant. Why not? 
 
-*devops Isn't a Deliverable* - When I get done with you, you don't have a devops. It's possible that the things we're working on will bring you closer to a lifestyle and culture that is devops. And that's super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.
+*Devops Isn't a Deliverable* - When I get done with you, you don't have a devops. It's possible that the things we're working on will bring you closer to a lifestyle and culture that is devops. And that's super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.
 
 *Consultants Have No Moral Authority* - This is the classic water and horse thing. You can hire someone to tell you how to do devops, but unless everyone is signed on and excited, it's going to be the consultant and the person who hired the consultant drinking from the trough and a bunch of other horses standing around dehydrating.  I have no desire to earn a living doing this.
 
@@ -47,6 +47,6 @@ But my business card will never say Devops Consultant. Why not?
 This was also touched on yesterday. Jeff Sussna wrote a [well-articulated article](http://blog.ingineering.it/post/43356457789/devops-er-continuous-delivery) for why we should just call it Continuous Delivery instead of devops.  I think Adam and I were not actually disagreeing about anything in our chat today, unless he was postulating that CD is as nebulous as devops. I don't think it is. I think Continuous Delivery is a measurable deliverable and a valid consulting field. If done right, it results in not just a great pipeline, but also devops culture because CD should be impossible with crappy culture.
 
 #### What About devops?
-I know some folks who are doing the devops consulting thing. They generally *want* to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in [CAMS](http://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/), which I think is the key to making it work, if that's what you really want to do.
-
+I know some folks who are doing the devops consulting thing. They generally *want* to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in 
+[CAMS](http://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/), which I think is the key to making it work, if that's what you really want to do.  
 There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I'm not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I'd be a perfect fit.
