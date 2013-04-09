@@ -8,7 +8,7 @@ categories: [devops, consulting]
 
 I had an [interesting exchange](https://twitter.com/sascha_d/status/319889574367215616) with [Adam Jacob](https://twitter.com/adamhjk) yesterday on Twitter around devops consulting. It's a topic I've discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I'm motivated to say a few words about devops consulting, not because there was an argument, but because it's something I've thought about often since I started independent consulting and I think it's important.
 
- The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his *"What is devops"* and *"The No Assholes Rule"* vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I'd been having and form the base for how I approach devops today. 
+ The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his *"What is Devops"* and *"The No Assholes Rule"* vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I'd been having and form the base for how I approach devops today. 
 
 My trolling quickly transformed into an exchange as to whether devops consulting is a valid thing.  Here's my take:
 
