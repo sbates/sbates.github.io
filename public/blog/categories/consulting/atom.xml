@@ -4,7 +4,7 @@
   <title><![CDATA[Category: consulting | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/consulting/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-04-05T07:49:46-07:00</updated>
+  <updated>2013-05-07T10:40:36-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -14,13 +14,13 @@
 
   
   <entry>
-    <title type="html"><![CDATA[devops Consulting: Why I Don't]]></title>
+    <title type="html"><![CDATA[Devops Consulting: Why I Don't]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t/"/>
-    <updated>2013-04-05T20:33:00-07:00</updated>
+    <updated>2013-04-05T20:33:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t</id>
     <content type="html"><![CDATA[<p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It's a topic I've discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I'm motivated to say a few words about devops consulting, not because there was an argument, but because it's something I've thought about often since I started independent consulting and I think it's important.</p>
 
-<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>"What is devops"</em> and <em>"The No Assholes Rule"</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I'd been having and form the base for how I approach devops today.</p>
+<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>"What is Devops"</em> and <em>"The No Assholes Rule"</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I'd been having and form the base for how I approach devops today.</p>
 
 <p>My trolling quickly transformed into an exchange as to whether devops consulting is a valid thing.  Here's my take:</p>
 
@@ -44,19 +44,19 @@
 
 <p> But as I see tool companies and recruiters slapping devops across everything and large companies begging for the devops panacea, I become less and less inclined to talk about devops and the hipster goth in me is damned if she's going to cash in on all the quick bucks of devops consulting.</p>
 
-<h4>devops Consulting - Why I Don't</h4>
+<h4>Devops Consulting - Why I Don't</h4>
 
 <p>Last year I had a company try to hire me as a devops consultant, but the very idea made me shudder. It felt utterly pretentious even though they had the best of intentions and were knowledgeable about devops.  My business card says Devops Enthusiast. That's it. I love it and I try to live it every day I walk into an office, whether it's my home office, a client office or any other place with people in it.</p>
 
 <p>But my business card will never say Devops Consultant. Why not?</p>
 
-<p><em>devops Isn't a Deliverable</em> - When I get done with you, you don't have a devops. It's possible that the things we're working on will bring you closer to a lifestyle and culture that is devops. And that's super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
+<p><em>Devops Isn't a Deliverable</em> - When I get done with you, you don't have a devops. It's possible that the things we're working on will bring you closer to a lifestyle and culture that is devops. And that's super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
 
 <p><em>Consultants Have No Moral Authority</em> - This is the classic water and horse thing. You can hire someone to tell you how to do devops, but unless everyone is signed on and excited, it's going to be the consultant and the person who hired the consultant drinking from the trough and a bunch of other horses standing around dehydrating.  I have no desire to earn a living doing this.</p>
 
 <p><em>I'm Not Qualified</em> - I learn new things every day and I often remind myself that devops isn't just me preaching DevOplyness, but also involves me actively empathizing with and trusting people I find difficult or frustrating to work with.  This stuff is hard, and I'm not even close to perfect. I'd rather lead by example than preach. I feel like a hypocrite telling other people how to put their house in order when I'm still cleaning my own.</p>
 
-<p><em>I'd Rather Be Crafting</em> - Let's face it. If I say Devops Consultant, that's management consulting. As much as I've considered going into management because of the ignorance I see in charge of stuff, <strong>I'd rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don't get to do that if I'm teaching senior management about devops. It's why I like consulting. There's always a new problem solve.</p>
+<p><em>I'd Rather Be Crafting</em> - Let's face it. If I say Devops Consultant, that's management consulting. As much as I've considered going into management because of the ignorance I see in charge of stuff, <strong>I'd rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don't get to do that if I'm teaching senior management about devops. It's why I like consulting. There's always a new problem to solve.</p>
 
 <h4>Is Continuous Delivery a valid Euphemism for devops?</h4>
 
@@ -64,9 +64,9 @@
 
 <h4>What About devops?</h4>
 
-<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in <a href="htt%20%20%20%20p://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that's what you really want to do.</p>
-
-<p>There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I'm not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I'd be a perfect fit.</p>
+<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in
+<a href="http://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that's what you really want to do.<br/>
+There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I'm not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I'd be a perfect fit.</p>
 ]]></content>
   </entry>
   

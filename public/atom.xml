@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-04-05T07:49:46-07:00</updated>
+  <updated>2013-05-07T10:40:30-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -14,13 +14,46 @@
 
   
   <entry>
-    <title type="html"><![CDATA[devops Consulting: Why I Don't]]></title>
+    <title type="html"><![CDATA[Minneapolis - St Paul Infracoders Meetup Recap]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/"/>
+    <updated>2013-05-07T10:34:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap</id>
+    <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the Twin Cities Infracoders group.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you&#8217;d want to use something like Vagrant and implementation strategies.</p>
+
+<p>Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It&#8217;s homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that&#8217;s Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.</p>
+
+<p>Mike Goetz and Tom Duffield gave us a great compressed Wordpress install demo on a local VM with Vagrant and Chef. Then they gave us a second demo of spinning up two ec2 instances to separate the front and back end pieces of Wordpress.</p>
+
+<p>After Vagrant, we ran through some Sensu slides and looked at some basic info about Sensu.  There were technical difficulties around the demos we were working on so demoing was minimal but discussion around why Sensu, how Sensu and when you might switch was great and we&#8217;re looking forward to a more detailed demo at next month&#8217;s meetup.</p>
+
+<h5>Here is the collection of tools and links from last night:</h5>
+
+<p><a href="http://www.vagrantup.com/">Vagrant</a><br/>
+<a href="http://docs.vagrantup.com/v2/plugins/index.html">Vagrant Plugins</a><br/>
+<a href="http://sensuapp.org/">Sensu</a><br/>
+<a href="http://slides.sensuapp.org/">Sean Porter&#8217;s Slides</a><br/>
+Wordpress Demo(this link will be available shortly)</p>
+
+<h5>Coming up:</h5>
+
+<p>Next month&#8217;s meetup, hosted again at the Nerdery, will be a presentation on using Selenium for automated testing and QA as well as our enhanced Sensu Server and client nodes deployed with Vagabond on LXCs inside a Vagrant VM.  I hope we get a great turnout.</p>
+
+<p>On another note, I have been talking lately about how I want to organize a Chef hackday. After last night&#8217;s discussions around tooling and workflow, I think it might be nice to instead do a tool-agnostic Workflow Tooling hack and help day. Many of us have gotten workflows configured successfully, but depending on your experience beating on the Ruby toolchain, it can be challenging the first couple times you do it.  The Nerdery said they would probably be willing to host and I was thinking about asking CoCo Minneapolis if they had any interest in hosting.</p>
+
+<p>I&#8217;ll post up a question in the meetup group about location and date preferences to see if I get enough interest to make it a thing. I&#8217;ll also send someone to shill at the monthly DevOps meetup that I can never attend due to my work travel schedule.</p>
+
+<p>If you haven&#8217;t made it out to an Infracoder meetup yet, I hope you because we are having some great tech discussions and getting to hear about other people&#8217;s uses cases for things is fascinating. Also, the Nerdery takes super great care of us and feeds us Pizza for dinner.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devops Consulting: Why I Don't]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t/"/>
-    <updated>2013-04-05T20:33:00-07:00</updated>
+    <updated>2013-04-05T20:33:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t</id>
     <content type="html"><![CDATA[<p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It&#8217;s a topic I&#8217;ve discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I&#8217;m motivated to say a few words about devops consulting, not because there was an argument, but because it&#8217;s something I&#8217;ve thought about often since I started independent consulting and I think it&#8217;s important.</p>
 
-<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>&#8220;What is devops&#8221;</em> and <em>&#8220;The No Assholes Rule&#8221;</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I&#8217;d been having and form the base for how I approach devops today.</p>
+<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>&#8220;What is Devops&#8221;</em> and <em>&#8220;The No Assholes Rule&#8221;</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I&#8217;d been having and form the base for how I approach devops today.</p>
 
 <p>My trolling quickly transformed into an exchange as to whether devops consulting is a valid thing.  Here&#8217;s my take:</p>
 
@@ -44,19 +77,19 @@
 
 <p> But as I see tool companies and recruiters slapping devops across everything and large companies begging for the devops panacea, I become less and less inclined to talk about devops and the hipster goth in me is damned if she&#8217;s going to cash in on all the quick bucks of devops consulting.</p>
 
-<h4>devops Consulting - Why I Don&#8217;t</h4>
+<h4>Devops Consulting - Why I Don&#8217;t</h4>
 
 <p>Last year I had a company try to hire me as a devops consultant, but the very idea made me shudder. It felt utterly pretentious even though they had the best of intentions and were knowledgeable about devops.  My business card says Devops Enthusiast. That&#8217;s it. I love it and I try to live it every day I walk into an office, whether it&#8217;s my home office, a client office or any other place with people in it.</p>
 
 <p>But my business card will never say Devops Consultant. Why not?</p>
 
-<p><em>devops Isn&#8217;t a Deliverable</em> - When I get done with you, you don&#8217;t have a devops. It&#8217;s possible that the things we&#8217;re working on will bring you closer to a lifestyle and culture that is devops. And that&#8217;s super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
+<p><em>Devops Isn&#8217;t a Deliverable</em> - When I get done with you, you don&#8217;t have a devops. It&#8217;s possible that the things we&#8217;re working on will bring you closer to a lifestyle and culture that is devops. And that&#8217;s super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
 
 <p><em>Consultants Have No Moral Authority</em> - This is the classic water and horse thing. You can hire someone to tell you how to do devops, but unless everyone is signed on and excited, it&#8217;s going to be the consultant and the person who hired the consultant drinking from the trough and a bunch of other horses standing around dehydrating.  I have no desire to earn a living doing this.</p>
 
 <p><em>I&#8217;m Not Qualified</em> - I learn new things every day and I often remind myself that devops isn&#8217;t just me preaching DevOplyness, but also involves me actively empathizing with and trusting people I find difficult or frustrating to work with.  This stuff is hard, and I&#8217;m not even close to perfect. I&#8217;d rather lead by example than preach. I feel like a hypocrite telling other people how to put their house in order when I&#8217;m still cleaning my own.</p>
 
-<p><em>I&#8217;d Rather Be Crafting</em> - Let&#8217;s face it. If I say Devops Consultant, that&#8217;s management consulting. As much as I&#8217;ve considered going into management because of the ignorance I see in charge of stuff, <strong>I&#8217;d rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don&#8217;t get to do that if I&#8217;m teaching senior management about devops. It&#8217;s why I like consulting. There&#8217;s always a new problem solve.</p>
+<p><em>I&#8217;d Rather Be Crafting</em> - Let&#8217;s face it. If I say Devops Consultant, that&#8217;s management consulting. As much as I&#8217;ve considered going into management because of the ignorance I see in charge of stuff, <strong>I&#8217;d rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don&#8217;t get to do that if I&#8217;m teaching senior management about devops. It&#8217;s why I like consulting. There&#8217;s always a new problem to solve.</p>
 
 <h4>Is Continuous Delivery a valid Euphemism for devops?</h4>
 
@@ -64,16 +97,16 @@
 
 <h4>What About devops?</h4>
 
-<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in <a href="htt%20%20%20%20p://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that&#8217;s what you really want to do.</p>
-
-<p>There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I&#8217;m not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I&#8217;d be a perfect fit.</p>
+<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in
+<a href="http://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that&#8217;s what you really want to do.<br/>
+There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I&#8217;m not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I&#8217;d be a perfect fit.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Chromatic Coffee]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/03/07/coffee-nerdery-chromatic-coffee/"/>
-    <updated>2013-03-07T08:19:00-08:00</updated>
+    <updated>2013-03-07T08:19:00-06:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/03/07/coffee-nerdery-chromatic-coffee</id>
     <content type="html"><![CDATA[<p><a href="http://www.chromaticcoffee.com">Chromatic Coffee</a>   <br/>
 <strong>Location</strong>: Santa Clara, CA, a few miles from the Apple campus  <br/>
@@ -108,7 +141,7 @@
   <entry>
     <title type="html"><![CDATA[Shell Scripts Are Like Gremlins]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins/"/>
-    <updated>2012-12-13T20:15:00-08:00</updated>
+    <updated>2012-12-13T20:15:00-06:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins</id>
     <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/gremlin3.jpg"/></p>
 
@@ -154,7 +187,7 @@
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Ox, Minneapolis]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/15/coffee-nerdery-blue-ox/"/>
-    <updated>2012-09-15T14:53:00-07:00</updated>
+    <updated>2012-09-15T14:53:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/15/coffee-nerdery-blue-ox</id>
     <content type="html"><![CDATA[<p><strong><a href="http://blueoxcoffeecompany.com">Blue Ox</a></strong><br/>
 <strong>Location</strong>: Chicago and 38th St, South Minneapolis, MN<br/>
@@ -202,7 +235,7 @@ and I&#8217;ll be getting to those in future posts.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Irving Farm, New York]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-irving-farm/"/>
-    <updated>2012-09-08T20:11:00-07:00</updated>
+    <updated>2012-09-08T20:11:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-irving-farm</id>
     <content type="html"><![CDATA[<p><a href="http://www.irvingfarm.com/index.cfm">Irving Farm Coffee Roasters</a><br/>
 <strong>Location</strong>: New York, 14th St &amp; 7th Ave, Uptownish<br/>
@@ -239,7 +272,7 @@ except I got off the subway there and was looking for friends.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Financier, New York]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-financier/"/>
-    <updated>2012-09-08T19:55:00-07:00</updated>
+    <updated>2012-09-08T19:55:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-financier</id>
     <content type="html"><![CDATA[<p><a href="http://financierpastries.com/">Financier Coffee</a><br/>
 <strong>Location</strong>: New York, Cedar &amp; William, Downtown, Financial District<br/>
@@ -281,7 +314,7 @@ PASTRIES!<br/>
   <entry>
     <title type="html"><![CDATA[Why Isn't This Funny?]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/04/why-isnt-this-funny/"/>
-    <updated>2012-09-04T23:11:00-07:00</updated>
+    <updated>2012-09-04T23:11:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/04/why-isnt-this-funny</id>
     <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/cczqi.jpg"/></p>
 
@@ -352,7 +385,7 @@ actually funny at all.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: La Colombe]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe/"/>
-    <updated>2012-09-03T19:38:00-07:00</updated>
+    <updated>2012-09-03T19:38:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe</id>
     <content type="html"><![CDATA[<p><a href="http://lacolombe.com">La Colombe</a><br/>
 <strong>Location</strong>: New York, NoHo@400 Lafayette<br/>
@@ -388,7 +421,7 @@ no problem coming back here.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Macchiato, NYC]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato/"/>
-    <updated>2012-09-03T13:55:00-07:00</updated>
+    <updated>2012-09-03T13:55:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato</id>
     <content type="html"><![CDATA[<p><a href="http://www.macchiatocafe.com/">Machiatto</a><br/>
 <strong>Location</strong>: near Times Square<br/>
@@ -428,7 +461,7 @@ YMMV.  It makes me interested in checking out Fonte Coffee Roasters in Seattle!<
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Spoon]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/"/>
-    <updated>2012-09-03T09:38:00-07:00</updated>
+    <updated>2012-09-03T09:38:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon</id>
     <content type="html"><![CDATA[<p><a href="http://www.bluespooncoffee.com/">Blue Spoon</a><br/>
 <strong>Location</strong>: New York, Downtown (Williams and Platt)<br/>
@@ -473,7 +506,7 @@ should investigate the crimes being committed against their beans in this locati
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Kaffe 1668]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/02/coffee-nerdery-kaffe-1668/"/>
-    <updated>2012-09-02T17:42:00-07:00</updated>
+    <updated>2012-09-02T17:42:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/02/coffee-nerdery-kaffe-1668</id>
     <content type="html"><![CDATA[<p><strong><a href="http://kaffe1668.com">Kaffe 1668</a></strong><br/>
 <strong>Location:</strong> New York, Tribeca a few blocks from the GZ Memorial<br/>
@@ -521,7 +554,7 @@ breads so take that fwiw).</p>
   <entry>
     <title type="html"><![CDATA[Coffee for Traveling Nerds]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/01/coffee-for-traveling-nerds/"/>
-    <updated>2012-09-01T09:01:00-07:00</updated>
+    <updated>2012-09-01T09:01:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/01/coffee-for-traveling-nerds</id>
     <content type="html"><![CDATA[<p>I&#8217;m embarking on something I&#8217;ve wanted to do for a long time. Coffee reviews
 for traveling nerds. I don&#8217;t travel extensively but I do go places and my trip
@@ -614,7 +647,7 @@ for me to visit, please let me know.</p>
   <entry>
     <title type="html"><![CDATA[Epic ATG Cheffing]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing/"/>
-    <updated>2012-08-11T08:47:00-07:00</updated>
+    <updated>2012-08-11T08:47:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing</id>
     <content type="html"><![CDATA[<p>I just want to take a moment to point you at an epic new Chef cookbook undertaking. John Larsen has been working on a <a href="http://community.opscode.com/cookbooks/atg">cookbook to configure a full ATG stack with JBoss</a> and has finished a first version. This is something I always wanted to work on but never got around to, and so I&#8217;m being extra appreciative of someone who did take the time to get it working.</p>
 
@@ -660,7 +693,7 @@ running (often with scissors).</p>
   <entry>
     <title type="html"><![CDATA[Attributes Origami]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami/"/>
-    <updated>2012-07-28T23:00:00-07:00</updated>
+    <updated>2012-07-28T23:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami</id>
     <content type="html"><![CDATA[<p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
 
@@ -698,7 +731,7 @@ running (often with scissors).</p>
   <entry>
     <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
-    <updated>2012-07-11T15:54:00-07:00</updated>
+    <updated>2012-07-11T15:54:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go</id>
     <content type="html"><![CDATA[<p>Today I was having a conversation about consulting and how important it is to
 not be emotionally attached to your solutions. As a consultant, you exist to be
@@ -872,7 +905,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[My Favorite JVM Arg EVER]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/"/>
-    <updated>2012-04-27T00:00:00-07:00</updated>
+    <updated>2012-04-27T00:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever</id>
     <content type="html"><![CDATA[<p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
 <p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
@@ -891,7 +924,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[The Alien Technology Tuning Challenge]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/26/the-alien-technology-tuning-challenge/"/>
-    <updated>2012-04-26T00:00:00-07:00</updated>
+    <updated>2012-04-26T00:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/26/the-alien-technology-tuning-challenge</id>
     <content type="html"><![CDATA[<p>A friend challenged me tonight to write a brilliant blog post on tuning a technology about which I know nothing. Actually I don&rsquo;t think you can really do that. I don&rsquo;t think you can write a brilliant blog post unless you&rsquo;ve participated in some kind of failure/stress activity with a product.&nbsp; <p />Until you&rsquo;ve seen real life interact with your infrastructure, it&rsquo;s all just theories and beer.&nbsp; But after a long day debugging Chef code I wrote in a way I wish I&rsquo;d never written (no really, I don&rsquo;t want my name anywhere on some of this stuff!), I thought I&rsquo;d take a little downtime to read about a product I&rsquo;m utterly clueless about.&nbsp; Because that&#8217;s fun.&nbsp; YES IT IS.<!-- more --><p />How clueless? After he challenged me, I opted to get in a bike ride while the weather was nice (rumor predicts snow this weekend). While pondering things on my bike, I finally stopped for a sec, took out my phone and googled &#8216;Redis Rescue Throughput.&#8217;&nbsp; And when I found nothing at all useful, I sent him a text &ldquo;Did you actually use the words &#8216;rescue throughput&#8217; earlier?&rdquo;<p />Can you guess what he said to me? He said, &ldquo;Go write a brilliant blog post on Optimizing Redis for Resque Throughput.&rdquo;&nbsp; Now you know how much I know about <a href="https://github.com/defunkt/resque" title="resque" target="_blank">Resque</a>.&nbsp; That would be a big, embarrassing ZERO.&nbsp; As for Redis, I know it&#8217;s an in-memory data store.&nbsp; That&#8217;s it.<p />So now it might not surprise anyone who knows me that this evening did not turn into a big brainstorming session for Redis tuning params.&nbsp; Once I tracked down the Resque github page I was all</p>
 <p>&nbsp;</p>
@@ -934,7 +967,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[Yak Hacking - A Story]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking/"/>
-    <updated>2012-04-15T00:00:00-07:00</updated>
+    <updated>2012-04-15T00:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking</id>
     <content type="html"><![CDATA[<p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
 <p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
@@ -955,7 +988,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[Weekend Chef and Puppet Projects]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects/"/>
-    <updated>2012-04-01T00:00:00-07:00</updated>
+    <updated>2012-04-01T00:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects</id>
     <content type="html"><![CDATA[<p>I have a few clients that I keep in touch with and take on small projects from time to time.&nbsp; This has been a strange week.&nbsp; I&rsquo;m technically full time on a project at the moment and I haven&rsquo;t gotten any calls for new work in a couple of months.&nbsp; It&rsquo;s been quiet.&nbsp; Then all of the sudden Wednesday I had 3 different people contact me about work.&nbsp;</p>
 <p><br />One call was actually for some awesome Chef work at a place I&rsquo;ve been before that I&rsquo;d love to go back to.&nbsp; It really pained me to tell them that I thought they had in-house resources of which they weren&rsquo;t aware and that these resources would be more than sufficient to Chef their project without my help. Sadface Sascha.</p>
@@ -964,17 +997,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <p><br />I actually spent a chunk of time working on my Chef thing which was an exercise in frustration.&nbsp; It&rsquo;s for a Windows Ohai plugin and the actual ruby work was a piece of cake. Testing has made me crazy though.&nbsp; Windows servers don&rsquo;t fire up as fast as Linux for one and they are a huge pain in the ass to interact with.&nbsp; On my todo list is an SSH server for Windows cookbook, unless my ultimate wish of hoping that all Windows servers DIAF happens prior to that.&nbsp; The ssh cookbook is half done, like so many things.</p>
 <p>I also am not sure I understand the testing strategy.&nbsp; I didn&#8217;t write any new code so I shouldn&#8217;t need to author any tests (relief).&nbsp; But it turns out I can&#8217;t seen any windows testing happening in the run, or at least, I think that&#8217;s what&#8217;s not happening.&nbsp; It ran happily on my Mac and then I thought maybe I should run the test on the Windows box too to see if the output was different.&nbsp; It was different.&nbsp; But I think that&#8217;s because there&#8217;s no Windows plugin tests in there?&nbsp; Wondering if I missed them?&nbsp; I was planning to email the chef-dev list tomorrow to see if I can get some love.&nbsp; Unfortunately the time I have to work on pet projects is the weekends and the IRC channels were like graveyards this weekend.<p />But I digress.&nbsp; I also ran manual tests - you know, the kind where you do stuff by hand and watch the output? My Ohai changes tested perfectly sanely on my Windows 7 64bit workstation.&nbsp; They tested insanely on a 2008r2 VMware VM I had available to me.&nbsp; And when I went into ec2 to fire up a neutral 2008r2, I discovered Ohai hangs on gathering ec2 metadata when run from the command line.&nbsp; I have no idea why.&nbsp; I hand-edited the ec2 plugin and the mixin/ec2_metadata to try and eke out some debug info but I got no joy.&nbsp; While the problem fascinated me, that was as far down that yak shave as I wanted to go today.&nbsp; So I put away the Chef and cleaned up the yard for 2 hours.</p>
 <p>Now I guess it&#8217;s time to play with Puppet!</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Annoying Recruiter Call #45]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/03/26/annoying-recruiter-call-45/"/>
-    <updated>2012-03-26T00:00:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/03/26/annoying-recruiter-call-45</id>
-    <content type="html"><![CDATA[<p><img src="http://fuuu.us/362.png" alt="" /></p>
-<p>&nbsp;</p>
-<p>I enjoy independent consulting.&nbsp; For that matter, I enjoyed consulting for a consulting company.&nbsp; I&rsquo;ve been doing it in one form or another since 2006.&nbsp; I love the variety and the challenge that comes from never knowing wtf will be thrown at me on any given day or project.&nbsp; Some days it&rsquo;s terrifying and some days I want to slap people around, but I won&rsquo;t deny that I like it.<p />Currently my LinkedIn profile, a business card and a terse web site are all I use for self-promotion. I never lack for work. I get calls every week from larger businesses looking to recruit for FTEs.&nbsp; This is rarely something I&rsquo;m interested in.&nbsp; I dislike the inevitable silo and I&rsquo;m not able to engage in the cognitive dissonance required to believe in all the meaningless BS that is part of corporate baggage.&nbsp; So I politely tell all these recruiters that, while I appreciate the contact, I&rsquo;m not looking for full time work at this time.<p />Once in a while I get contacted by recruiters looking to hire for smaller startups.&nbsp; I always listen to the pitch for these because, if the right small company comes along, I&#8217;d probably go work for them.&nbsp; <p />Sometimes they&rsquo;re way off the mark with my skillset or with people who want a culture match - like the recruiter looking to hire someone to work at a social network sports startup.&nbsp; When I told her that, unless it was bicycle racing, I wasn&rsquo;t interested, I could hear the awkward just floating through the phone.&nbsp; Obviously these guys trying to use ESPN APIs and social networking to bring people together would have nothing to say to me.<p />I had a call in December from a recruiter from a brand new startup local to the area, using a tech stack of which I approved.&nbsp; They tried to set me up but it never worked out.&nbsp; The place was all chaos and key people kept going on vacation and one thing after another.&nbsp; Eventually I forgot about it.&nbsp; Until I got a call the other day from the same recruiting company.&nbsp; They left me a voice mail, telling me they had a question and would I call.&nbsp; So I did.&nbsp; I called them today.<p />I got on the phone with the recruiter, a new one, and he literally stumbled all over himself for over a minute, trying to spit out a complete sentence.&nbsp; He finally did and I nearly hung up on him.&nbsp; The conversation went something like this:<p /><strong>Him</strong>: &ldquo;ah, um&#8230;so&#8230;you know that company we were trying to&#8230;remember you worked with my boss last year and that company&#8230;.they um, were looking for&#8230;remember we tried to set you up with X company?&rdquo;<br /><strong>Me</strong>: Yes<br /><strong>Him</strong>: Would you happen to&#8230;.they&rsquo;re looking for&#8230;it&rsquo;s really hard to find people who are into startup culture&#8230;.um&#8230;.ah&#8230;they&rsquo;re looking for&#8230;.um&#8230;developers&#8230;.and so um&#8230;I was wondering&#8230;.if, um<br /><strong>Me</strong>: I don&rsquo;t know any developers looking for work<br /><strong>Him</strong>: Oh, um&#8230;right, well, if you happen to think of anyone&#8230;could I um&#8230;send you a followup email&#8230;just in um case?<br /><strong>Me</strong>: sure &lt;click&gt;<p />Then I sent an email to his manager, the very nice, polite and professional person I&rsquo;d been talking to in December:<p />&ldquo;Hi Harry, I would appreciate it if you could let your colleagues know not to call me for the sole purpose of asking if I know anyone looking for work.&nbsp; It would probably also help their delivery if they not preface their requests with &#8220;remember the job last year we were trying to get for you but couldn&#8217;t?&#8221; and follow up with &#8220;do you know anyone else who might like to work there?&#8221;<p />Thanks,<br />Sascha</p>
 ]]></content>
   </entry>
   
