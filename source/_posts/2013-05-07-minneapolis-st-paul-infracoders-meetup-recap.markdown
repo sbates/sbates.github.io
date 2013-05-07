@@ -3,13 +3,13 @@ layout: post
 title: "Minneapolis - St Paul Infracoders Meetup Recap"
 date: 2013-05-07 10:34
 comments: true
-categories: [ruby chef infracoders puppet vagrant sensu]
+categories: [ruby, chef, infracoders, puppet, vagrant, sensu]
 ---
 Last night we had a fun second meetup of the Twin Cities Infracoders group.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies. 
 
 Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It's homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that's Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.
 
-Mike Goetz and Tom Duffield gave us a great compressed Wordpress install demo on a local VM with Vagrant and Chef. Then they gave us a second demo of spinning up two ec2 instances to separate the front and back end pieces of Wordpress.
+[Mike Goetz](http://www.linkedin.com/in/mpgoetz) and [Tom Duffield](http://www.linkedin.com/in/thomasduffield) gave us a great compressed Wordpress install demo on a local VM with Vagrant and Chef. Then they gave us a second demo of spinning up two ec2 instances to separate the front and back end pieces of Wordpress.
 
 After Vagrant, we ran through some Sensu slides and looked at some basic info about Sensu.  There were technical difficulties around the demos we were working on so demoing was minimal but discussion around why Sensu, how Sensu and when you might switch was great and we're looking forward to a more detailed demo at next month's meetup.
 
