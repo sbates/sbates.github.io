@@ -9,7 +9,7 @@
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="I had an interesting exchange with Adam Jacob yesterday on Twitter around devops consulting. It&#8217;s a topic I&#8217;ve discussed often with &hellip;">
+  <meta name="description" content="Last night we had a fun second meetup of the Twin Cities Infracoders group. On the docket were presentations and demos for Vagrant and Sensu. We had &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -89,6 +89,66 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/">Minneapolis - St Paul Infracoders Meetup Recap</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-07T10:34:00-05:00" pubdate data-updated="true">May 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last night we had a fun second meetup of the Twin Cities Infracoders group.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you&#8217;d want to use something like Vagrant and implementation strategies.</p>
+
+<p>Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It&#8217;s homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that&#8217;s Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.</p>
+
+<p>Mike Goetz and Tom Duffield gave us a great compressed Wordpress install demo on a local VM with Vagrant and Chef. Then they gave us a second demo of spinning up two ec2 instances to separate the front and back end pieces of Wordpress.</p>
+
+<p>After Vagrant, we ran through some Sensu slides and looked at some basic info about Sensu.  There were technical difficulties around the demos we were working on so demoing was minimal but discussion around why Sensu, how Sensu and when you might switch was great and we&#8217;re looking forward to a more detailed demo at next month&#8217;s meetup.</p>
+
+<h5>Here is the collection of tools and links from last night:</h5>
+
+<p><a href="http://www.vagrantup.com/">Vagrant</a><br/>
+<a href="http://docs.vagrantup.com/v2/plugins/index.html">Vagrant Plugins</a><br/>
+<a href="http://sensuapp.org/">Sensu</a><br/>
+<a href="http://slides.sensuapp.org/">Sean Porter&#8217;s Slides</a><br/>
+Wordpress Demo(this link will be available shortly)</p>
+
+<h5>Coming up:</h5>
+
+<p>Next month&#8217;s meetup, hosted again at the Nerdery, will be a presentation on using Selenium for automated testing and QA as well as our enhanced Sensu Server and client nodes deployed with Vagabond on LXCs inside a Vagrant VM.  I hope we get a great turnout.</p>
+
+<p>On another note, I have been talking lately about how I want to organize a Chef hackday. After last night&#8217;s discussions around tooling and workflow, I think it might be nice to instead do a tool-agnostic Workflow Tooling hack and help day. Many of us have gotten workflows configured successfully, but depending on your experience beating on the Ruby toolchain, it can be challenging the first couple times you do it.  The Nerdery said they would probably be willing to host and I was thinking about asking CoCo Minneapolis if they had any interest in hosting.</p>
+
+<p>I&#8217;ll post up a question in the meetup group about location and date preferences to see if I get enough interest to make it a thing. I&#8217;ll also send someone to shill at the monthly DevOps meetup that I can never attend due to my work travel schedule.</p>
+
+<p>If you haven&#8217;t made it out to an Infracoder meetup yet, I hope you because we are having some great tech discussions and getting to hear about other people&#8217;s uses cases for things is fascinating. Also, the Nerdery takes super great care of us and feeds us Pizza for dinner.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/04/05/devops-consulting-why-i-don-slash-t/">Devops Consulting: Why I Don&#8217;t</a></h1>
     
     
@@ -105,7 +165,7 @@
   
 
 
-<time datetime="2013-04-05T20:33:00-07:00" pubdate data-updated="true">Apr 5<span>th</span>, 2013</time>
+<time datetime="2013-04-05T20:33:00-05:00" pubdate data-updated="true">Apr 5<span>th</span>, 2013</time>
         
       </p>
     
@@ -114,7 +174,7 @@
 
   <div class="entry-content"><p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It&#8217;s a topic I&#8217;ve discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I&#8217;m motivated to say a few words about devops consulting, not because there was an argument, but because it&#8217;s something I&#8217;ve thought about often since I started independent consulting and I think it&#8217;s important.</p>
 
-<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>&#8220;What is devops&#8221;</em> and <em>&#8220;The No Assholes Rule&#8221;</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I&#8217;d been having and form the base for how I approach devops today.</p>
+<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>&#8220;What is Devops&#8221;</em> and <em>&#8220;The No Assholes Rule&#8221;</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I&#8217;d been having and form the base for how I approach devops today.</p>
 
 <p>My trolling quickly transformed into an exchange as to whether devops consulting is a valid thing.  Here&#8217;s my take:</p>
 
@@ -138,19 +198,19 @@
 
 <p> But as I see tool companies and recruiters slapping devops across everything and large companies begging for the devops panacea, I become less and less inclined to talk about devops and the hipster goth in me is damned if she&#8217;s going to cash in on all the quick bucks of devops consulting.</p>
 
-<h4>devops Consulting - Why I Don&#8217;t</h4>
+<h4>Devops Consulting - Why I Don&#8217;t</h4>
 
 <p>Last year I had a company try to hire me as a devops consultant, but the very idea made me shudder. It felt utterly pretentious even though they had the best of intentions and were knowledgeable about devops.  My business card says Devops Enthusiast. That&#8217;s it. I love it and I try to live it every day I walk into an office, whether it&#8217;s my home office, a client office or any other place with people in it.</p>
 
 <p>But my business card will never say Devops Consultant. Why not?</p>
 
-<p><em>devops Isn&#8217;t a Deliverable</em> - When I get done with you, you don&#8217;t have a devops. It&#8217;s possible that the things we&#8217;re working on will bring you closer to a lifestyle and culture that is devops. And that&#8217;s super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
+<p><em>Devops Isn&#8217;t a Deliverable</em> - When I get done with you, you don&#8217;t have a devops. It&#8217;s possible that the things we&#8217;re working on will bring you closer to a lifestyle and culture that is devops. And that&#8217;s super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
 
 <p><em>Consultants Have No Moral Authority</em> - This is the classic water and horse thing. You can hire someone to tell you how to do devops, but unless everyone is signed on and excited, it&#8217;s going to be the consultant and the person who hired the consultant drinking from the trough and a bunch of other horses standing around dehydrating.  I have no desire to earn a living doing this.</p>
 
 <p><em>I&#8217;m Not Qualified</em> - I learn new things every day and I often remind myself that devops isn&#8217;t just me preaching DevOplyness, but also involves me actively empathizing with and trusting people I find difficult or frustrating to work with.  This stuff is hard, and I&#8217;m not even close to perfect. I&#8217;d rather lead by example than preach. I feel like a hypocrite telling other people how to put their house in order when I&#8217;m still cleaning my own.</p>
 
-<p><em>I&#8217;d Rather Be Crafting</em> - Let&#8217;s face it. If I say Devops Consultant, that&#8217;s management consulting. As much as I&#8217;ve considered going into management because of the ignorance I see in charge of stuff, <strong>I&#8217;d rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don&#8217;t get to do that if I&#8217;m teaching senior management about devops. It&#8217;s why I like consulting. There&#8217;s always a new problem solve.</p>
+<p><em>I&#8217;d Rather Be Crafting</em> - Let&#8217;s face it. If I say Devops Consultant, that&#8217;s management consulting. As much as I&#8217;ve considered going into management because of the ignorance I see in charge of stuff, <strong>I&#8217;d rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don&#8217;t get to do that if I&#8217;m teaching senior management about devops. It&#8217;s why I like consulting. There&#8217;s always a new problem to solve.</p>
 
 <h4>Is Continuous Delivery a valid Euphemism for devops?</h4>
 
@@ -158,9 +218,9 @@
 
 <h4>What About devops?</h4>
 
-<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in <a href="htt%20%20%20%20p://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that&#8217;s what you really want to do.</p>
-
-<p>There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I&#8217;m not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I&#8217;d be a perfect fit.</p>
+<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in
+<a href="http://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that&#8217;s what you really want to do.<br/>
+There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I&#8217;m not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I&#8217;d be a perfect fit.</p>
 </div>
   
   
@@ -189,7 +249,7 @@
   
 
 
-<time datetime="2013-03-07T08:19:00-08:00" pubdate data-updated="true">Mar 7<span>th</span>, 2013</time>
+<time datetime="2013-03-07T08:19:00-06:00" pubdate data-updated="true">Mar 7<span>th</span>, 2013</time>
         
       </p>
     
@@ -251,7 +311,7 @@
   
 
 
-<time datetime="2012-12-13T20:15:00-08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+<time datetime="2012-12-13T20:15:00-06:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
         
       </p>
     
@@ -324,7 +384,7 @@
   
 
 
-<time datetime="2012-09-15T14:53:00-07:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
+<time datetime="2012-09-15T14:53:00-05:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
         
       </p>
     
@@ -399,7 +459,7 @@ and I&#8217;ll be getting to those in future posts.</p>
   
 
 
-<time datetime="2012-09-08T20:11:00-07:00" pubdate data-updated="true">Sep 8<span>th</span>, 2012</time>
+<time datetime="2012-09-08T20:11:00-05:00" pubdate data-updated="true">Sep 8<span>th</span>, 2012</time>
         
       </p>
     
@@ -463,7 +523,7 @@ except I got off the subway there and was looking for friends.</p>
   
 
 
-<time datetime="2012-09-08T19:55:00-07:00" pubdate data-updated="true">Sep 8<span>th</span>, 2012</time>
+<time datetime="2012-09-08T19:55:00-05:00" pubdate data-updated="true">Sep 8<span>th</span>, 2012</time>
         
       </p>
     
@@ -532,7 +592,7 @@ PASTRIES!<br/>
   
 
 
-<time datetime="2012-09-04T23:11:00-07:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
+<time datetime="2012-09-04T23:11:00-05:00" pubdate data-updated="true">Sep 4<span>th</span>, 2012</time>
         
       </p>
     
@@ -630,7 +690,7 @@ actually funny at all.</p>
   
 
 
-<time datetime="2012-09-03T19:38:00-07:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
+<time datetime="2012-09-03T19:38:00-05:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
         
       </p>
     
@@ -693,7 +753,7 @@ no problem coming back here.</p>
   
 
 
-<time datetime="2012-09-03T13:55:00-07:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
+<time datetime="2012-09-03T13:55:00-05:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
         
       </p>
     
@@ -739,78 +799,6 @@ YMMV.  It makes me interested in checking out Fonte Coffee Roasters in Seattle!<
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/03/coffee-nerdery-blue-spoon/">Coffee Nerdery: Blue Spoon</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-03T09:38:00-07:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://www.bluespooncoffee.com/">Blue Spoon</a><br/>
-<strong>Location</strong>: New York, Downtown (Williams and Platt)<br/>
-<strong>Espresso</strong>: Intelligentsia<br/>
-<strong>Hardware</strong>: La Marzocco + Mazzer<br/>
-<strong>Coffee Art</strong>: No<br/>
-<strong>WiFi</strong>: yes, from the park across the street (NY DTA), sketchy<br/>
-<strong>Served In</strong>: 8oz cardboard<br/>
-<strong>Drink</strong>: skim cappuccino<br/>
-<strong>Visited</strong>: 8/31/2012</p>
-
-<p><img src="/images/bluespoon.jpg"></p>
-
-<p>This is a small shop at corner of William and Platt in the Financial
-District.  The coffee is too hot leading me to guess they overcook the milk. I ate
-half a bagel waiting for it to cool off. If I had been walking, I would have
-wanted a sleeve, which I generally never need with artisan coffee joints. It
-was interesting that the beans were Intelligentsia as the taste seemed to
-have a lot more licorice or citrus than the other locations serving the same
-beans. Reminded me a bit of Stumptown when it&#8217;s pulled too long.</p>
-
-<p>Other, non-coffee specific: It&#8217;s hot in here. It&#8217;s a very small space and
-I think there&#8217;s some a/c near the counter, but I&#8217;m about 8 feet away at
-a window bar and sweating while drinking my coffee. Also, despite ordering
-&#8220;for here,&#8221; I received cups with lids on them and a bagel toasted but wrapped
-up in wax paper and a lunch bag.</p>
-
-<p><strong>Pros</strong>: They&#8217;re 2 blocks from where I&#8217;m staying and bagel noms.<br/>
-<strong>Cons</strong>: scalded milk, bitter, citric taste, location heat.</p>
-
-<p>Followup: It was 90 degrees Friday afternoon, so I opted to walk back here
-despite the meh experience of the morning.  I got the same kind of drink that
-I think had even more milk than my morning cups. Very disappointing
-experience for a shop that actually has a La Marzocco in residence.</p>
-
-<p>Final word: Despite the La Marzocco, this shop is not serving artisan coffee
-and I don&#8217;t recommend it. It beats Starbucks, but just barely. Intelligentsia
-should investigate the crimes being committed against their beans in this location.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -830,7 +818,11 @@ should investigate the crimes being committed against their beans in this locati
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/04/05/devops-consulting-why-i-don-slash-t/">devops Consulting: Why I Don&#8217;t</a>
+        <a href="/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/">Minneapolis - St Paul Infracoders Meetup Recap</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/05/devops-consulting-why-i-don-slash-t/">Devops Consulting: Why I Don&#8217;t</a>
       </li>
     
       <li class="post">
@@ -863,10 +855,6 @@ should investigate the crimes being committed against their beans in this locati
     
       <li class="post">
         <a href="/blog/2012/09/03/coffee-nerdery-macchiato/">Coffee Nerdery: Macchiato, NYC</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/03/coffee-nerdery-blue-spoon/">Coffee Nerdery: Blue Spoon</a>
       </li>
     
   </ul>
