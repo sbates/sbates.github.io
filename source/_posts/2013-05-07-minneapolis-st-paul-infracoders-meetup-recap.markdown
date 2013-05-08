@@ -5,7 +5,7 @@ date: 2013-05-07 10:34
 comments: true
 categories: [ruby, chef, infracoders, puppet, vagrant, sensu]
 ---
-Last night we had a fun second meetup of the Twin Cities Infracoders group.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies. 
+Last night we had a fun second meetup of the [Twin Cities Infracoders group](http://www.meetup.com/Twin-Cities-Infracoders).  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies. 
 
 Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It's homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that's Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.
 
