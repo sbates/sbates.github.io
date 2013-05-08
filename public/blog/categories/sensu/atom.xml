@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sensu | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/sensu/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-07T11:14:34-05:00</updated>
+  <updated>2013-05-07T19:48:09-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/"/>
     <updated>2013-05-07T10:34:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap</id>
-    <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the Twin Cities Infracoders group.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies.</p>
+    <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the <a href="http://www.meetup.com/Twin-Cities-Infracoders">Twin Cities Infracoders group</a>.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies.</p>
 
 <p>Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It's homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that's Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.</p>
 
