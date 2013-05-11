@@ -5,7 +5,9 @@ require 'sinatra/base'
 $root = ::File.dirname(__FILE__)
 
 class SinatraStaticServer < Sinatra::Base  
-
+before do
+cache_control :public, :max_age => 31
+end
   get(/.+/) do
     send_sinatra_file(request.path) {404}
   end
