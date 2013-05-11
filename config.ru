@@ -6,7 +6,17 @@ $root = ::File.dirname(__FILE__)
 
 class SinatraStaticServer < Sinatra::Base  
 before do
-cache_control :public, :max_age => 31
+cache_control :private, :max_age => 31
+unless params["cache"].nil?
+    cache_control :public, :max_age => 30
+    expires 30, :public
+  end
+
+  unless params["etag"].nil?
+    etag Digest::MD5.hexdigest(FOUNDERS)
+  end
+
+
 end
   get(/.+/) do
     send_sinatra_file(request.path) {404}
