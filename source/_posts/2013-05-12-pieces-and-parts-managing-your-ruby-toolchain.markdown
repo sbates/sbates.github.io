@@ -60,7 +60,7 @@ I have written workstation automation but I don't maintain it these days and I'l
 * If you're automating for many people over time, pin your RVM version  
 
 **Wrap Up**
-To keep the blog post readable, this is all I was to discuss in this first post, but I'm about to publish Part 2 as well: a rant about package repos. I'm extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.
+To keep the blog post readable, this is all I want to discuss in this first post, but I'm about to publish Part 2 as well: a rant about package repos. I'm extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.
 
 [howtosearch]: http://www.google.com/search?q=how+to+install+ruby+development+tools
 [chefrvm]: http://github.com/fnichol/chef-rvm
