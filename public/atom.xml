@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-11T08:36:09-05:00</updated>
+  <updated>2013-05-12T13:36:53-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Pieces and Parts: Managing Your Ruby Toolchain (part 1)]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/"/>
+    <updated>2013-05-12T13:12:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain</id>
+    <content type="html"><![CDATA[<p>I recently received an email from someone who attended my <a href="http://www.youtube.com/watch?v=pHmU0aNkENc&amp;list=PLrmstJpucjzXNMLcI5X-EjirpDd-SITd3&amp;index=28">ChefConf talk</a> and asked me to expand on a few things. As I started to answer the email, I could see it was going to turn into a dissertation, so I migrated it over into a blog post.  As I started to write the blog post, it seemed to grow into a book, so now I&#8217;ve decided to break it down into multiple posts.  In this post I&#8217;ll try to summarize the question and situational environment and cover the easiest answers first: scripting languages and RVM.</p>
+
+<p><strong>The Question</strong><br/>
+Given the dynamic nature of Ruby tooling and the uncertainty of internet connections, and given that I work in the Enterprise, how should I design my supporting infrastructure and should I make Ruby my default scripting language?</p>
+
+<p><strong>The Situation</strong><br/>
+Situated in the Enterprise, working with Red Hat/CentOS Enterprise Linux(EL).</p>
+
+<p><strong>Concerns</strong>  <br/>
+* Rapidly changing versions of gems and software on the internet<br/>
+* A constant need to download and compile Ruby (also compilers in production)<br/>
+* The dynamic nature of downloading an RVM script from the internet on every install<br/>
+* No connection to the internet (I&#8217;m not sure if this was a concern of his, but I&#8217;m betting it&#8217;s one of yours)</p>
+
+<p>Let&#8217;s look at our major parts, shall we? In this set of posts we&#8217;ll cover <br/>
+* <a href="#script">Scripting Languages</a> <br/>
+* <a href="#rvm">RVM</a><br/>
+* [Package Repositories]  <br/>
+* [Package Versions]   <br/>
+* [Ruby Management]     <br/>
+* [Rubygems]</p>
+
+<p><a id="script"><strong>Scripting Languages</strong></a><br/>
+The question was, should we go all in on Ruby as a scripting language? My answer to that is, unless everyone loves Ruby, that&#8217;s probably an unnecessary hardship to impose while also trying to adopt Chef.  Generally you find some combination of Shell, Python, Perl or Ruby on most enterprise server systems. I think you should script in the language that works best for you, where &#8220;works best&#8221; is a combination of what you&#8217;re comfortable with and what will best suit your immediate need.</p>
+
+<p>Honestly I think we&#8217;ll never move entirely away from Shell scripting and that&#8217;s ok. It&#8217;s easy to learn and suits functional tasks like cron jobs and other server-specific work. Do I think you should have a script suite in 4 different interpreted languages? Well, no. If it were me, I&#8217;d pick Shell and Ruby for my options. But there&#8217;s no reason it can&#8217;t be Shell and Python or any other combo.</p>
+
+<p>Me? I love Ruby and have an irrational dislike of Perl that stems from my early days in ops dealing with travesties of unreadable scripts. So I like Ruby first and Shell second, Python third and Perl never.  But it&#8217;s hard enough learning a new tool like Chef. Don&#8217;t impose artificial constraints on your team.</p>
+
+<p>Also, Your devs are probably already programming in Java or C or whatever. Over time most devs pick up a smattering of shell. If you force Ruby on them too it&#8217;s likely to breed resentment.</p>
+
+<p><a id="rvm"><strong>RVM</strong></a> <br/>
+While I&#8217;m not an expert on <a href="http://rvm.io">RVM</a> and other Ruby managers, I have heard that it&#8217;s not meant to be a server tool.  I do use RVM for workstation development and I&#8217;ve used <a href="http://github.com/sstephenson/rbenv/wiki">Rbenv</a> as well. I don&#8217;t mind compiling Ruby from scratch when installing it locally although I will love it when RVM gets precompiled rubies for OSX.</p>
+
+<h5>A Slight Digression on Workstation Automation</h5>
+
+<p>I&#8217;ve written workstation automation using Fletcher Nichol&#8217;s <a href="http://github.com/fnichol/chef-rvm">chef-rvm cookbook</a>.  A frustrating problem I have run into is that RVM undergoes frequent development and at first I had people coming to me because the workstation toolchain install wouldn&#8217;t work and it was almost always because the RVM version had changed and something was now wonky in the settings or install chain. So I started pinning the RVM version to install with occasional revisits to bump the version when I could.</p>
+
+<p>If you want to look at workstation automation for OSX 10.8 try a couple of these repos:</p>
+
+<ul>
+<li><a href="http://github.com/pivotal-sprout/sprout-wrap">Sprout-wrap</a> - This used to be Pivotal Workstation and is now basically an instruction page for getting going with Soloist</li>
+<li><a href="http://www.solowizard.com">SoloWizard</a> - a browser based checklist that will assemble a chef solo provisioner for your workstation.</li>
+<li>Joshua Timberman&#8217;s workstation-chef-repo and mac_os_x-cookbook for his personal collection of workstation automation</li>
+<li><a href="http://github.com/blt04/puppet-rvm">Puppet-RVM</a> - Puppet module for installing and managing RVM</li>
+<li><a href="http://boxen.github.com/">Boxen</a> - A tool for automating OSX with Puppet. Links to a blog post with details.</li>
+</ul>
+
+
+<p>I have written workstation automation but I don&#8217;t maintain it these days and I&#8217;ll probably try Soloist when I get my next new Mac.</p>
+
+<p><strong>TL;DR</strong>:<br/>
+* Use RVM on workstations not servers  <br/>
+* If you&#8217;re automating for many people over time, pin your RVM version</p>
+
+<p><strong>Wrap Up</strong>
+To keep the blog post readable, this is all I was to discuss in this first post, but I&#8217;m about to publish Part 2 as well: a rant about package repos. I&#8217;m extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Minneapolis - St Paul Infracoders Meetup Recap]]></title>
@@ -982,21 +1047,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <p>OMG.&nbsp;  I need an orchestration tool or something, STAT.&nbsp; I should probably go  script this, but I will probably never do anything similar for this client again  unless they ask me to implement an orchestration tool for them.&nbsp;</p>
 <p>All of this work, just to get the files to me so I can work work with them. How do people live like this???</p>
 <p><strong>****Lesson Learned</strong>: ask more questions when accepting work, even when it&#8217;s ad hoc, tiny project work for someone I know.&nbsp; I assumed they would have management tooling.&nbsp; After all, they were smart enough to use configuration management.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Weekend Chef and Puppet Projects]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects/"/>
-    <updated>2012-04-01T00:00:00-05:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects</id>
-    <content type="html"><![CDATA[<p>I have a few clients that I keep in touch with and take on small projects from time to time.&nbsp; This has been a strange week.&nbsp; I&rsquo;m technically full time on a project at the moment and I haven&rsquo;t gotten any calls for new work in a couple of months.&nbsp; It&rsquo;s been quiet.&nbsp; Then all of the sudden Wednesday I had 3 different people contact me about work.&nbsp;</p>
-<p><br />One call was actually for some awesome Chef work at a place I&rsquo;ve been before that I&rsquo;d love to go back to.&nbsp; It really pained me to tell them that I thought they had in-house resources of which they weren&rsquo;t aware and that these resources would be more than sufficient to Chef their project without my help. Sadface Sascha.</p>
-<p><br />Another call was from someone I do work for from time to time.&nbsp; Their projects source my &ldquo;Puppet for Chef&rdquo; series, if 2 blog posts can be called a series.&nbsp; In my head I have a 3rd one on templates but haven&rsquo;t gotten around to it yet. This 3wk run may source some if I&rsquo;m lucky. I agreed to do some ad hoc sysadmin work for these guys because they&rsquo;re in a swivet, getting ready for a PCI audit in 3 weeks.</p>
-<p>The job: There are about 150 Centos 5 servers. Caveat: some of the servers on the list may be retired already.&nbsp; Examine all of the configuration files for ConfigServer Firewall, bring them under Puppet control. Individual node config sets are ok (ugh).&nbsp; All servers are running a puppet client.&nbsp; I don&rsquo;t know if it&rsquo;s the same client.&nbsp; The master was at 2.7.9 last I checked, I think.<p />I have a mini Chef project too for the weekend, but I think I&rsquo;ll save that for another blog post.&nbsp; I actually wrote post of this post on Saturday morning and am just finishing it up. I haven&rsquo;t actually started my Puppet stuff except to wonder if they have some command line tools and think I&rsquo;d better get to writing some tcp testers and comparison scripts if there isn&rsquo;t such a thing.</p>
-<p><br />I actually spent a chunk of time working on my Chef thing which was an exercise in frustration.&nbsp; It&rsquo;s for a Windows Ohai plugin and the actual ruby work was a piece of cake. Testing has made me crazy though.&nbsp; Windows servers don&rsquo;t fire up as fast as Linux for one and they are a huge pain in the ass to interact with.&nbsp; On my todo list is an SSH server for Windows cookbook, unless my ultimate wish of hoping that all Windows servers DIAF happens prior to that.&nbsp; The ssh cookbook is half done, like so many things.</p>
-<p>I also am not sure I understand the testing strategy.&nbsp; I didn&#8217;t write any new code so I shouldn&#8217;t need to author any tests (relief).&nbsp; But it turns out I can&#8217;t seen any windows testing happening in the run, or at least, I think that&#8217;s what&#8217;s not happening.&nbsp; It ran happily on my Mac and then I thought maybe I should run the test on the Windows box too to see if the output was different.&nbsp; It was different.&nbsp; But I think that&#8217;s because there&#8217;s no Windows plugin tests in there?&nbsp; Wondering if I missed them?&nbsp; I was planning to email the chef-dev list tomorrow to see if I can get some love.&nbsp; Unfortunately the time I have to work on pet projects is the weekends and the IRC channels were like graveyards this weekend.<p />But I digress.&nbsp; I also ran manual tests - you know, the kind where you do stuff by hand and watch the output? My Ohai changes tested perfectly sanely on my Windows 7 64bit workstation.&nbsp; They tested insanely on a 2008r2 VMware VM I had available to me.&nbsp; And when I went into ec2 to fire up a neutral 2008r2, I discovered Ohai hangs on gathering ec2 metadata when run from the command line.&nbsp; I have no idea why.&nbsp; I hand-edited the ec2 plugin and the mixin/ec2_metadata to try and eke out some debug info but I got no joy.&nbsp; While the problem fascinated me, that was as far down that yak shave as I wanted to go today.&nbsp; So I put away the Chef and cleaned up the yard for 2 hours.</p>
-<p>Now I guess it&#8217;s time to play with Puppet!</p>
 ]]></content>
   </entry>
   
