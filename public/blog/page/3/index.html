@@ -9,7 +9,7 @@
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="I have a couple of half-written blog posts started this weekend.&nbsp; Real wordy things about scrummifying your infrastructure and my experience &hellip;">
+  <meta name="description" content="&nbsp; I enjoy independent consulting.&nbsp; For that matter, I enjoyed consulting for a consulting company.&nbsp; I&rsquo;ve been doing it in one &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,90 +83,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/15/yak-hacking/">Yak Hacking - a Story</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-15T00:00:00-07:00" pubdate data-updated="true">Apr 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
-<p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
-<p>Technical debt is a choice and can happen to anyone.&nbsp; Here the client allowed their configuration management to run away from them.&nbsp; They haven&#8217;t been maintaining their Puppet nodes and so don&#8217;t have a good list of what servers they are managing.&nbsp; They also let some config files slip through unmanaged.&nbsp; I generally don&#8217;t point fingers about it as there&#8217;s usually a sane tradeoff involved, but the first issue makes fixing the second one harder.</p>
-<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/04/15/yak-hacking/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/04/01/weekend-chef-and-puppet-projects/">Weekend Chef and Puppet Projects</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-01T00:00:00-07:00" pubdate data-updated="true">Apr 1<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I have a few clients that I keep in touch with and take on small projects from time to time.&nbsp; This has been a strange week.&nbsp; I&rsquo;m technically full time on a project at the moment and I haven&rsquo;t gotten any calls for new work in a couple of months.&nbsp; It&rsquo;s been quiet.&nbsp; Then all of the sudden Wednesday I had 3 different people contact me about work.&nbsp;</p>
-<p><br />One call was actually for some awesome Chef work at a place I&rsquo;ve been before that I&rsquo;d love to go back to.&nbsp; It really pained me to tell them that I thought they had in-house resources of which they weren&rsquo;t aware and that these resources would be more than sufficient to Chef their project without my help. Sadface Sascha.</p>
-<p><br />Another call was from someone I do work for from time to time.&nbsp; Their projects source my &ldquo;Puppet for Chef&rdquo; series, if 2 blog posts can be called a series.&nbsp; In my head I have a 3rd one on templates but haven&rsquo;t gotten around to it yet. This 3wk run may source some if I&rsquo;m lucky. I agreed to do some ad hoc sysadmin work for these guys because they&rsquo;re in a swivet, getting ready for a PCI audit in 3 weeks.</p>
-<p>The job: There are about 150 Centos 5 servers. Caveat: some of the servers on the list may be retired already.&nbsp; Examine all of the configuration files for ConfigServer Firewall, bring them under Puppet control. Individual node config sets are ok (ugh).&nbsp; All servers are running a puppet client.&nbsp; I don&rsquo;t know if it&rsquo;s the same client.&nbsp; The master was at 2.7.9 last I checked, I think.<p />I have a mini Chef project too for the weekend, but I think I&rsquo;ll save that for another blog post.&nbsp; I actually wrote post of this post on Saturday morning and am just finishing it up. I haven&rsquo;t actually started my Puppet stuff except to wonder if they have some command line tools and think I&rsquo;d better get to writing some tcp testers and comparison scripts if there isn&rsquo;t such a thing.</p>
-<p><br />I actually spent a chunk of time working on my Chef thing which was an exercise in frustration.&nbsp; It&rsquo;s for a Windows Ohai plugin and the actual ruby work was a piece of cake. Testing has made me crazy though.&nbsp; Windows servers don&rsquo;t fire up as fast as Linux for one and they are a huge pain in the ass to interact with.&nbsp; On my todo list is an SSH server for Windows cookbook, unless my ultimate wish of hoping that all Windows servers DIAF happens prior to that.&nbsp; The ssh cookbook is half done, like so many things.</p>
-<p>I also am not sure I understand the testing strategy.&nbsp; I didn&#8217;t write any new code so I shouldn&#8217;t need to author any tests (relief).&nbsp; But it turns out I can&#8217;t seen any windows testing happening in the run, or at least, I think that&#8217;s what&#8217;s not happening.&nbsp; It ran happily on my Mac and then I thought maybe I should run the test on the Windows box too to see if the output was different.&nbsp; It was different.&nbsp; But I think that&#8217;s because there&#8217;s no Windows plugin tests in there?&nbsp; Wondering if I missed them?&nbsp; I was planning to email the chef-dev list tomorrow to see if I can get some love.&nbsp; Unfortunately the time I have to work on pet projects is the weekends and the IRC channels were like graveyards this weekend.<p />But I digress.&nbsp; I also ran manual tests - you know, the kind where you do stuff by hand and watch the output? My Ohai changes tested perfectly sanely on my Windows 7 64bit workstation.&nbsp; They tested insanely on a 2008r2 VMware VM I had available to me.&nbsp; And when I went into ec2 to fire up a neutral 2008r2, I discovered Ohai hangs on gathering ec2 metadata when run from the command line.&nbsp; I have no idea why.&nbsp; I hand-edited the ec2 plugin and the mixin/ec2_metadata to try and eke out some debug info but I got no joy.&nbsp; While the problem fascinated me, that was as far down that yak shave as I wanted to go today.&nbsp; So I put away the Chef and cleaned up the yard for 2 hours.</p>
-<p>Now I guess it&#8217;s time to play with Puppet!</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -553,9 +469,53 @@
 
     </article>
   
-  <div class="pagination">
+  
+    <article>
+      
+  <header>
     
-      <a class="prev" href="/blog/page/4/">&larr; Older</a>
+      <h1 class="entry-title"><a href="/blog/2011/06/23/another-chapter-done/">Another Chapter Done</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-06-23T00:00:00-07:00" pubdate data-updated="true">Jun 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I&rsquo;m a professional services consultant for a truly enormous  corporation; for two more weeks.&nbsp; I turned in my two week notice today.&nbsp;  I think I&rsquo;m all done working for big companies.&nbsp; I spent 8 years at a  major retail chain doing web architecture, middleware and ops and the  last 5 years consulting for the hosting, management and monitoring  portion of a megacorp.&nbsp;</p>
+<p>When I took this job, it was with a group that had been a much  smaller, recently acquired company.&nbsp; The feel was still pretty casual,  annual reviews were barely a formality, attitudes were laid back and  friendly and we rarely had to interact externally to our area. We had  separate time tracking, VPN and client systems access. &nbsp;I was told that  it still had a small-company feel and they were right mostly.&nbsp; I used a  separate VPN for email, travel booking and expense reporting.&nbsp; I was  sheltered from the corporation.&nbsp; All the engineers were.</p>
+<p>This isn&rsquo;t a rant about why corporations suck.&nbsp; They&rsquo;ve got a lot  going for them.&nbsp; This one kept me in a 6 figure salary, great benefits  and a 6% 401k match. I got paid even when I was benched, although that  wasn&rsquo;t often.&nbsp; If you&rsquo;re traditionally ambitious(re: mgmt chain), I hear  they&rsquo;re great for that too.&nbsp; If you&rsquo;re a slacker, you get a pass at a  big company.&nbsp; It&rsquo;s hard to be noticed.</p>
+<p>Yeah.&nbsp; It&rsquo;s hard to be noticed.&nbsp; We&rsquo;ve been through several re-orgs  since I was hired.&nbsp; ProServ was moved out of management and monitoring.&nbsp;  The work started getting monotonous.&nbsp; Half of ProServ was re-orgd out  of our group.&nbsp; We kept getting moved around.&nbsp; All our dedicated PMs were  moved to a central PMO.&nbsp; The ProServ team was largely forgotten except  by a few folks who managed our existing client base.&nbsp; Senior management  probably forgot we existed.&nbsp;&nbsp; We haven&#8217;t had a team meeting in a year.  My manager&#8217;s manager thinks I&#8217;m a man.</p>
+<p>About a year ago I realized I was bored. I realized that, if I had to  architect one more WebSphere install, I might scream.&nbsp; No interesting  work was coming in.&nbsp; Very little work at all was coming in, for that  matter.&nbsp; I never lacked for work myself, but half my team was benched.&nbsp; I  started thinking about quitting.&nbsp; Then a call came in.</p>
+<p>A friend working at one of our current clients was starting a  continuous integration project.&nbsp; He used to work for the same megacorp  and we&rsquo;d been friends for years.&nbsp;&nbsp; The work was outside my immediate  realm of experience.&nbsp; Learn Ruby, learn a new configuration management  tool called Chef and start figuring out how to automate the existing  infrastructure at this client.&nbsp; I was skeptical.&nbsp; I&rsquo;m pretty smart but I  have a realistic assessment of my own abilities and I had no coding  experience beyond some bash and python scripting.</p>
+<p>So I dug in.&nbsp; I learned some Ruby syntax.&nbsp; I started figuring out  Chef.&nbsp; It was a steep curve but it was so interesting, fun and exciting  that I was thrilled with work for the first time in ages.&nbsp; I learned the  term &ldquo;devops.&rdquo;&nbsp; I read a bunch of blogs.&nbsp; I got really excited, in that  born again annoying kind of way.&nbsp; I knew it too and pretty much kept it  to myself, although sometimes at parties, I started gushing if someone  asked about work.&nbsp;</p>
+<p>I&rsquo;ve spent the last year doing some awesome work.&nbsp; The client  experience has been incredible.&nbsp; The dev teams we&rsquo;re working next to are  practicing agile concepts.&nbsp; We work in a large open space, with pairing  monitors everywhere and you can&#8217;t throw a pen without hitting corporate  issue macs.&nbsp; The dev teams pair and we sometimes cross-team pair on  things.&nbsp; Our team has a 10 min standup every morning.&nbsp; We track stories  in a tool and showcase at our weekly planning (usually code review since  Chef configs aren&rsquo;t really &ldquo;featurable&rdquo;).&nbsp; We&rsquo;re getting monitors soon  and trying to figure out how to hook Chef into graphite to start  metricizing.</p>
+<p>Something that really resonated with me at Velocity on the last day  was Adam Jacobs who said, &ldquo;You can tell the people who are doing devops  right because they&rsquo;re HAPPY all the time.&rdquo;&nbsp; That&rsquo;s what it&rsquo;s been like.&nbsp;  I&rsquo;ve never enjoyed anything so much as I have this last year.</p>
+<p>Unfortunately, working for a megacorp has intruded on my professional  happiness too many times this year for me to ignore it any longer.&nbsp;  I&rsquo;ve known for a few months that this was coming.&nbsp; The project work I&rsquo;ve  been doing for the last year has been awesome and I don&rsquo;t want to leave  it behind.&nbsp; Growing my Ruby development skills has been super fun and a  big challenge.&nbsp; I hope to do more of that going forward and am planning  to work on my own projects as well.&nbsp;</p>
+<p>In the meantime, I&rsquo;m going to take a little time off, ride my bike,  write some code, evaluate my options and see what&rsquo;s out there for me.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -574,7 +534,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant/">Managing Your Ruby Toolchain part 2: The Package Repo Rant</a>
+        <a href="/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/">Managing Your Ruby Toolchain part 2: The Package Repo Rant</a>
       </li>
     
       <li class="post">

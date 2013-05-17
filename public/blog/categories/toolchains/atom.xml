@@ -4,7 +4,7 @@
   <title><![CDATA[Category: toolchains | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/toolchains/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-17T09:20:12-07:00</updated>
+  <updated>2013-05-17T09:29:07-07:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Managing Your Ruby Toolchain part 2: The Package Repo Rant]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant/"/>
-    <updated>2013-05-15T10:04:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant</id>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/"/>
+    <updated>2013-05-17T09:23:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant</id>
     <content type="html"><![CDATA[<p><strong>TL;DR</strong> Use package repos for all your static software</p>
 
 <p>Last weekend I wrote a <a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">blog post</a> that started exploring standards for managing your Ruby toolchains. To review, I had a query from someone on how to cope with the dynamic nature of Ruby-based tooling and managing a Chef infrastructure. and the fact that you don't always want to go to the internet to get stuff, it's a pain to be compiling things on servers all the time AND to do that, you need a compiler which is regarding as a Bad Thing<sup>TM</sup> in Production.</p>

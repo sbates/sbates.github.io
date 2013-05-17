@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-17T09:20:07-07:00</updated>
+  <updated>2013-05-17T09:29:07-07:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Managing Your Ruby Toolchain part 2: The Package Repo Rant]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant/"/>
-    <updated>2013-05-15T10:04:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant</id>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/"/>
+    <updated>2013-05-17T09:23:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant</id>
     <content type="html"><![CDATA[<p><strong>TL;DR</strong> Use package repos for all your static software</p>
 
 <p>Last weekend I wrote a <a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">blog post</a> that started exploring standards for managing your Ruby toolchains. To review, I had a query from someone on how to cope with the dynamic nature of Ruby-based tooling and managing a Chef infrastructure. and the fact that you don&#8217;t always want to go to the internet to get stuff, it&#8217;s a pain to be compiling things on servers all the time AND to do that, you need a compiler which is regarding as a Bad Thing<sup>TM</sup> in Production.</p>
@@ -598,42 +598,6 @@ actually funny at all.</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Coffee Nerdery: La Colombe]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe/"/>
-    <updated>2012-09-03T19:38:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe</id>
-    <content type="html"><![CDATA[<p><a href="http://lacolombe.com">La Colombe</a><br/>
-<strong>Location</strong>: New York, NoHo@400 Lafayette<br/>
-<strong>Espresso</strong>: La Colombe<br/>
-<strong>Machines</strong>: La Marzocco &amp; Mazzer<br/>
-<strong>Coffee Art</strong>: yes<br/>
-<strong>Wifi</strong>: unknown<br/>
-<strong>Served in</strong>: 8oz ceramic <br/>
-<strong>Drink</strong>: skim cap<br/>
-<strong>Visited</strong>: 9/2/12</p>
-
-<p>This was a quick stop while out shopping with a friend. There&#8217;s ample seating
-and it&#8217;s a light, airy space. My coffee was ok, although it was a smidge
-bitter. I&#8217;d probably have to try again to see how I liked the coffee.
-However, it&#8217;s a great place, good for meeting a friend or stopping in and
-they take their coffee production pretty seriously. I didn&#8217;t actually see
-a menu anywhere although I wasn&#8217;t looking.</p>
-
-<p>They did have an adorable water &#8220;fountain&#8221; that offered room temperature,
-cold or carbonated water and they&#8217;ll offer you a water cup no problem.  The
-staff is professional and fast. This coffee shop had the most starbucksian
-feel to it of all the shops I&#8217;ve been too, but I don&#8217;t really mean that in
-a derogatory way. I just mean that they turned out product quickly. The
-product they turned out was definitely far superior to anything Starbucks
-will serve you. I still prefer low-lit, shabby, hipster joints, but I&#8217;d have
-no problem coming back here.</p>
-
-<p><strong>Pros</strong>: Fast, good coffee<br/>
-<strong>Cons</strong>: None really</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Macchiato, NYC]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato/"/>
     <updated>2012-09-03T13:55:00-07:00</updated>
@@ -906,44 +870,6 @@ running (often with scissors).</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Attributes Origami]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami/"/>
-    <updated>2012-07-28T23:00:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami</id>
-    <content type="html"><![CDATA[<p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
-
-<p>This post assumes some basic familiarity with Chef and node attributes. I assume that most people are going to be bored with the subject matter unless you care about nerdy details or why strings are the official preferred notation. You can get the <a href="http://wiki.opscode.com/display/chef/Cookbook+Attributes#CookbookAttributes-Notation">short version</a> on the Chef Wiki Cookbook Attributes page. I have a longer discussion here that focuses on my discovery process and evolution of thought.</p>
-
-<h4>A Quick Attribute Notation Overview</h4>
-
-<p>When I first started working with Chef, the publicly available cookbooks and wiki documentation were written in different styles.</p>
-
-<ul>
-<li>Some used <strong>symbols</strong>: node[:some][:symbol]</li>
-<li>some used <strong>strings</strong>: node[&#8216;some&#8217;][&#8216;string&#8217;]</li>
-<li>some used <strong>method_missing</strong>: node.dot.notation</li>
-</ul>
-
-
-<p>I usually refer to this last as &#8220;dot notation,&#8221; mostly because I had no idea what else to call it at first. I still call it that as it&#8217;s an intuitive reference for someone who doesn&#8217;t know much Ruby. I read up on <a href="http://ruby-doc.org/docs/ProgrammingRuby/html/ref_c_object.html#Object.method_missing">method_missing</a> in prep for this blog post, but it was a new term and concept to me.</p>
-
-<h4>O dot notation, how do I love thee?</h4>
-
-<p>Getting back to it, I <em>lurved</em> my dot notation. It was easy to type. It was easy to read. It was harder to make typos. I am the queen of typos. Anything that helps me make fewer is my favorite friend. Then Chef Summit happened and recaps happened and I was like:</p>
-
-<p><img src="images/yutakeawaymaidots.jpg" float: left /></p>
-
-<p>At first I was outraged that they were <em>oppressing</em> my dot notation and I was terrified they would deprecate it, which would make me sad. For a long time after that, I was just mad and still loved my dot notation and resolved to just keep using it anyway. This was the first time I had the urge to blog about it. I was planning to tell everyone to piss off. I loved my dot notation and I didn&#8217;t want it taken away.</p>
-
-<p><img src="images/nocanheerz.jpg" float: right /></p>
-
-<p>I mean, yeah, dot notation didn&#8217;t always work and I probably never understood why. I was like this when I first learned chef:</p>
-
-<p><img src="images/babylol.jpg" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
     <updated>2012-07-11T15:54:00-07:00</updated>
@@ -1176,6 +1102,42 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <li>Understand your typical message sizes and size your paging accordingly</li>
 </ul>
 <p>That&#8217;s all I got. You should verify anything you read here against your own requirements and get a second opinion.&nbsp; Every situation is unique. All of these relate to production environments and could be specific to a low latency goal. Memory conservation and data criticality may be conflicting priorities or require compromise.&nbsp;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Yak Hacking - A Story]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking/"/>
+    <updated>2012-04-15T00:00:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking</id>
+    <content type="html"><![CDATA[<p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
+<p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
+<p>Technical debt is a choice and can happen to anyone.&nbsp; Here the client allowed their configuration management to run away from them.&nbsp; They haven&#8217;t been maintaining their Puppet nodes and so don&#8217;t have a good list of what servers they are managing.&nbsp; They also let some config files slip through unmanaged.&nbsp; I generally don&#8217;t point fingers about it as there&#8217;s usually a sane tradeoff involved, but the first issue makes fixing the second one harder.</p>
+<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p><!-- more -->
+<p><strong>Situation</strong><br />An org uses Puppet. The org has files unmanaged by Puppet that need to be gathered, analyzed and brought under Puppet control. I expected this to take a couple of hours.</p>
+<p><strong>What made it challenging:</strong> <br />Actual list of servers, uncertain. Generated from Puppet but unverified.<p />The files are secured from being read by anyone except root. 600 as it were.<p />There  are no other management tools - no Rundeck, no Func, no Ansible, no  Salt, no Knife, not even a home grown, lovingly maintained perl  management script, no passwordless ssh.<p />The client apparently expects admins to log into boxes one by one for administrative activities.</p>
+<p><strong>What I have:<br /></strong>My user ID.&nbsp; <br />Sudo on any server I can log into. <br />Passwordless SSH works even if it&#8217;s considered insecure.&nbsp; (really?)<br /><a href="http://sourceforge.net/projects/sshpass/" title="SSHPass" target="_blank">SSHPass</a><br /><a href="http://code.google.com/p/sshsudo/" title="sshsudo" target="_blank">SSHSudo</a><br />Ruby 1.8.5 installed from RPM</p>
+<p>With  the thought of using sshsudo, I wrote a <a href="https://github.com/sbates/scripts/blob/master/getfiles.rb" title="ruby script" target="_blank">ruby script</a> that runs on  the client node, checks for file existence, copies the files to a temp  folder, makes them available for scp and even tries to scp them back to  the admin server.&nbsp; The script should be runnable via sshsudo/sshpass.&nbsp;  BUT&#8230;<p />The servers also do not allow sudo without a tty. SSH -t  doesn&#8217;t work.&nbsp; SSH -t -t kind of works but hangs without the occasional  keyboard intervention. Trying to scp from the script invokes another request for password which can&#8217;t be handled discreetly on the client.<p />SSHpass works but can&#8217;t execute anything  with sudo on the other end because of the secure tty issue.&nbsp; So this  doesn&#8217;t do me any good because all the files are root-readable only.<p />SSHSudo works but suffers from similar issues.<p />The  servers are RH5 running puppet installed with RPMs so no rubygem  installs exist, even if I were rude enough to install things on servers  belonging to someone else. I had been looking at the use of net-ssh/scp  for some of my scripting, but it wasn&#8217;t really useful.<p /><em>Did any of that make sense?</em><p />None  of this addresses the pre-work I did either.&nbsp; I was given a list of 200  or so servers (generated from Puppet I believe). with the caveat that  &#8220;some may have been retired.&#8221;&nbsp; So I wrote a <a href="https://github.com/sbates/scripts/blob/master/connection_test.rb" title="tcp test script" target="_blank">tcp script </a>to check  listening sockets on port 22 and a few others if desired.&nbsp; I then sorted my servers  into ones that responded, ones that timed out and ones that issued a  &#8216;name or service not known&#8217; message and consulted with the client&#8217;s full  time sysadmin. It turns out that the ones in DNS but not responding  were retired and the ones with connection timeouts needed to be reached  from another server. omg.<p /><strong>What I finally did:</strong><br />Several unscripted actions on the command line because I was doing them as troubleshooting/discovery  steps while figuring out wtf to do to get the files I needed.</p>
+<p><strong>Assembled a servers.good list based on the tcp testing.</strong><p /><strong>Updated the sshsudo script to -t -t wherever it ssh&#8217;d</strong> (oi!)<br /><strong></strong><br /><strong>make a local dir for the files, separated by host name: </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; mkdir -p /tmp/sascha/files/$i<br />done<p /><strong>Put  the file manipulation script down on all the servers and run it;</strong> originally it was going to scp them back to the admin server too, but  that wasn&#8217;t working out for me<br />./sshsudo -r -v -u sascha servers.good getfiles.rb <p /><strong>Get the files I snagged out of their root-read-only existence </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp;sshpass -f ~/mypassfile scp -q sascha@$i:/tmp/files/* /tmp/sascha/files/$i<br />done<p /><strong>Delete the files from remote tmp</strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; sshpass -f ~/mypassfile ssh -q sascha@$i rm -rf /tmp/files<br />done</p>
+<p>I also spent some time making a temporary keyset for passwordless ssh but that turned out to be no real diff from using sshpass. But messing around with moving it to the servers highlighted another issue - I could only log into about 10 of 100.&nbsp; Lovely.</p>
+<p>OMG.&nbsp;  I need an orchestration tool or something, STAT.&nbsp; I should probably go  script this, but I will probably never do anything similar for this client again  unless they ask me to implement an orchestration tool for them.&nbsp;</p>
+<p>All of this work, just to get the files to me so I can work work with them. How do people live like this???</p>
+<p><strong>****Lesson Learned</strong>: ask more questions when accepting work, even when it&#8217;s ad hoc, tiny project work for someone I know.&nbsp; I assumed they would have management tooling.&nbsp; After all, they were smart enough to use configuration management.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Weekend Chef and Puppet Projects]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects/"/>
+    <updated>2012-04-01T00:00:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects</id>
+    <content type="html"><![CDATA[<p>I have a few clients that I keep in touch with and take on small projects from time to time.&nbsp; This has been a strange week.&nbsp; I&rsquo;m technically full time on a project at the moment and I haven&rsquo;t gotten any calls for new work in a couple of months.&nbsp; It&rsquo;s been quiet.&nbsp; Then all of the sudden Wednesday I had 3 different people contact me about work.&nbsp;</p>
+<p><br />One call was actually for some awesome Chef work at a place I&rsquo;ve been before that I&rsquo;d love to go back to.&nbsp; It really pained me to tell them that I thought they had in-house resources of which they weren&rsquo;t aware and that these resources would be more than sufficient to Chef their project without my help. Sadface Sascha.</p>
+<p><br />Another call was from someone I do work for from time to time.&nbsp; Their projects source my &ldquo;Puppet for Chef&rdquo; series, if 2 blog posts can be called a series.&nbsp; In my head I have a 3rd one on templates but haven&rsquo;t gotten around to it yet. This 3wk run may source some if I&rsquo;m lucky. I agreed to do some ad hoc sysadmin work for these guys because they&rsquo;re in a swivet, getting ready for a PCI audit in 3 weeks.</p>
+<p>The job: There are about 150 Centos 5 servers. Caveat: some of the servers on the list may be retired already.&nbsp; Examine all of the configuration files for ConfigServer Firewall, bring them under Puppet control. Individual node config sets are ok (ugh).&nbsp; All servers are running a puppet client.&nbsp; I don&rsquo;t know if it&rsquo;s the same client.&nbsp; The master was at 2.7.9 last I checked, I think.<p />I have a mini Chef project too for the weekend, but I think I&rsquo;ll save that for another blog post.&nbsp; I actually wrote post of this post on Saturday morning and am just finishing it up. I haven&rsquo;t actually started my Puppet stuff except to wonder if they have some command line tools and think I&rsquo;d better get to writing some tcp testers and comparison scripts if there isn&rsquo;t such a thing.</p>
+<p><br />I actually spent a chunk of time working on my Chef thing which was an exercise in frustration.&nbsp; It&rsquo;s for a Windows Ohai plugin and the actual ruby work was a piece of cake. Testing has made me crazy though.&nbsp; Windows servers don&rsquo;t fire up as fast as Linux for one and they are a huge pain in the ass to interact with.&nbsp; On my todo list is an SSH server for Windows cookbook, unless my ultimate wish of hoping that all Windows servers DIAF happens prior to that.&nbsp; The ssh cookbook is half done, like so many things.</p>
+<p>I also am not sure I understand the testing strategy.&nbsp; I didn&#8217;t write any new code so I shouldn&#8217;t need to author any tests (relief).&nbsp; But it turns out I can&#8217;t seen any windows testing happening in the run, or at least, I think that&#8217;s what&#8217;s not happening.&nbsp; It ran happily on my Mac and then I thought maybe I should run the test on the Windows box too to see if the output was different.&nbsp; It was different.&nbsp; But I think that&#8217;s because there&#8217;s no Windows plugin tests in there?&nbsp; Wondering if I missed them?&nbsp; I was planning to email the chef-dev list tomorrow to see if I can get some love.&nbsp; Unfortunately the time I have to work on pet projects is the weekends and the IRC channels were like graveyards this weekend.<p />But I digress.&nbsp; I also ran manual tests - you know, the kind where you do stuff by hand and watch the output? My Ohai changes tested perfectly sanely on my Windows 7 64bit workstation.&nbsp; They tested insanely on a 2008r2 VMware VM I had available to me.&nbsp; And when I went into ec2 to fire up a neutral 2008r2, I discovered Ohai hangs on gathering ec2 metadata when run from the command line.&nbsp; I have no idea why.&nbsp; I hand-edited the ec2 plugin and the mixin/ec2_metadata to try and eke out some debug info but I got no joy.&nbsp; While the problem fascinated me, that was as far down that yak shave as I wanted to go today.&nbsp; So I put away the Chef and cleaned up the yard for 2 hours.</p>
+<p>Now I guess it&#8217;s time to play with Puppet!</p>
 ]]></content>
   </entry>
   
