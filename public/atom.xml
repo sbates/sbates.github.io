@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-12T13:36:53-05:00</updated>
+  <updated>2013-05-17T09:20:07-07:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -14,9 +14,159 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Managing Your Ruby Toolchain part 2: The Package Repo Rant]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant/"/>
+    <updated>2013-05-15T10:04:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/15/managing-your-ruby-toolchain-the-package-repo-rant</id>
+    <content type="html"><![CDATA[<p><strong>TL;DR</strong> Use package repos for all your static software</p>
+
+<p>Last weekend I wrote a <a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">blog post</a> that started exploring standards for managing your Ruby toolchains. To review, I had a query from someone on how to cope with the dynamic nature of Ruby-based tooling and managing a Chef infrastructure. and the fact that you don&#8217;t always want to go to the internet to get stuff, it&#8217;s a pain to be compiling things on servers all the time AND to do that, you need a compiler which is regarding as a Bad Thing<sup>TM</sup> in Production.</p>
+
+<p>The question came to me via a talk I did at Chef conf and I&#8217;m going to use Chef examples, but, unless someone tells me different, I&#8217;m going to come down on the side of you can use this advice with Puppet and CFEngine and any other CM tool out there. It works without CM too, but why would you ever?</p>
+
+<p>In this blog post, I want to talk about why I am so adamant about package repositories and offer some real world examples.  I pick on Tomcat a lot here. Nothing against Tomcat. It&#8217;s something most people understand and that I have also had personal experience with it not being managed as a package and creating much distributed pain.</p>
+
+<h2>Broken Record Much?</h2>
+
+<p>I can&#8217;t shut up about package repos. Why am I so passionate about the need for all package repos all the time and to have a team actively managing and grooming them?</p>
+
+<p>As part of the decentralization of Ops teams and the rise of DevOps, we now see multiple autonomous teams simultaneously working on similar projects but not collaborating or communicating on infrastructure.  It behooves the infrastructure managers, whether that&#8217;s ops or devops or the tools team or a central collaborative group comprised of reps from all the teams, to own and groom a collection of package repositories.</p>
+
+<p><strong>But Why?</strong> <br/>
+With the rise of self-service, all you can eat virtual machines, development teams are expected and want to be independent from the corporate server supply chain.  Unfortunately this also decouples them from people they depend on: infrastructure and middleware experts(Yes Ops, that&#8217;s you). They may sail gayly on and do their best or trudge forward grudgingly, resenting all of the extra work they now have to do because the Enterprise wants to be &#8220;like a startup.&#8221; Either way, they&#8217;re going to move forward, and when you don&#8217;t offer them ways to easily use software, they&#8217;ll figure out ways to [cope][]; ways that will horrify you when you discover them.</p>
+
+<p><strong>I work at a startup because Enterprise is stupid like that.</strong><br/>
+Nope. It&#8217;s not only the Enterprise that needs to fear the chaos of unmanaged, difficult to use infrastructure. Say your whole startup is fewer than 20 people? You&#8217;re the &#8220;devops engineer&#8221; and you work with a 5 person dev team.  The dev team may or may not include you in everything.  You might not know of actions they&#8217;ve taken to [cope][] with problems you don&#8217;t even know they have. They don&#8217;t realize there could be a simple solution to their problems because they are brilliant startup devs and they will just figure it out.  Then they&#8217;ll hand you their giant shiny mud pie and you will cry because you could have saved them a bunch of work with a few well placed repos and a web proxy.</p>
+
+<p>Package repos create a beautiful garden where you static software can flourish and discourages tarball weeds from springing up in the cracks everywhere.</p>
+
+<p><strong>If you establish a well known, central location for packages, people will know to look there first for an existing package that meets their needs. And they will ask to place packages they need there as well.</strong></p>
+
+<p>Ex: In the situation where someone thinks</p>
+
+<blockquote><p><em>&#8220;I need Tomcat7 and Red Hat only ships with Tomcat5&#8221;</em></p></blockquote>
+
+<p>Their correlating thought will NOT be</p>
+
+<blockquote><p><em>&#8220;I should go download that from the internet and store it on the jumphost&#8221;</em></p></blockquote>
+
+<p>but instead</p>
+
+<blockquote><p><em>&#8220;I wonder if we have that in our custom repo?&#8221;</em></p></blockquote>
+
+<p>or in an even more mature organization</p>
+
+<blockquote><p><em>&#8220;I should include our Tomcat cookbook in my runlist and override the attributes that are unique for my situation&#8221;</em></p></blockquote>
+
+<h3>When you make package repos easy to access and use, you</h3>
+
+<ul>
+<li>Eliminate several slightly different copies of software (ex: tomcat) floating around your infrastructure.</li>
+<li>Eliminate several slightly different versions of packages deployed to Production.</li>
+<li>Discourage placing random tarballs in version control or Chef cookbook files.</li>
+<li>Make your configuration management tool easy and intuitive to use.</li>
+</ul>
+
+
+<h3>The Problem With Tarballs - a Real Life Example</h3>
+
+<p>Config management tools are designed to be idempotent, which means they only do things once and ensure things look the same regardless of how many times you run the the same process.  <em>Tarballs subvert the use of configuration management primitives</em>, requiring the use of non-idempotent execute blocks to manipulate them.  Real world example:</p>
+
+<p>Without a package repo in place, this happens:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">remote_file</span> <span class="s2">&quot;/tmp/tomcat7.tar.gz&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">source</span> <span class="s2">&quot;https://www.sometomcaturl.com&quot;</span>
+</span><span class='line'>  <span class="n">not_if</span> <span class="p">{</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">node</span><span class="o">[</span><span class="ss">:tomcat</span><span class="o">][</span><span class="ss">:home</span><span class="o">]</span><span class="si">}</span><span class="s2">/bin&quot;</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">execute</span> <span class="s2">&quot;extract_tomcat&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">command</span> <span class="s2">&quot;tar xf /tmp/tomcat7.tar.gz&quot;</span>
+</span><span class='line'>  <span class="n">cwd</span> <span class="s2">&quot;opt&quot;</span>
+</span><span class='line'>  <span class="n">not_if</span> <span class="p">{</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">node</span><span class="o">[</span><span class="ss">:tomcat</span><span class="o">][</span><span class="ss">:home</span><span class="o">]</span><span class="si">}</span><span class="s2">/bin&quot;</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'>  <span class="n">only_if</span> <span class="p">{</span> <span class="no">File</span><span class="o">.</span><span class="n">exists?</span><span class="p">(</span><span class="s2">&quot;/tmp/tomcat7.tar.gz&quot;</span><span class="p">)</span> <span class="p">}</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Or this utter travesty:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">bash</span> <span class="s2">&quot;install_tomcat6&quot;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">tomcat_version_name</span> <span class="o">=</span> <span class="s2">&quot;apache-tomcat-</span><span class="si">#{</span><span class="n">node</span><span class="o">.</span><span class="n">tomcat</span><span class="o">.</span><span class="n">version</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="n">tomcat_version_name_tgz</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">tomcat_version_name</span><span class="si">}</span><span class="s2">.tar.gz&quot;</span>
+</span><span class='line'>  <span class="n">user</span> <span class="s2">&quot;root&quot;</span>
+</span><span class='line'>  <span class="n">code</span> <span class="o">&lt;&lt;-</span><span class="no">EOH</span>
+</span><span class='line'><span class="sh">   curl --proxy https://aproxy.com:8080/ --user user:pass https://myartifactoryurl.com/artifactory/ext-release-local/apache-tomcat/apache-tomcat/#{node.tomcat.version}/#{tomcat_version_name_tgz} -o /tmp/#{tomcat_version_name_tgz}</span>
+</span><span class='line'><span class="sh">   tar -zxf /tmp/#{tomcat_version_name_tgz} -C /tmp</span>
+</span><span class='line'><span class="sh">   rm /tmp/#{tomcat_version_name_tgz}</span>
+</span><span class='line'><span class="sh">   mv /tmp/#{tomcat_version_name} #{node.tomcat.install_path}</span>
+</span><span class='line'><span class="sh">   chown -R #{node.tomcat.run_user}:#{node.tomcat.run_group} #{node.tomcat.install_path}</span>
+</span><span class='line'><span class="sh">   chmod -R 755 #{node.tomcat.install_path}</span>
+</span><span class='line'><span class="sh">   rm -rf #{node.tomcat.install_path}/webapps/ROOT</span>
+</span><span class='line'><span class="no">    EOH</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Notice that they very carefully delete that tarball when they are done, ensuring that it will be re-downloaded 30 minutes later on the next run. They also untar the file and then move it to the install location without checking to see if anything is already there.  Again, 30 minutes later the entire process happens again despite whatever is already there.</p>
+
+<p>Now look at what happens with a package repo in place:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">package</span> <span class="s1">&#39;tomcat7&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">action</span> <span class="ss">:install</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You may have to customize config files and init scripts, but this is a far simpler and less error prone way to install the base software.</p>
+
+<p>In this case, Chef knows what OS you are using, what your package manager should be, repository connection details and how to install the package. Puppet does the exact same thing. So does every other config management system in the history of ever.  The less code you have to write and the less verification code you have to write, they happier you&#8217;ll be and the people who come after you will be.</p>
+
+<h3>The End</h3>
+
+<p>I&#8217;ve heard a lot of complaints from ops and tools folks that devs do &#8220;crazy&#8221; stuff and they are much affronted that the devs don&#8217;t seem to understand the unpublished rules of operationalizing apps and the best way to use tools, and omg did you see the travesty of a Tomcat cookbook they wrote?</p>
+
+<p>I have spent years on ops teams, tools teams and automation teams now. I have been one of those self-righteous, affronted peeps.  This behavior doesn&#8217;t scale, yo.</p>
+
+<p>One of the best messages that DevOps has for all of us is, if you don&#8217;t like the way someone&#8217;s doing something, talk to them and find out why. You&#8217;ll probably learn that there were great reasons for everything, including &#8220;I didn&#8217;t know how to do it, Chef is hard, Tomcat is hard, and I was just a Java developer until you guys started making me do all this automation stuff without telling me the rules or offering guidelines, so I copied another team&#8217;s Tomcat cookbook. I had no idea it&#8217;s crap. It installs Tomcat and that&#8217;s all I care about.&#8221;</p>
+
+<p>Indeed. That&#8217;s all they care about. If you care about more than just the install, maybe you should reach out and offer to partner with them on the parts you care about.  Don&#8217;t like the way devs are building application infrastructure? Well maybe you should do it for them. Provide them with a consistant VM build from a stable package repo and possibly infrastructure cookbooks with sane defaults and overrideable parameters. Chances are good devs don&#8217;t like recreating that crappy Tomcat wheel any more than you like them doing it. It&#8217;s likely they will be pathetically grateful because, while they are coping with the tasks they&#8217;ve been handed, they don&#8217;t really know what to do in detail and researching JVM tuning parameters is not their idea of a good time.</p>
+
+<p>Why am I telling you this story? Because I believe that a major piece of your infrastructure stability is created with package repos. Making them easy to find, use and contribute to will help smooth any number of peripheral problems you are trying to solve.  In my next post I&#8217;ll talk about practical considerations for repositories, packages and toolchains.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Pieces and Parts: Managing Your Ruby Toolchain (part 1)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/"/>
-    <updated>2013-05-12T13:12:00-05:00</updated>
+    <updated>2013-05-12T13:12:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain</id>
     <content type="html"><![CDATA[<p>I recently received an email from someone who attended my <a href="http://www.youtube.com/watch?v=pHmU0aNkENc&amp;list=PLrmstJpucjzXNMLcI5X-EjirpDd-SITd3&amp;index=28">ChefConf talk</a> and asked me to expand on a few things. As I started to answer the email, I could see it was going to turn into a dissertation, so I migrated it over into a blog post.  As I started to write the blog post, it seemed to grow into a book, so now I&#8217;ve decided to break it down into multiple posts.  In this post I&#8217;ll try to summarize the question and situational environment and cover the easiest answers first: scripting languages and RVM.</p>
 
@@ -74,14 +224,14 @@ While I&#8217;m not an expert on <a href="http://rvm.io">RVM</a> and other Ruby 
 * If you&#8217;re automating for many people over time, pin your RVM version</p>
 
 <p><strong>Wrap Up</strong>
-To keep the blog post readable, this is all I was to discuss in this first post, but I&#8217;m about to publish Part 2 as well: a rant about package repos. I&#8217;m extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.</p>
+To keep the blog post readable, this is all I want to discuss in this first post, but I&#8217;m about to publish Part 2 as well: a rant about package repos. I&#8217;m extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.</p>
 ]]></content>
   </entry>
   
   <entry>
     <title type="html"><![CDATA[Minneapolis - St Paul Infracoders Meetup Recap]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/"/>
-    <updated>2013-05-07T10:34:00-05:00</updated>
+    <updated>2013-05-07T10:34:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap</id>
     <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the <a href="http://www.meetup.com/Twin-Cities-Infracoders">Twin Cities Infracoders group</a>.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you&#8217;d want to use something like Vagrant and implementation strategies.</p>
 
@@ -114,7 +264,7 @@ Wordpress Demo(this link will be available shortly)</p>
   <entry>
     <title type="html"><![CDATA[Devops Consulting: Why I Don't]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t/"/>
-    <updated>2013-04-05T20:33:00-05:00</updated>
+    <updated>2013-04-05T20:33:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t</id>
     <content type="html"><![CDATA[<p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It&#8217;s a topic I&#8217;ve discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I&#8217;m motivated to say a few words about devops consulting, not because there was an argument, but because it&#8217;s something I&#8217;ve thought about often since I started independent consulting and I think it&#8217;s important.</p>
 
@@ -171,7 +321,7 @@ There are also some super fantastic companies with amazing cultures; some callin
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Chromatic Coffee]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/03/07/coffee-nerdery-chromatic-coffee/"/>
-    <updated>2013-03-07T08:19:00-06:00</updated>
+    <updated>2013-03-07T08:19:00-08:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/03/07/coffee-nerdery-chromatic-coffee</id>
     <content type="html"><![CDATA[<p><a href="http://www.chromaticcoffee.com">Chromatic Coffee</a>   <br/>
 <strong>Location</strong>: Santa Clara, CA, a few miles from the Apple campus  <br/>
@@ -206,7 +356,7 @@ There are also some super fantastic companies with amazing cultures; some callin
   <entry>
     <title type="html"><![CDATA[Shell Scripts Are Like Gremlins]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins/"/>
-    <updated>2012-12-13T20:15:00-06:00</updated>
+    <updated>2012-12-13T20:15:00-08:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins</id>
     <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/gremlin3.jpg"/></p>
 
@@ -252,7 +402,7 @@ There are also some super fantastic companies with amazing cultures; some callin
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Ox, Minneapolis]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/15/coffee-nerdery-blue-ox/"/>
-    <updated>2012-09-15T14:53:00-05:00</updated>
+    <updated>2012-09-15T14:53:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/15/coffee-nerdery-blue-ox</id>
     <content type="html"><![CDATA[<p><strong><a href="http://blueoxcoffeecompany.com">Blue Ox</a></strong><br/>
 <strong>Location</strong>: Chicago and 38th St, South Minneapolis, MN<br/>
@@ -300,7 +450,7 @@ and I&#8217;ll be getting to those in future posts.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Irving Farm, New York]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-irving-farm/"/>
-    <updated>2012-09-08T20:11:00-05:00</updated>
+    <updated>2012-09-08T20:11:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-irving-farm</id>
     <content type="html"><![CDATA[<p><a href="http://www.irvingfarm.com/index.cfm">Irving Farm Coffee Roasters</a><br/>
 <strong>Location</strong>: New York, 14th St &amp; 7th Ave, Uptownish<br/>
@@ -337,7 +487,7 @@ except I got off the subway there and was looking for friends.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Financier, New York]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-financier/"/>
-    <updated>2012-09-08T19:55:00-05:00</updated>
+    <updated>2012-09-08T19:55:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-financier</id>
     <content type="html"><![CDATA[<p><a href="http://financierpastries.com/">Financier Coffee</a><br/>
 <strong>Location</strong>: New York, Cedar &amp; William, Downtown, Financial District<br/>
@@ -379,7 +529,7 @@ PASTRIES!<br/>
   <entry>
     <title type="html"><![CDATA[Why Isn't This Funny?]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/04/why-isnt-this-funny/"/>
-    <updated>2012-09-04T23:11:00-05:00</updated>
+    <updated>2012-09-04T23:11:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/04/why-isnt-this-funny</id>
     <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/cczqi.jpg"/></p>
 
@@ -450,7 +600,7 @@ actually funny at all.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: La Colombe]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe/"/>
-    <updated>2012-09-03T19:38:00-05:00</updated>
+    <updated>2012-09-03T19:38:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe</id>
     <content type="html"><![CDATA[<p><a href="http://lacolombe.com">La Colombe</a><br/>
 <strong>Location</strong>: New York, NoHo@400 Lafayette<br/>
@@ -486,7 +636,7 @@ no problem coming back here.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Macchiato, NYC]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato/"/>
-    <updated>2012-09-03T13:55:00-05:00</updated>
+    <updated>2012-09-03T13:55:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato</id>
     <content type="html"><![CDATA[<p><a href="http://www.macchiatocafe.com/">Machiatto</a><br/>
 <strong>Location</strong>: near Times Square<br/>
@@ -526,7 +676,7 @@ YMMV.  It makes me interested in checking out Fonte Coffee Roasters in Seattle!<
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Spoon]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/"/>
-    <updated>2012-09-03T09:38:00-05:00</updated>
+    <updated>2012-09-03T09:38:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon</id>
     <content type="html"><![CDATA[<p><a href="http://www.bluespooncoffee.com/">Blue Spoon</a><br/>
 <strong>Location</strong>: New York, Downtown (Williams and Platt)<br/>
@@ -571,7 +721,7 @@ should investigate the crimes being committed against their beans in this locati
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Kaffe 1668]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/02/coffee-nerdery-kaffe-1668/"/>
-    <updated>2012-09-02T17:42:00-05:00</updated>
+    <updated>2012-09-02T17:42:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/02/coffee-nerdery-kaffe-1668</id>
     <content type="html"><![CDATA[<p><strong><a href="http://kaffe1668.com">Kaffe 1668</a></strong><br/>
 <strong>Location:</strong> New York, Tribeca a few blocks from the GZ Memorial<br/>
@@ -619,7 +769,7 @@ breads so take that fwiw).</p>
   <entry>
     <title type="html"><![CDATA[Coffee for Traveling Nerds]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/01/coffee-for-traveling-nerds/"/>
-    <updated>2012-09-01T09:01:00-05:00</updated>
+    <updated>2012-09-01T09:01:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/01/coffee-for-traveling-nerds</id>
     <content type="html"><![CDATA[<p>I&#8217;m embarking on something I&#8217;ve wanted to do for a long time. Coffee reviews
 for traveling nerds. I don&#8217;t travel extensively but I do go places and my trip
@@ -712,7 +862,7 @@ for me to visit, please let me know.</p>
   <entry>
     <title type="html"><![CDATA[Epic ATG Cheffing]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing/"/>
-    <updated>2012-08-11T08:47:00-05:00</updated>
+    <updated>2012-08-11T08:47:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing</id>
     <content type="html"><![CDATA[<p>I just want to take a moment to point you at an epic new Chef cookbook undertaking. John Larsen has been working on a <a href="http://community.opscode.com/cookbooks/atg">cookbook to configure a full ATG stack with JBoss</a> and has finished a first version. This is something I always wanted to work on but never got around to, and so I&#8217;m being extra appreciative of someone who did take the time to get it working.</p>
 
@@ -758,7 +908,7 @@ running (often with scissors).</p>
   <entry>
     <title type="html"><![CDATA[Attributes Origami]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami/"/>
-    <updated>2012-07-28T23:00:00-05:00</updated>
+    <updated>2012-07-28T23:00:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami</id>
     <content type="html"><![CDATA[<p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
 
@@ -796,7 +946,7 @@ running (often with scissors).</p>
   <entry>
     <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
-    <updated>2012-07-11T15:54:00-05:00</updated>
+    <updated>2012-07-11T15:54:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go</id>
     <content type="html"><![CDATA[<p>Today I was having a conversation about consulting and how important it is to
 not be emotionally attached to your solutions. As a consultant, you exist to be
@@ -970,7 +1120,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[My Favorite JVM Arg EVER]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/"/>
-    <updated>2012-04-27T00:00:00-05:00</updated>
+    <updated>2012-04-27T00:00:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever</id>
     <content type="html"><![CDATA[<p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
 <p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>
@@ -989,7 +1139,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[The Alien Technology Tuning Challenge]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/26/the-alien-technology-tuning-challenge/"/>
-    <updated>2012-04-26T00:00:00-05:00</updated>
+    <updated>2012-04-26T00:00:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/26/the-alien-technology-tuning-challenge</id>
     <content type="html"><![CDATA[<p>A friend challenged me tonight to write a brilliant blog post on tuning a technology about which I know nothing. Actually I don&rsquo;t think you can really do that. I don&rsquo;t think you can write a brilliant blog post unless you&rsquo;ve participated in some kind of failure/stress activity with a product.&nbsp; <p />Until you&rsquo;ve seen real life interact with your infrastructure, it&rsquo;s all just theories and beer.&nbsp; But after a long day debugging Chef code I wrote in a way I wish I&rsquo;d never written (no really, I don&rsquo;t want my name anywhere on some of this stuff!), I thought I&rsquo;d take a little downtime to read about a product I&rsquo;m utterly clueless about.&nbsp; Because that&#8217;s fun.&nbsp; YES IT IS.<!-- more --><p />How clueless? After he challenged me, I opted to get in a bike ride while the weather was nice (rumor predicts snow this weekend). While pondering things on my bike, I finally stopped for a sec, took out my phone and googled &#8216;Redis Rescue Throughput.&#8217;&nbsp; And when I found nothing at all useful, I sent him a text &ldquo;Did you actually use the words &#8216;rescue throughput&#8217; earlier?&rdquo;<p />Can you guess what he said to me? He said, &ldquo;Go write a brilliant blog post on Optimizing Redis for Resque Throughput.&rdquo;&nbsp; Now you know how much I know about <a href="https://github.com/defunkt/resque" title="resque" target="_blank">Resque</a>.&nbsp; That would be a big, embarrassing ZERO.&nbsp; As for Redis, I know it&#8217;s an in-memory data store.&nbsp; That&#8217;s it.<p />So now it might not surprise anyone who knows me that this evening did not turn into a big brainstorming session for Redis tuning params.&nbsp; Once I tracked down the Resque github page I was all</p>
 <p>&nbsp;</p>
@@ -1026,27 +1176,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <li>Understand your typical message sizes and size your paging accordingly</li>
 </ul>
 <p>That&#8217;s all I got. You should verify anything you read here against your own requirements and get a second opinion.&nbsp; Every situation is unique. All of these relate to production environments and could be specific to a low latency goal. Memory conservation and data criticality may be conflicting priorities or require compromise.&nbsp;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Yak Hacking - A Story]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking/"/>
-    <updated>2012-04-15T00:00:00-05:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking</id>
-    <content type="html"><![CDATA[<p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
-<p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
-<p>Technical debt is a choice and can happen to anyone.&nbsp; Here the client allowed their configuration management to run away from them.&nbsp; They haven&#8217;t been maintaining their Puppet nodes and so don&#8217;t have a good list of what servers they are managing.&nbsp; They also let some config files slip through unmanaged.&nbsp; I generally don&#8217;t point fingers about it as there&#8217;s usually a sane tradeoff involved, but the first issue makes fixing the second one harder.</p>
-<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p><!-- more -->
-<p><strong>Situation</strong><br />An org uses Puppet. The org has files unmanaged by Puppet that need to be gathered, analyzed and brought under Puppet control. I expected this to take a couple of hours.</p>
-<p><strong>What made it challenging:</strong> <br />Actual list of servers, uncertain. Generated from Puppet but unverified.<p />The files are secured from being read by anyone except root. 600 as it were.<p />There  are no other management tools - no Rundeck, no Func, no Ansible, no  Salt, no Knife, not even a home grown, lovingly maintained perl  management script, no passwordless ssh.<p />The client apparently expects admins to log into boxes one by one for administrative activities.</p>
-<p><strong>What I have:<br /></strong>My user ID.&nbsp; <br />Sudo on any server I can log into. <br />Passwordless SSH works even if it&#8217;s considered insecure.&nbsp; (really?)<br /><a href="http://sourceforge.net/projects/sshpass/" title="SSHPass" target="_blank">SSHPass</a><br /><a href="http://code.google.com/p/sshsudo/" title="sshsudo" target="_blank">SSHSudo</a><br />Ruby 1.8.5 installed from RPM</p>
-<p>With  the thought of using sshsudo, I wrote a <a href="https://github.com/sbates/scripts/blob/master/getfiles.rb" title="ruby script" target="_blank">ruby script</a> that runs on  the client node, checks for file existence, copies the files to a temp  folder, makes them available for scp and even tries to scp them back to  the admin server.&nbsp; The script should be runnable via sshsudo/sshpass.&nbsp;  BUT&#8230;<p />The servers also do not allow sudo without a tty. SSH -t  doesn&#8217;t work.&nbsp; SSH -t -t kind of works but hangs without the occasional  keyboard intervention. Trying to scp from the script invokes another request for password which can&#8217;t be handled discreetly on the client.<p />SSHpass works but can&#8217;t execute anything  with sudo on the other end because of the secure tty issue.&nbsp; So this  doesn&#8217;t do me any good because all the files are root-readable only.<p />SSHSudo works but suffers from similar issues.<p />The  servers are RH5 running puppet installed with RPMs so no rubygem  installs exist, even if I were rude enough to install things on servers  belonging to someone else. I had been looking at the use of net-ssh/scp  for some of my scripting, but it wasn&#8217;t really useful.<p /><em>Did any of that make sense?</em><p />None  of this addresses the pre-work I did either.&nbsp; I was given a list of 200  or so servers (generated from Puppet I believe). with the caveat that  &#8220;some may have been retired.&#8221;&nbsp; So I wrote a <a href="https://github.com/sbates/scripts/blob/master/connection_test.rb" title="tcp test script" target="_blank">tcp script </a>to check  listening sockets on port 22 and a few others if desired.&nbsp; I then sorted my servers  into ones that responded, ones that timed out and ones that issued a  &#8216;name or service not known&#8217; message and consulted with the client&#8217;s full  time sysadmin. It turns out that the ones in DNS but not responding  were retired and the ones with connection timeouts needed to be reached  from another server. omg.<p /><strong>What I finally did:</strong><br />Several unscripted actions on the command line because I was doing them as troubleshooting/discovery  steps while figuring out wtf to do to get the files I needed.</p>
-<p><strong>Assembled a servers.good list based on the tcp testing.</strong><p /><strong>Updated the sshsudo script to -t -t wherever it ssh&#8217;d</strong> (oi!)<br /><strong></strong><br /><strong>make a local dir for the files, separated by host name: </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; mkdir -p /tmp/sascha/files/$i<br />done<p /><strong>Put  the file manipulation script down on all the servers and run it;</strong> originally it was going to scp them back to the admin server too, but  that wasn&#8217;t working out for me<br />./sshsudo -r -v -u sascha servers.good getfiles.rb <p /><strong>Get the files I snagged out of their root-read-only existence </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp;sshpass -f ~/mypassfile scp -q sascha@$i:/tmp/files/* /tmp/sascha/files/$i<br />done<p /><strong>Delete the files from remote tmp</strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; sshpass -f ~/mypassfile ssh -q sascha@$i rm -rf /tmp/files<br />done</p>
-<p>I also spent some time making a temporary keyset for passwordless ssh but that turned out to be no real diff from using sshpass. But messing around with moving it to the servers highlighted another issue - I could only log into about 10 of 100.&nbsp; Lovely.</p>
-<p>OMG.&nbsp;  I need an orchestration tool or something, STAT.&nbsp; I should probably go  script this, but I will probably never do anything similar for this client again  unless they ask me to implement an orchestration tool for them.&nbsp;</p>
-<p>All of this work, just to get the files to me so I can work work with them. How do people live like this???</p>
-<p><strong>****Lesson Learned</strong>: ask more questions when accepting work, even when it&#8217;s ad hoc, tiny project work for someone I know.&nbsp; I assumed they would have management tooling.&nbsp; After all, they were smart enough to use configuration management.</p>
 ]]></content>
   </entry>
   

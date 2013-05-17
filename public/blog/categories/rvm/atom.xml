@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rvm | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/rvm/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-12T13:36:53-05:00</updated>
+  <updated>2013-05-17T09:20:12-07:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Pieces and Parts: Managing Your Ruby Toolchain (part 1)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/"/>
-    <updated>2013-05-12T13:12:00-05:00</updated>
+    <updated>2013-05-12T13:12:00-07:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain</id>
     <content type="html"><![CDATA[<p>I recently received an email from someone who attended my <a href="http://www.youtube.com/watch?v=pHmU0aNkENc&amp;list=PLrmstJpucjzXNMLcI5X-EjirpDd-SITd3&amp;index=28">ChefConf talk</a> and asked me to expand on a few things. As I started to answer the email, I could see it was going to turn into a dissertation, so I migrated it over into a blog post.  As I started to write the blog post, it seemed to grow into a book, so now I've decided to break it down into multiple posts.  In this post I'll try to summarize the question and situational environment and cover the easiest answers first: scripting languages and RVM.</p>
 
@@ -74,7 +74,7 @@ While I'm not an expert on <a href="http://rvm.io">RVM</a> and other Ruby manage
 * If you're automating for many people over time, pin your RVM version</p>
 
 <p><strong>Wrap Up</strong>
-To keep the blog post readable, this is all I was to discuss in this first post, but I'm about to publish Part 2 as well: a rant about package repos. I'm extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.</p>
+To keep the blog post readable, this is all I want to discuss in this first post, but I'm about to publish Part 2 as well: a rant about package repos. I'm extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.</p>
 ]]></content>
   </entry>
   
