@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-17T09:29:07-07:00</updated>
+  <updated>2013-05-24T11:28:47-07:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -12,6 +12,127 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby Toolchaining Part 3: Walking the Package Talk]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/18/ruby-toolchaining-part-3-walking-the-package-talk/"/>
+    <updated>2013-05-18T03:16:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/18/ruby-toolchaining-part-3-walking-the-package-talk</id>
+    <content type="html"><![CDATA[<p>This is the third post in a series about managing your Ruby Toolchain. Expect at least one more after this. You can also read:<br/>
+<a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain">Pieces and Parts: Managing Your Ruby ToolChain(part 1)</a> <br/>
+<a href="http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant">Managing Your Ruby Toolchain Part 2: The Package Repo Rant</a></p>
+
+<p>Why I rant about package repositories: Static software without a repository is the pebble that becomes an avalanche. So many undesirable behaviors stem from no one owning the package collection.  Read the rant if you want details.  This is a practical discussion, although I&#8217;m not telling you what to do. I&#8217;m just telling you what I&#8217;ve done and what I&#8217;ve seen over the course of my career.  There are many ways to solve this problem. Do what works for you.</p>
+
+<p>This post grew so much that there is one more after it that specifically deals with some toolchaining tools and ideas as well as a few anecdotes on how I&#8217;ve dealt with some of these challenges in the past.</p>
+
+<p>Today we&#8217;re going to talk about:<br/>
+<a href="#tarballs">Tarball Orphans vs Artifacts vs Inbetweeners</a>  <br/>
+<a href="#internet">The Internet</a><br/>
+<a href="#repos">An Approach to Repositories</a>  <br/>
+<a href="#packing">Packaging Tarballs</a>  <br/>
+<a href="#ruby">Ruby Management</a>   <br/>
+<a href="#toolchaining">Ruby Toolchain Management</a></p>
+
+<h2><a id="tarballs">Tarball Orphans</a></h2>
+
+<p>What do I mean when I rant about tarballs? Basically I mean that pile of source you downloaded from the internet, or Tomcat package, JBoss tarball, Ruby source, whatever.</p>
+
+<p>What is exempt from my ranting  wrath? Custom code that you might tar up instead of jar/ear/war.  Anything that changes often shouldn&#8217;t be in our static package repository. Those are places to keep long term, install-once per server software.</p>
+
+<p>When I talk about tarballs, I mean tumbleweed off the internet.  When I refer to compiled code I&#8217;ll use the word <strong>artifact</strong>.  What&#8217;s an artifact? It might be a jar file you bundle with your deployed code. It might be a war file. It might be a tar of ruby code Or database artifacts.  Anything that&#8217;s your stuff, we don&#8217;t put that into package repositories.  We put it into artifact repositories like Artifactory and Nexus. People also use S3 storage to store and retrieve artifacts.</p>
+
+<p>Some things may not be easily categorized. Newer products get frequent updates that may require frequent patches or deployments. For example, I worked with a team that implemented Basho&#8217;s <a href="http://basho.com/">Riak</a> which they updated frequently and ended up engaged in a disagreement with Ops on how often they could update it. The ops team wanted to restrict it to quarterly and the devs wanted much more frequently. This sort of management requires a custom solution that may be package-based or not.</p>
+
+<h2><a id="internet">The Internet</a></h2>
+
+<p>If your infrastructure has free access to the internet, that&#8217;s awesome. Many infrastructures have limited or no access to the internet.  Often the reasons for this seem silly.  But sometimes you can&#8217;t fight city hall, or you can but you need to save your fights for the life or death kind.  Your servers don&#8217;t need the internet to survive. Or they should not.</p>
+
+<p>Eventually you will find yourself needing stuff from the Internet. In order to work within restrictions, you can set up a <a href="http://en.wikipedia.org/wiki/Bastion_host">Bastion</a> host or AWS VPC infrastructure that can call out to the internet in order to create private mirrors of any repositories you need.  You can follow the slightly more difficult path of setting up an internal server that contains your repos that you need to sync in a way that doesn&#8217;t have direct access to the internet.</p>
+
+<p><strong>Internet as Troublemaker</strong><br/>
+Internet access brings its own set of problems as well. If you aren&#8217;t specific about package versions, with every server provision you could have slightly different versions of things installed.  This is a problem because it can cause erratic behavior across your infrastructure. If you have 1000 nodes built over the course of six months, each build wave can introduce incremental differences. When you control the packages in your internal repos, you exert a stabilizing effect, which is a good way to control your system without making it brittle.</p>
+
+<p>Even if sloppy package management doesn&#8217;t actually cause issues, it will be a suspect in any intermittent, mysterious problems. Picture an outage conference bridge including execs. Now envision yourself explaining to them how this mismatch isn&#8217;t a problem. Can you envision any explanation that doesn&#8217;t make you sound like a dolt?</p>
+
+<p><strong>Example</strong>: A few years ago JBoss 5 shipped with a bug that was a major performance blocker but difficult to track down. It was later fixed in a minor patch release. Imagine having a JBoss package block that just says <code>package "jboss" {action :install}</code> and using an internet repo to install it. 6 months later you provision 100 servers from your trusty internet repo and over your peak season, the bug triggers but everything is weird because it&#8217;s only a problem on some servers.  Imagine tracking this down. (Yes this is a flawed example b/c as far as I know, there&#8217;s no internet repo with a JBoss rpm)</p>
+
+<p>If you&#8217;re a dev and you think this isn&#8217;t a problem, try chatting with a friend in the sysadmin/ops area before you poo-poo. If you&#8217;re a sysadmin and you think this isn&#8217;t a big deal, may we never be responsible for the same infrastructure.</p>
+
+<p><strong>Be Conservative.</strong> As a rule it&#8217;s ok to use external signed key repositories for your base OS packages as those shouldn&#8217;t change. Tread carefully even with patch/update servers to ensure homogenous installs and any packages acquired from other internet repos (like EPEL) should be installed with explicit versions.</p>
+
+<p><strong>Adopt Orphans</strong> Don&#8217;t let Internet-sourced software roam around your infrastructure unsupervised. If you need a package from the internet, it should be easy enough to download and insert into your custom repository. There are several tools for managing repositories. For Enterprise Linux, <a href="https://github.com/cobbler/">Cobbler</a>, the provisioning and infrastructure management tool has repository management and mirroring. My new favorite thing for this though is a tool called <a href="http://pulpproject.org/">Pulp</a>, an open source project by Red Hat.  If you prefer simplicity, you can just install a web proxy and use a command line tool like <code>createrepo</code> to manage your yum repos.</p>
+
+<p><strong>Don&#8217;t assume I can talk to the Internet.</strong> When it comes to configuration management tools, I find it in bad taste to write a module or cookbook intended for the community with an Internet dependency.  If you have to write one, label the dependency in large font.</p>
+
+<h2><a id="repos">An Approach to Repos</a></h2>
+
+<h3>OS Packages</h3>
+
+<p>If you&#8217;re going to set up repositories, consider a collection like this list.</p>
+
+<p><strong>Base</strong> - base EL install repo  - This is generally straight up ISO content<br/>
+<strong>Patch</strong> - repository containing patches<br/>
+<strong>EPEL</strong> - EL Extras repo mirror<br/>
+<strong>Custom</strong> - repository containing all the custom packages I need that I&#8217;ve either crafted myself or downloaded</p>
+
+<p><strong>Purity of Purpose:</strong> Always keep your base and patch repos pure. Don&#8217;t let people just dump random packages into a Base OS collection. You&#8217;ll never know what was supposed to be there and what was added later.</p>
+
+<p><strong>Prioritization and Specificity:</strong> If you have two versions of a package in different repos, either be specific when installing or configure a priority for each repo.</p>
+
+<h3>Rubygems</h3>
+
+<p>This is where you get/put your gems. Gem is the package manager for Rubygems. You either need to connect to the internet to get all of these things or you need internal package repos/mirrors.  See this <a href="http://davidmoulton.me/2011/02/07/create-a-private-gem-repository.html">blog post</a> by David Moulton for how easy it is to set up a rubygems repo.</p>
+
+<h3>Artifacts</h3>
+
+<p>This is where your deployment artifacts, jar, war, ear files should be contained; a tool where it&#8217;s easy to retreive them programmatically. I have seen people use <a href="http://www.sonatype.org/nexus/">Nexus</a>, <a href="http://www.jfrog.com/">Artifactory</a> and even S3 to store artifacts. If you&#8217;re not a java shop, you may not need something this complex. My major experience is with Java shops.</p>
+
+<h3>YMMV</h3>
+
+<p>There are many ways to craft your infrastructure. Having package repositories is an advantage because they make it really obvious to everyone in your organization where to look for software and where they should put software they need.</p>
+
+<p>The important thing to keep in mind here is that, especially if you&#8217;re in the Enterprise, you aren&#8217;t designing for yourself or just one team. This will balloon out to include dev teams using your tools. In order to deploy their app, the devs will test using VMs provisioned by your infrastructure and they should be taking advantage of your beautiful repos to deposit their extra software packages.  Your team may even be administering the VM infrastructure.</p>
+
+<p>A major goal to strive for is for all VMs and servers to be provisioned the same way in all environments, desktop to production. You make this easiest and more likely to happen when you make it easy to interact with software repositories.  If it&#8217;s not easy, other teams will &#8220;figure something out&#8221; which will likely outrage you when you discover it.</p>
+
+<h2><a id="packing">Practical Tarball Management</a></h2>
+
+<h3>Avoid Compiling From Source</h3>
+
+<p>Believe me when I say that you <strong>do not</strong> want to compile Ruby from scratch every time you build a server. The more automation achievements you unlock, the easier it becomes to use ephemeral VMs.  In Dev, people should be popping up and killing VMs all the time. If it takes 10 minutes to build a server, they won&#8217;t be doing this, dev VMs will have <a href="http://workstuff.tumblr.com/post/50911984233/some-tips-on-getting-started-with-vagrant-and-chef">major cruft buildup</a> and dismay will ensue when people realize they can&#8217;t actually reproduce their dev VM.</p>
+
+<h3>Turning a Tarball into a Package</h3>
+
+<p>How do you get packages for your repos when all you have is a pile of tarballs? If you&#8217;re brilliant, write a package spec for it. If you&#8217;re like the rest of us, you use <a href="https://github.com/jordansissel/fpm">FPM</a>.  Even if you are in a situation where you can&#8217;t have a package repo, you can at least create and store packages which will speed up installation and simplify implementation.</p>
+
+<p><a href="https://github.com/jordansissel/fpm">FPM</a>: Learn it, love it, live it.</p>
+
+<h3><a id="ruby">Ruby Management</a></h3>
+
+<h3>Ruby Source</h3>
+
+<p><strong>1.8.7 is EOL</strong><br/>
+First, on the topic of existing packages, as <a href="http://www.ruby-lang.org/en/news/2011/10/06/plans-for-1-8-7/">announced in October of 2011</a>, Ruby 1.8.7 is officially end of life and won&#8217;t even get security updates after June 2013.  <em>Just say no to the supplied 1.8.7 packages</em> on your Enterprise Linux(EL) and the one that comes installed with OSX. No really, never touch it. If you&#8217;re using it, start seriously considering how to move on.</p>
+
+<p><strong>System Ruby</strong><br/>
+Whatever else you&#8217;re doing, your servers will all want a system Ruby. It&#8217;s possible to get along without this(see omnibus in subsequent sections), but especially in dev, people will be shocked and dismayed when there&#8217;s no easily accessible Ruby.  So get you some Ruby, not from the ancient EL repos, but get the source tarball from <a href="http://www.ruby-lang.org/en/">Ruby-Lang.org</a>.</p>
+
+<p>Why do I tell you this obvious thing? We had the brilliant idea of switching out our compile-every-time system ruby install with just using the embedded Ruby that ships with Chef client. Never do this. The trouble is that your Ruby install is not just an executable, but a name space for installing gems and related software. This is is why Chef ships in an omnibus in the first place: to avoid dependency hell and version conflicts.  The other problem with this idea is that you are still lacking a system Ruby. You either have symlink to the Ruby executable or people have to know where to look for. So install a system Ruby independent of any other software.</p>
+
+<p>Next make a Ruby RPM. RPMs are hard. Luckily <a href="https://twitter.com/ianmeyer">Ian Meyer</a> is watching out for us and has a <a href="https://github.com/imeyer/ruby-1.9.3-rpm">defined, working spec</a> from which to build an RPM. I&#8217;ve made this Ruby RPM for two different clients and it compiled without a hitch.</p>
+
+<p>Once you create an RPM, put it into your custom package repo so that you can yum install ruby-1.9.3 or install it via cookbook later.</p>
+
+<p>I repeat this series of steps for the Rubygems tarball, except using <a href="https://github.com/jordansissel/fpm">FPM</a> to package it.  Then they go in my custom repo where the custom repo has a higher priority than my base repo and my recipe just has a package block to install Ruby and Rubygems. It takes about 30 seconds instead of the 5 minutes it takes to compile Ruby from scratch.</p>
+
+<p>If you use Ubuntu, well, they are cooler than EL and have <a href="http://packages.ubuntu.com/quantal/ruby1.9.3">Ruby-1.9.3 packages</a>.</p>
+
+<h2>Where Do We Go From Here?</h2>
+
+<p>An important part of toolchaining is maintaining control of the supply chain.  The way we do that is by creating space for packages and actively managing that space. It should be freely accessible to both deposit and receive software. Don&#8217;t manage things by locking people out, but by making it easy to use and providing guidelines for usage. Most people want to do the right thing. When you make the right thing easy to do, more people will do it.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Managing Your Ruby Toolchain part 2: The Package Repo Rant]]></title>
@@ -598,6 +719,42 @@ actually funny at all.</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Coffee Nerdery: La Colombe]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe/"/>
+    <updated>2012-09-03T19:38:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe</id>
+    <content type="html"><![CDATA[<p><a href="http://lacolombe.com">La Colombe</a><br/>
+<strong>Location</strong>: New York, NoHo@400 Lafayette<br/>
+<strong>Espresso</strong>: La Colombe<br/>
+<strong>Machines</strong>: La Marzocco &amp; Mazzer<br/>
+<strong>Coffee Art</strong>: yes<br/>
+<strong>Wifi</strong>: unknown<br/>
+<strong>Served in</strong>: 8oz ceramic <br/>
+<strong>Drink</strong>: skim cap<br/>
+<strong>Visited</strong>: 9/2/12</p>
+
+<p>This was a quick stop while out shopping with a friend. There&#8217;s ample seating
+and it&#8217;s a light, airy space. My coffee was ok, although it was a smidge
+bitter. I&#8217;d probably have to try again to see how I liked the coffee.
+However, it&#8217;s a great place, good for meeting a friend or stopping in and
+they take their coffee production pretty seriously. I didn&#8217;t actually see
+a menu anywhere although I wasn&#8217;t looking.</p>
+
+<p>They did have an adorable water &#8220;fountain&#8221; that offered room temperature,
+cold or carbonated water and they&#8217;ll offer you a water cup no problem.  The
+staff is professional and fast. This coffee shop had the most starbucksian
+feel to it of all the shops I&#8217;ve been too, but I don&#8217;t really mean that in
+a derogatory way. I just mean that they turned out product quickly. The
+product they turned out was definitely far superior to anything Starbucks
+will serve you. I still prefer low-lit, shabby, hipster joints, but I&#8217;d have
+no problem coming back here.</p>
+
+<p><strong>Pros</strong>: Fast, good coffee<br/>
+<strong>Cons</strong>: None really</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Macchiato, NYC]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato/"/>
     <updated>2012-09-03T13:55:00-07:00</updated>
@@ -870,6 +1027,44 @@ running (often with scissors).</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Attributes Origami]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami/"/>
+    <updated>2012-07-28T23:00:00-07:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami</id>
+    <content type="html"><![CDATA[<p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
+
+<p>This post assumes some basic familiarity with Chef and node attributes. I assume that most people are going to be bored with the subject matter unless you care about nerdy details or why strings are the official preferred notation. You can get the <a href="http://wiki.opscode.com/display/chef/Cookbook+Attributes#CookbookAttributes-Notation">short version</a> on the Chef Wiki Cookbook Attributes page. I have a longer discussion here that focuses on my discovery process and evolution of thought.</p>
+
+<h4>A Quick Attribute Notation Overview</h4>
+
+<p>When I first started working with Chef, the publicly available cookbooks and wiki documentation were written in different styles.</p>
+
+<ul>
+<li>Some used <strong>symbols</strong>: node[:some][:symbol]</li>
+<li>some used <strong>strings</strong>: node[&#8216;some&#8217;][&#8216;string&#8217;]</li>
+<li>some used <strong>method_missing</strong>: node.dot.notation</li>
+</ul>
+
+
+<p>I usually refer to this last as &#8220;dot notation,&#8221; mostly because I had no idea what else to call it at first. I still call it that as it&#8217;s an intuitive reference for someone who doesn&#8217;t know much Ruby. I read up on <a href="http://ruby-doc.org/docs/ProgrammingRuby/html/ref_c_object.html#Object.method_missing">method_missing</a> in prep for this blog post, but it was a new term and concept to me.</p>
+
+<h4>O dot notation, how do I love thee?</h4>
+
+<p>Getting back to it, I <em>lurved</em> my dot notation. It was easy to type. It was easy to read. It was harder to make typos. I am the queen of typos. Anything that helps me make fewer is my favorite friend. Then Chef Summit happened and recaps happened and I was like:</p>
+
+<p><img src="images/yutakeawaymaidots.jpg" float: left /></p>
+
+<p>At first I was outraged that they were <em>oppressing</em> my dot notation and I was terrified they would deprecate it, which would make me sad. For a long time after that, I was just mad and still loved my dot notation and resolved to just keep using it anyway. This was the first time I had the urge to blog about it. I was planning to tell everyone to piss off. I loved my dot notation and I didn&#8217;t want it taken away.</p>
+
+<p><img src="images/nocanheerz.jpg" float: right /></p>
+
+<p>I mean, yeah, dot notation didn&#8217;t always work and I probably never understood why. I was like this when I first learned chef:</p>
+
+<p><img src="images/babylol.jpg" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
     <updated>2012-07-11T15:54:00-07:00</updated>
@@ -1059,85 +1254,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <p>But I have to tell you, this arg is an admin&#8217;s best friend if you have apps in your care that can&#8217;t be bothered with proper tuning on the dev side.&nbsp; Often this was because a client had a contract dev team come in, deliver an app and then leave.&nbsp; There was no one to fix it.</p>
 <p>There&#8217;s no shame in cleaning up your log files so they are readable.&nbsp; It&#8217;s tough to actually dig into a problem if you have thousands of lines of &#8220;benign&#8221; errors filling your world.&nbsp; This option allows you to limit the damage done by excessive logging while still seeing that an exception is being generated. Of course, with all the wonderful logging packages and tools with filters out there today, this sort of thing is less important if you are filtering, but there are lots of admins out there with nothing but the CLI, syslog and vi even today. This post is dedicated to them.</p>
 <p>&nbsp;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Alien Technology Tuning Challenge]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/04/26/the-alien-technology-tuning-challenge/"/>
-    <updated>2012-04-26T00:00:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/04/26/the-alien-technology-tuning-challenge</id>
-    <content type="html"><![CDATA[<p>A friend challenged me tonight to write a brilliant blog post on tuning a technology about which I know nothing. Actually I don&rsquo;t think you can really do that. I don&rsquo;t think you can write a brilliant blog post unless you&rsquo;ve participated in some kind of failure/stress activity with a product.&nbsp; <p />Until you&rsquo;ve seen real life interact with your infrastructure, it&rsquo;s all just theories and beer.&nbsp; But after a long day debugging Chef code I wrote in a way I wish I&rsquo;d never written (no really, I don&rsquo;t want my name anywhere on some of this stuff!), I thought I&rsquo;d take a little downtime to read about a product I&rsquo;m utterly clueless about.&nbsp; Because that&#8217;s fun.&nbsp; YES IT IS.<!-- more --><p />How clueless? After he challenged me, I opted to get in a bike ride while the weather was nice (rumor predicts snow this weekend). While pondering things on my bike, I finally stopped for a sec, took out my phone and googled &#8216;Redis Rescue Throughput.&#8217;&nbsp; And when I found nothing at all useful, I sent him a text &ldquo;Did you actually use the words &#8216;rescue throughput&#8217; earlier?&rdquo;<p />Can you guess what he said to me? He said, &ldquo;Go write a brilliant blog post on Optimizing Redis for Resque Throughput.&rdquo;&nbsp; Now you know how much I know about <a href="https://github.com/defunkt/resque" title="resque" target="_blank">Resque</a>.&nbsp; That would be a big, embarrassing ZERO.&nbsp; As for Redis, I know it&#8217;s an in-memory data store.&nbsp; That&#8217;s it.<p />So now it might not surprise anyone who knows me that this evening did not turn into a big brainstorming session for Redis tuning params.&nbsp; Once I tracked down the Resque github page I was all</p>
-<p>&nbsp;</p>
-<p><img src="http://blog.brattyredhead.com/images/allthethings.jpg"</img></p>
-<p>And it&rsquo;s written in Ruby. This is kind of dorky of me, but I still get a little thrill whenever I read source code and know what&rsquo;s going. I looked at some of the examples and thought, OH HEY, I see what you did there! Not that I&rsquo;m any kind of a genius. But it&rsquo;s fun to realize I can read it.<p />And so then I spent the evening reading about Resque, looking at the source code and reading blog posts about it.&nbsp; I adore queuing software. I love the idea that we can pop little bits of data into a store and have it consumed asynchronously, without having other processes blocked while waiting for something to complete. It always makes me happy to have asynchronicity in place.<p />This of course is mostly from years of supporting projects in the early years where devs didn&rsquo;t understand or know about asynchronous communication. Lots of our problems back in the day were related to synchronous calls blocking until the app crashed.&nbsp; Good times.<p />When I encounter open source queuing applications, I get a warm fuzzy.&nbsp; I grew up professionally in a world that only acknowledged one queuing tool: IBM MQ. IBM built an enormous industry around high availability messaging and I had no idea there were other, easy-to-use tools available in the wild, until I got involved with open source.&nbsp; When I first came across RabbitMQ I was enchanted just because it was the first free, easy to use queuing tool I met; when I come from a world where so many are led to believe that you should pay millions of dollars for a decent, reliable tool.</p>
-<p>Then I remembered! o craps! I&rsquo;m supposed to be thinking about in memory database optimization for this queuing stuff, NOT reading about the queuing!&nbsp; Unfortunately, it&rsquo;s now late and I have to get up early tomorrow, so I guess I lose the alien tuning challenge. But I can leave you with common sense and thoughts based on what I see in the redis.conf.<p />Tuning your in memory data store for performance throughput:<p /></p>
-<p><span style="font-size: medium;"><strong>Don&rsquo;t be stupid. </strong></span></p>
-<ul>
-<li>Read the config options.&nbsp; Am I the only one who loves reading config files? Probably. </li>
-<li>Also read the <a href="http://redis.io/topics/virtual-memory" title="Redis VM" target="_blank">Redis page on virtual memory</a>.&nbsp; </li>
-<li>Dedicate instances to your queuing activities.&nbsp; Don&rsquo;t cause data with disparate requirements to co-exist. Competing data sets could also cause developer hair pulling fights over whose app is breaking things.</li>
-</ul>
-<p><span style="font-size: medium;"><strong>Disk I/O and resource contention</strong></span></p>
-<ul>
-<li>Avoid frequent disk writes, esp if you have multiple instances, because you risk I/O contention</li>
-<li>Avoid excessive logging for the same reason</li>
-<li>Avoid virtual machines </li>
-<li><a href="http://www.youtube.com/watch?v=H7PJ1oeEyGg" target="_blank">Get a fucking ssd?</a> Maybe not if you avoid needing to write to disk much, since we&#8217;re more concerned with ALL THE RAMS.</li>
-<li>Know how much memory you will need and MONITOR usage and trending BEFORE you use it all up.</li>
-<li>Your data lives in a Memory-based container.&nbsp; Understand the Max Memory policy</li>
-</ul>
-<p><span style="font-size: medium;"><strong>Connections</strong></span></p>
-<ul>
-<li>Manage your max clients - just because it defaults to 10,000 doesn&rsquo;t make it right.</li>
-<li>Ensure you have enough file descriptors for all your connections plus whatever else the DB needs to keep functioning.&nbsp; If you limit your max connections, you can probably leave the FD unlimited. Or you can limit your FDs as it looks like Redis is smart enough to use those to set connections.</li>
-<li><span style="color: #ff0000;">Either way - be aware of the relationship between number of potential clients connecting, max file descriptors and max client connections.&nbsp; Or you will be sad.</span></li>
-<li>Connection timeouts - this is a tricky topic. If your data store is separated from your queue manager by a firewall, you probably can&rsquo;t leave it on infinite. Firewalls will timeout your connection and not tell you about it. This will either confuse the queue manager and cause it to error or it will possibly be smart enough to open a new connection.</li>
-</ul>
-<p>&nbsp;&nbsp;&nbsp;&nbsp; If the latter, you will eventually run out of file descriptors or allowed connections on the data store side unless the data store is also smart.</p>
-<p><span style="font-size: medium;"><strong>Redis</strong> </span>(did I mention I know nothing about Redis? It&#8217;s an in-memory data store, right?) I read the redis.conf and skimmed the Virtual Memory page.</p>
-<ul>
-<li>Disable active rehashing </li>
-<li>Understand your VM options</li>
-<li>Understand your typical message sizes and size your paging accordingly</li>
-</ul>
-<p>That&#8217;s all I got. You should verify anything you read here against your own requirements and get a second opinion.&nbsp; Every situation is unique. All of these relate to production environments and could be specific to a low latency goal. Memory conservation and data criticality may be conflicting priorities or require compromise.&nbsp;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Yak Hacking - A Story]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking/"/>
-    <updated>2012-04-15T00:00:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/04/15/yak-hacking</id>
-    <content type="html"><![CDATA[<p>I have a couple of half-written blog posts started this weekend.&nbsp;  Real wordy things about scrummifying your infrastructure and my  experience with it.&nbsp; I&#8217;ll probably get to that in a few days but I  needed to vent about my weekend of yak shaving first.</p>
-<p><strong>Moral of my story:</strong> The story you&#8217;re about to read is not the worst yak shave ever, and the problem is not a <em>hard</em> problem.&nbsp; It&#8217;s all in a day&#8217;s work for any halfway decent sysadmin.&nbsp; What we&#8217;re seeing here is a small problem exacerbated by a combination of <strong>technical debt </strong>and<strong> inadequate tooling.</strong></p>
-<p>Technical debt is a choice and can happen to anyone.&nbsp; Here the client allowed their configuration management to run away from them.&nbsp; They haven&#8217;t been maintaining their Puppet nodes and so don&#8217;t have a good list of what servers they are managing.&nbsp; They also let some config files slip through unmanaged.&nbsp; I generally don&#8217;t point fingers about it as there&#8217;s usually a sane tradeoff involved, but the first issue makes fixing the second one harder.</p>
-<p>However, inadequate tooling does frustrate me.&nbsp; They&#8217;ve gone to the trouble of automating with Puppet and managing application configs with subversion and scripting, but do not seem to have considered holistic server management. The only way to perform administrative tasks is by hand on each server or with Puppet. This seems a rather gaping hole in long term planning.&nbsp; 100 servers is long past what I consider manageable by hand.&nbsp; But you read the story and decide for yourself.</p><!-- more -->
-<p><strong>Situation</strong><br />An org uses Puppet. The org has files unmanaged by Puppet that need to be gathered, analyzed and brought under Puppet control. I expected this to take a couple of hours.</p>
-<p><strong>What made it challenging:</strong> <br />Actual list of servers, uncertain. Generated from Puppet but unverified.<p />The files are secured from being read by anyone except root. 600 as it were.<p />There  are no other management tools - no Rundeck, no Func, no Ansible, no  Salt, no Knife, not even a home grown, lovingly maintained perl  management script, no passwordless ssh.<p />The client apparently expects admins to log into boxes one by one for administrative activities.</p>
-<p><strong>What I have:<br /></strong>My user ID.&nbsp; <br />Sudo on any server I can log into. <br />Passwordless SSH works even if it&#8217;s considered insecure.&nbsp; (really?)<br /><a href="http://sourceforge.net/projects/sshpass/" title="SSHPass" target="_blank">SSHPass</a><br /><a href="http://code.google.com/p/sshsudo/" title="sshsudo" target="_blank">SSHSudo</a><br />Ruby 1.8.5 installed from RPM</p>
-<p>With  the thought of using sshsudo, I wrote a <a href="https://github.com/sbates/scripts/blob/master/getfiles.rb" title="ruby script" target="_blank">ruby script</a> that runs on  the client node, checks for file existence, copies the files to a temp  folder, makes them available for scp and even tries to scp them back to  the admin server.&nbsp; The script should be runnable via sshsudo/sshpass.&nbsp;  BUT&#8230;<p />The servers also do not allow sudo without a tty. SSH -t  doesn&#8217;t work.&nbsp; SSH -t -t kind of works but hangs without the occasional  keyboard intervention. Trying to scp from the script invokes another request for password which can&#8217;t be handled discreetly on the client.<p />SSHpass works but can&#8217;t execute anything  with sudo on the other end because of the secure tty issue.&nbsp; So this  doesn&#8217;t do me any good because all the files are root-readable only.<p />SSHSudo works but suffers from similar issues.<p />The  servers are RH5 running puppet installed with RPMs so no rubygem  installs exist, even if I were rude enough to install things on servers  belonging to someone else. I had been looking at the use of net-ssh/scp  for some of my scripting, but it wasn&#8217;t really useful.<p /><em>Did any of that make sense?</em><p />None  of this addresses the pre-work I did either.&nbsp; I was given a list of 200  or so servers (generated from Puppet I believe). with the caveat that  &#8220;some may have been retired.&#8221;&nbsp; So I wrote a <a href="https://github.com/sbates/scripts/blob/master/connection_test.rb" title="tcp test script" target="_blank">tcp script </a>to check  listening sockets on port 22 and a few others if desired.&nbsp; I then sorted my servers  into ones that responded, ones that timed out and ones that issued a  &#8216;name or service not known&#8217; message and consulted with the client&#8217;s full  time sysadmin. It turns out that the ones in DNS but not responding  were retired and the ones with connection timeouts needed to be reached  from another server. omg.<p /><strong>What I finally did:</strong><br />Several unscripted actions on the command line because I was doing them as troubleshooting/discovery  steps while figuring out wtf to do to get the files I needed.</p>
-<p><strong>Assembled a servers.good list based on the tcp testing.</strong><p /><strong>Updated the sshsudo script to -t -t wherever it ssh&#8217;d</strong> (oi!)<br /><strong></strong><br /><strong>make a local dir for the files, separated by host name: </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; mkdir -p /tmp/sascha/files/$i<br />done<p /><strong>Put  the file manipulation script down on all the servers and run it;</strong> originally it was going to scp them back to the admin server too, but  that wasn&#8217;t working out for me<br />./sshsudo -r -v -u sascha servers.good getfiles.rb <p /><strong>Get the files I snagged out of their root-read-only existence </strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp;sshpass -f ~/mypassfile scp -q sascha@$i:/tmp/files/* /tmp/sascha/files/$i<br />done<p /><strong>Delete the files from remote tmp</strong><br />for i in `cat servers.good`<br />&nbsp; do echo $i<br />&nbsp; sshpass -f ~/mypassfile ssh -q sascha@$i rm -rf /tmp/files<br />done</p>
-<p>I also spent some time making a temporary keyset for passwordless ssh but that turned out to be no real diff from using sshpass. But messing around with moving it to the servers highlighted another issue - I could only log into about 10 of 100.&nbsp; Lovely.</p>
-<p>OMG.&nbsp;  I need an orchestration tool or something, STAT.&nbsp; I should probably go  script this, but I will probably never do anything similar for this client again  unless they ask me to implement an orchestration tool for them.&nbsp;</p>
-<p>All of this work, just to get the files to me so I can work work with them. How do people live like this???</p>
-<p><strong>****Lesson Learned</strong>: ask more questions when accepting work, even when it&#8217;s ad hoc, tiny project work for someone I know.&nbsp; I assumed they would have management tooling.&nbsp; After all, they were smart enough to use configuration management.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Weekend Chef and Puppet Projects]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects/"/>
-    <updated>2012-04-01T00:00:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/04/01/weekend-chef-and-puppet-projects</id>
-    <content type="html"><![CDATA[<p>I have a few clients that I keep in touch with and take on small projects from time to time.&nbsp; This has been a strange week.&nbsp; I&rsquo;m technically full time on a project at the moment and I haven&rsquo;t gotten any calls for new work in a couple of months.&nbsp; It&rsquo;s been quiet.&nbsp; Then all of the sudden Wednesday I had 3 different people contact me about work.&nbsp;</p>
-<p><br />One call was actually for some awesome Chef work at a place I&rsquo;ve been before that I&rsquo;d love to go back to.&nbsp; It really pained me to tell them that I thought they had in-house resources of which they weren&rsquo;t aware and that these resources would be more than sufficient to Chef their project without my help. Sadface Sascha.</p>
-<p><br />Another call was from someone I do work for from time to time.&nbsp; Their projects source my &ldquo;Puppet for Chef&rdquo; series, if 2 blog posts can be called a series.&nbsp; In my head I have a 3rd one on templates but haven&rsquo;t gotten around to it yet. This 3wk run may source some if I&rsquo;m lucky. I agreed to do some ad hoc sysadmin work for these guys because they&rsquo;re in a swivet, getting ready for a PCI audit in 3 weeks.</p>
-<p>The job: There are about 150 Centos 5 servers. Caveat: some of the servers on the list may be retired already.&nbsp; Examine all of the configuration files for ConfigServer Firewall, bring them under Puppet control. Individual node config sets are ok (ugh).&nbsp; All servers are running a puppet client.&nbsp; I don&rsquo;t know if it&rsquo;s the same client.&nbsp; The master was at 2.7.9 last I checked, I think.<p />I have a mini Chef project too for the weekend, but I think I&rsquo;ll save that for another blog post.&nbsp; I actually wrote post of this post on Saturday morning and am just finishing it up. I haven&rsquo;t actually started my Puppet stuff except to wonder if they have some command line tools and think I&rsquo;d better get to writing some tcp testers and comparison scripts if there isn&rsquo;t such a thing.</p>
-<p><br />I actually spent a chunk of time working on my Chef thing which was an exercise in frustration.&nbsp; It&rsquo;s for a Windows Ohai plugin and the actual ruby work was a piece of cake. Testing has made me crazy though.&nbsp; Windows servers don&rsquo;t fire up as fast as Linux for one and they are a huge pain in the ass to interact with.&nbsp; On my todo list is an SSH server for Windows cookbook, unless my ultimate wish of hoping that all Windows servers DIAF happens prior to that.&nbsp; The ssh cookbook is half done, like so many things.</p>
-<p>I also am not sure I understand the testing strategy.&nbsp; I didn&#8217;t write any new code so I shouldn&#8217;t need to author any tests (relief).&nbsp; But it turns out I can&#8217;t seen any windows testing happening in the run, or at least, I think that&#8217;s what&#8217;s not happening.&nbsp; It ran happily on my Mac and then I thought maybe I should run the test on the Windows box too to see if the output was different.&nbsp; It was different.&nbsp; But I think that&#8217;s because there&#8217;s no Windows plugin tests in there?&nbsp; Wondering if I missed them?&nbsp; I was planning to email the chef-dev list tomorrow to see if I can get some love.&nbsp; Unfortunately the time I have to work on pet projects is the weekends and the IRC channels were like graveyards this weekend.<p />But I digress.&nbsp; I also ran manual tests - you know, the kind where you do stuff by hand and watch the output? My Ohai changes tested perfectly sanely on my Windows 7 64bit workstation.&nbsp; They tested insanely on a 2008r2 VMware VM I had available to me.&nbsp; And when I went into ec2 to fire up a neutral 2008r2, I discovered Ohai hangs on gathering ec2 metadata when run from the command line.&nbsp; I have no idea why.&nbsp; I hand-edited the ec2 plugin and the mixin/ec2_metadata to try and eke out some debug info but I got no joy.&nbsp; While the problem fascinated me, that was as far down that yak shave as I wanted to go today.&nbsp; So I put away the Chef and cleaned up the yard for 2 hours.</p>
-<p>Now I guess it&#8217;s time to play with Puppet!</p>
 ]]></content>
   </entry>
   
