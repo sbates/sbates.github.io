@@ -4,7 +4,7 @@
   <title><![CDATA[Category: rbenv | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/rbenv/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-24T11:28:47-07:00</updated>
+  <updated>2013-05-24T23:53:30-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[Pieces and Parts: Managing Your Ruby Toolchain (part 1)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/"/>
-    <updated>2013-05-12T13:12:00-07:00</updated>
+    <updated>2013-05-12T13:12:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain</id>
     <content type="html"><![CDATA[<p>I recently received an email from someone who attended my <a href="http://www.youtube.com/watch?v=pHmU0aNkENc&amp;list=PLrmstJpucjzXNMLcI5X-EjirpDd-SITd3&amp;index=28">ChefConf talk</a> and asked me to expand on a few things. As I started to answer the email, I could see it was going to turn into a dissertation, so I migrated it over into a blog post.  As I started to write the blog post, it seemed to grow into a book, so now I've decided to break it down into multiple posts.  In this post I'll try to summarize the question and situational environment and cover the easiest answers first: scripting languages and RVM.</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: fpm | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/fpm/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-24T11:28:47-07:00</updated>
+  <updated>2013-05-24T23:53:30-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby Toolchaining Part 3: Walking the Package Talk]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2013/05/18/ruby-toolchaining-part-3-walking-the-package-talk/"/>
-    <updated>2013-05-18T03:16:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2013/05/18/ruby-toolchaining-part-3-walking-the-package-talk</id>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/24/ruby-toolchaining-part-3-walking-the-package-talk/"/>
+    <updated>2013-05-24T03:16:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/24/ruby-toolchaining-part-3-walking-the-package-talk</id>
     <content type="html"><![CDATA[<p>This is the third post in a series about managing your Ruby Toolchain. Expect at least one more after this. You can also read:<br/>
 <a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain">Pieces and Parts: Managing Your Ruby ToolChain(part 1)</a> <br/>
 <a href="http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant">Managing Your Ruby Toolchain Part 2: The Package Repo Rant</a></p>

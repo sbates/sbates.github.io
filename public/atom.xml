@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-24T11:28:47-07:00</updated>
+  <updated>2013-05-24T23:53:24-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ruby Toolchaining Part 3: Walking the Package Talk]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2013/05/18/ruby-toolchaining-part-3-walking-the-package-talk/"/>
-    <updated>2013-05-18T03:16:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2013/05/18/ruby-toolchaining-part-3-walking-the-package-talk</id>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/24/ruby-toolchaining-part-3-walking-the-package-talk/"/>
+    <updated>2013-05-24T03:16:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/24/ruby-toolchaining-part-3-walking-the-package-talk</id>
     <content type="html"><![CDATA[<p>This is the third post in a series about managing your Ruby Toolchain. Expect at least one more after this. You can also read:<br/>
 <a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain">Pieces and Parts: Managing Your Ruby ToolChain(part 1)</a> <br/>
 <a href="http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant">Managing Your Ruby Toolchain Part 2: The Package Repo Rant</a></p>
@@ -137,7 +137,7 @@ Whatever else you&#8217;re doing, your servers will all want a system Ruby. It&#
   <entry>
     <title type="html"><![CDATA[Managing Your Ruby Toolchain part 2: The Package Repo Rant]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/"/>
-    <updated>2013-05-17T09:23:00-07:00</updated>
+    <updated>2013-05-17T09:23:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant</id>
     <content type="html"><![CDATA[<p><strong>TL;DR</strong> Use package repos for all your static software</p>
 
@@ -287,7 +287,7 @@ Nope. It&#8217;s not only the Enterprise that needs to fear the chaos of unmanag
   <entry>
     <title type="html"><![CDATA[Pieces and Parts: Managing Your Ruby Toolchain (part 1)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/"/>
-    <updated>2013-05-12T13:12:00-07:00</updated>
+    <updated>2013-05-12T13:12:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain</id>
     <content type="html"><![CDATA[<p>I recently received an email from someone who attended my <a href="http://www.youtube.com/watch?v=pHmU0aNkENc&amp;list=PLrmstJpucjzXNMLcI5X-EjirpDd-SITd3&amp;index=28">ChefConf talk</a> and asked me to expand on a few things. As I started to answer the email, I could see it was going to turn into a dissertation, so I migrated it over into a blog post.  As I started to write the blog post, it seemed to grow into a book, so now I&#8217;ve decided to break it down into multiple posts.  In this post I&#8217;ll try to summarize the question and situational environment and cover the easiest answers first: scripting languages and RVM.</p>
 
@@ -352,7 +352,7 @@ To keep the blog post readable, this is all I want to discuss in this first post
   <entry>
     <title type="html"><![CDATA[Minneapolis - St Paul Infracoders Meetup Recap]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/"/>
-    <updated>2013-05-07T10:34:00-07:00</updated>
+    <updated>2013-05-07T10:34:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap</id>
     <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the <a href="http://www.meetup.com/Twin-Cities-Infracoders">Twin Cities Infracoders group</a>.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you&#8217;d want to use something like Vagrant and implementation strategies.</p>
 
@@ -385,7 +385,7 @@ Wordpress Demo(this link will be available shortly)</p>
   <entry>
     <title type="html"><![CDATA[Devops Consulting: Why I Don't]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t/"/>
-    <updated>2013-04-05T20:33:00-07:00</updated>
+    <updated>2013-04-05T20:33:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/04/05/devops-consulting-why-i-don-slash-t</id>
     <content type="html"><![CDATA[<p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It&#8217;s a topic I&#8217;ve discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I&#8217;m motivated to say a few words about devops consulting, not because there was an argument, but because it&#8217;s something I&#8217;ve thought about often since I started independent consulting and I think it&#8217;s important.</p>
 
@@ -442,7 +442,7 @@ There are also some super fantastic companies with amazing cultures; some callin
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Chromatic Coffee]]></title>
     <link href="http://blog.brattyredhead.com/blog/2013/03/07/coffee-nerdery-chromatic-coffee/"/>
-    <updated>2013-03-07T08:19:00-08:00</updated>
+    <updated>2013-03-07T08:19:00-06:00</updated>
     <id>http://blog.brattyredhead.com/blog/2013/03/07/coffee-nerdery-chromatic-coffee</id>
     <content type="html"><![CDATA[<p><a href="http://www.chromaticcoffee.com">Chromatic Coffee</a>   <br/>
 <strong>Location</strong>: Santa Clara, CA, a few miles from the Apple campus  <br/>
@@ -477,7 +477,7 @@ There are also some super fantastic companies with amazing cultures; some callin
   <entry>
     <title type="html"><![CDATA[Shell Scripts Are Like Gremlins]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins/"/>
-    <updated>2012-12-13T20:15:00-08:00</updated>
+    <updated>2012-12-13T20:15:00-06:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins</id>
     <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/gremlin3.jpg"/></p>
 
@@ -523,7 +523,7 @@ There are also some super fantastic companies with amazing cultures; some callin
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Ox, Minneapolis]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/15/coffee-nerdery-blue-ox/"/>
-    <updated>2012-09-15T14:53:00-07:00</updated>
+    <updated>2012-09-15T14:53:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/15/coffee-nerdery-blue-ox</id>
     <content type="html"><![CDATA[<p><strong><a href="http://blueoxcoffeecompany.com">Blue Ox</a></strong><br/>
 <strong>Location</strong>: Chicago and 38th St, South Minneapolis, MN<br/>
@@ -571,7 +571,7 @@ and I&#8217;ll be getting to those in future posts.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Irving Farm, New York]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-irving-farm/"/>
-    <updated>2012-09-08T20:11:00-07:00</updated>
+    <updated>2012-09-08T20:11:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-irving-farm</id>
     <content type="html"><![CDATA[<p><a href="http://www.irvingfarm.com/index.cfm">Irving Farm Coffee Roasters</a><br/>
 <strong>Location</strong>: New York, 14th St &amp; 7th Ave, Uptownish<br/>
@@ -608,7 +608,7 @@ except I got off the subway there and was looking for friends.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Financier, New York]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-financier/"/>
-    <updated>2012-09-08T19:55:00-07:00</updated>
+    <updated>2012-09-08T19:55:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/08/coffee-nerdery-financier</id>
     <content type="html"><![CDATA[<p><a href="http://financierpastries.com/">Financier Coffee</a><br/>
 <strong>Location</strong>: New York, Cedar &amp; William, Downtown, Financial District<br/>
@@ -650,7 +650,7 @@ PASTRIES!<br/>
   <entry>
     <title type="html"><![CDATA[Why Isn't This Funny?]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/04/why-isnt-this-funny/"/>
-    <updated>2012-09-04T23:11:00-07:00</updated>
+    <updated>2012-09-04T23:11:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/04/why-isnt-this-funny</id>
     <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/cczqi.jpg"/></p>
 
@@ -721,7 +721,7 @@ actually funny at all.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: La Colombe]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe/"/>
-    <updated>2012-09-03T19:38:00-07:00</updated>
+    <updated>2012-09-03T19:38:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-la-colombe</id>
     <content type="html"><![CDATA[<p><a href="http://lacolombe.com">La Colombe</a><br/>
 <strong>Location</strong>: New York, NoHo@400 Lafayette<br/>
@@ -757,7 +757,7 @@ no problem coming back here.</p>
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Macchiato, NYC]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato/"/>
-    <updated>2012-09-03T13:55:00-07:00</updated>
+    <updated>2012-09-03T13:55:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-macchiato</id>
     <content type="html"><![CDATA[<p><a href="http://www.macchiatocafe.com/">Machiatto</a><br/>
 <strong>Location</strong>: near Times Square<br/>
@@ -797,7 +797,7 @@ YMMV.  It makes me interested in checking out Fonte Coffee Roasters in Seattle!<
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Blue Spoon]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon/"/>
-    <updated>2012-09-03T09:38:00-07:00</updated>
+    <updated>2012-09-03T09:38:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/03/coffee-nerdery-blue-spoon</id>
     <content type="html"><![CDATA[<p><a href="http://www.bluespooncoffee.com/">Blue Spoon</a><br/>
 <strong>Location</strong>: New York, Downtown (Williams and Platt)<br/>
@@ -842,7 +842,7 @@ should investigate the crimes being committed against their beans in this locati
   <entry>
     <title type="html"><![CDATA[Coffee Nerdery: Kaffe 1668]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/02/coffee-nerdery-kaffe-1668/"/>
-    <updated>2012-09-02T17:42:00-07:00</updated>
+    <updated>2012-09-02T17:42:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/02/coffee-nerdery-kaffe-1668</id>
     <content type="html"><![CDATA[<p><strong><a href="http://kaffe1668.com">Kaffe 1668</a></strong><br/>
 <strong>Location:</strong> New York, Tribeca a few blocks from the GZ Memorial<br/>
@@ -890,7 +890,7 @@ breads so take that fwiw).</p>
   <entry>
     <title type="html"><![CDATA[Coffee for Traveling Nerds]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/09/01/coffee-for-traveling-nerds/"/>
-    <updated>2012-09-01T09:01:00-07:00</updated>
+    <updated>2012-09-01T09:01:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/09/01/coffee-for-traveling-nerds</id>
     <content type="html"><![CDATA[<p>I&#8217;m embarking on something I&#8217;ve wanted to do for a long time. Coffee reviews
 for traveling nerds. I don&#8217;t travel extensively but I do go places and my trip
@@ -983,7 +983,7 @@ for me to visit, please let me know.</p>
   <entry>
     <title type="html"><![CDATA[Epic ATG Cheffing]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing/"/>
-    <updated>2012-08-11T08:47:00-07:00</updated>
+    <updated>2012-08-11T08:47:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing</id>
     <content type="html"><![CDATA[<p>I just want to take a moment to point you at an epic new Chef cookbook undertaking. John Larsen has been working on a <a href="http://community.opscode.com/cookbooks/atg">cookbook to configure a full ATG stack with JBoss</a> and has finished a first version. This is something I always wanted to work on but never got around to, and so I&#8217;m being extra appreciative of someone who did take the time to get it working.</p>
 
@@ -1029,7 +1029,7 @@ running (often with scissors).</p>
   <entry>
     <title type="html"><![CDATA[Attributes Origami]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami/"/>
-    <updated>2012-07-28T23:00:00-07:00</updated>
+    <updated>2012-07-28T23:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/07/28/attributes-origami</id>
     <content type="html"><![CDATA[<p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
 
@@ -1067,7 +1067,7 @@ running (often with scissors).</p>
   <entry>
     <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
-    <updated>2012-07-11T15:54:00-07:00</updated>
+    <updated>2012-07-11T15:54:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go</id>
     <content type="html"><![CDATA[<p>Today I was having a conversation about consulting and how important it is to
 not be emotionally attached to your solutions. As a consultant, you exist to be
@@ -1241,7 +1241,7 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
   <entry>
     <title type="html"><![CDATA[My Favorite JVM Arg EVER]]></title>
     <link href="http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever/"/>
-    <updated>2012-04-27T00:00:00-07:00</updated>
+    <updated>2012-04-27T00:00:00-05:00</updated>
     <id>http://blog.brattyredhead.com/blog/2012/04/27/my-favorite-jvm-arg-ever</id>
     <content type="html"><![CDATA[<p>This is partially a post for posterity because I can never remember the format of this when I want it and I have to search all over the Internets for it.&nbsp; And for some reason, it&#8217;s really hard to find with keywords.&nbsp; Possibly my google-fu sucks, but I actually think it&#8217;s a java developer conspiracy.</p>
 <p>The first time I found this jvm arg, it was by accident.&nbsp; I was reading a page of comprehensive JVM args.&nbsp; No it wasn&#8217;t for fun, although I was enjoying it.&nbsp; I was on a gig to help a client get rid of 20 second garbage collections that were crashing their site.&nbsp; So I was reading through the page just to see what might be useful and I found this:</p>

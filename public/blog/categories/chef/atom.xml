@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Chef | Bratty Redhead]]></title>
+  <title><![CDATA[Category: chef | Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/blog/categories/chef/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-05-24T11:28:51-07:00</updated>
+  <updated>2013-05-24T23:53:30-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -14,48 +14,81 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Epic ATG Cheffing]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing/"/>
-    <updated>2012-08-11T08:47:00-07:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/08/11/epic-atg-cheffing</id>
-    <content type="html"><![CDATA[<p>I just want to take a moment to point you at an epic new Chef cookbook undertaking. John Larsen has been working on a <a href="http://community.opscode.com/cookbooks/atg">cookbook to configure a full ATG stack with JBoss</a> and has finished a first version. This is something I always wanted to work on but never got around to, and so I'm being extra appreciative of someone who did take the time to get it working.</p>
+    <title type="html"><![CDATA[Minneapolis - St Paul Infracoders Meetup Recap]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/"/>
+    <updated>2013-05-07T10:34:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap</id>
+    <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the <a href="http://www.meetup.com/Twin-Cities-Infracoders">Twin Cities Infracoders group</a>.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies.</p>
 
-<!-- more -->
+<p>Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It's homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that's Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.</p>
+
+<p><a href="http://www.linkedin.com/in/mpgoetz">Mike Goetz</a> and <a href="http://www.linkedin.com/in/thomasduffield">Tom Duffield</a> gave us a great compressed Wordpress install demo on a local VM with Vagrant and Chef. Then they gave us a second demo of spinning up two ec2 instances to separate the front and back end pieces of Wordpress.</p>
+
+<p>After Vagrant, we ran through some Sensu slides and looked at some basic info about Sensu.  There were technical difficulties around the demos we were working on so demoing was minimal but discussion around why Sensu, how Sensu and when you might switch was great and we're looking forward to a more detailed demo at next month's meetup.</p>
+
+<h5>Here is the collection of tools and links from last night:</h5>
+
+<p><a href="http://www.vagrantup.com/">Vagrant</a><br/>
+<a href="http://docs.vagrantup.com/v2/plugins/index.html">Vagrant Plugins</a><br/>
+<a href="http://sensuapp.org/">Sensu</a><br/>
+<a href="http://slides.sensuapp.org/">Sean Porter's Slides</a><br/>
+Wordpress Demo(this link will be available shortly)</p>
+
+<h5>Coming up:</h5>
+
+<p>Next month's meetup, hosted again at the Nerdery, will be a presentation on using Selenium for automated testing and QA as well as our enhanced Sensu Server and client nodes deployed with Vagabond on LXCs inside a Vagrant VM.  I hope we get a great turnout.</p>
+
+<p>On another note, I have been talking lately about how I want to organize a Chef hackday. After last night's discussions around tooling and workflow, I think it might be nice to instead do a tool-agnostic Workflow Tooling hack and help day. Many of us have gotten workflows configured successfully, but depending on your experience beating on the Ruby toolchain, it can be challenging the first couple times you do it.  The Nerdery said they would probably be willing to host and I was thinking about asking CoCo Minneapolis if they had any interest in hosting.</p>
+
+<p>I'll post up a question in the meetup group about location and date preferences to see if I get enough interest to make it a thing. I'll also send someone to shill at the monthly DevOps meetup that I can never attend due to my work travel schedule.</p>
+
+<p>If you haven't made it out to an Infracoder meetup yet, I hope you because we are having some great tech discussions and getting to hear about other people's uses cases for things is fascinating. Also, the Nerdery takes super great care of us and feeds us Pizza for dinner.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Shell Scripts Are Like Gremlins]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins/"/>
+    <updated>2012-12-13T20:15:00-06:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2012/12/13/shell-scripts-are-like-gremlins</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.brattyredhead.com/images/gremlin3.jpg"/></p>
+
+<p>Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don't stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn't the first time.</p>
+
+<p>The source of this discussion was brought on while we were reviewing some chef work I'm doing with a development team.  My work was mainly to assist them in getting to functioning cookbooks that also had their app logic separate from global cookbooks. I basically copied their intent wherever it made sense while shoring up design and Chef styling. One of the things they were doing was making a call to our Artifactory server for a latest snapshot of a WAR file, downloading it into the Tomcat directory and restarting Tomcat. Works for me.</p>
+
+<p>Getting to this point in the review triggered a long, heated debate over</p>
+
+<ol>
+<li>whether you ever wanted this to happen,</li>
+<li>whether you should use Chef to manage deployments, use Jenkins to kick off shell scripts or use some other orchestration tool to do something else or</li>
+<li>just copy the world by hand (well, no one really believes that last is a good idea).</li>
+</ol>
 
 
-<p>Anyone who works on ATG projects knows that installing and configuring the
-first instances of ATG is hella complex and nearly impossible to do even with
-documentation.  With all the options, variables and components, it mostly takes repetition and mistakes to get an initial ATG install correct.</p>
+<p>I was like, geez guys, I'm just mimicking the dev team's functionality, why are we are arguing about this? But this has been a topic of discussion often recently and, with another team announcing yesterday they were writing a homegrown tool to manage jboss, deploy ATG ears and manage config files all retrieved from Artifactory, I don't expect the subject to die soon.</p>
 
-<p>That's <strong>not</strong> what this cookbook is about. You still have to know how to get ATG
-right the first time or have someone on your team who does. This cookbook is
-not going to make you an ATG expert, but it will relieve the tedium of
-managing your configurations. It will also speed up adding a new instance. The more epic your configs, the more awesome this
-cookbook will be for you.</p>
+<p>I don't think there's one right answer to how you deploy your code, but I think there are many poorly thought out ones. I'm not here to necessarily make an argument for Chef as a deployment orchestrator.  While there are people deploying with Chef at scale, I am not one of them, nor have I been. My work with Chef has been mainly in development with some provisioning and so I have a lot of theories, but that's really all.  What I do want to talk about is why I don't like shell scripts for deployments or orchestration and what I want in a deployment system. This is the first part of at least a 2 on this topic.</p>
 
-<p>The cookbook contains a modified version of <a href="http://community.opscode.com/cookbooks/jboss">Bryan Berry's JBoss Cookbook</a>, specialized for ATG deployment and does the following cool things:</p>
+<p><strong>Shell Scripts are like Gremlins</strong>. You start out with one adorably cute shell script. You commented it and it does one thing really well. It's easy to read, everyone can use it. It's awesome! Then you accidentally spill some water on it, or feed it late one night and omgwtf is happening!?</p>
 
-<ul>
-<li>Configures single or multiple instances of JBoss on a server</li>
-<li>Provides flexibility to determine where you will setup your lock management,
-global, process and workflow managers.</li>
-<li>Configures port management for ATG legacy ports</li>
-<li>Has templates for all the major ATG property files, like
-Configuration.properties, Lock Manager, scenario manager and  workflow process manager</li>
-<li>Has templates for major jboss/atg configs like atg-ds.xml, bindings, log4j,
-run.conf, etc</li>
-<li>Definitions for configuration sets (lock, staging, store...)</li>
-</ul>
+<p><strong>The Fixer</strong>: Someone else comes along and found an edge case your shell script doesn't deal with. They add in some logic for the edge case, voila, problem solved.</p>
 
+<p><strong>The Refiner</strong>: Eventually someone realizes the logic for the edge case is not specific enough and is causing deployments to fail sometimes, so they refine the logic.</p>
 
-<p>The ATG cookbook is well thought out, fairly large and handles complex scenarios. If you are in
-the position of having to manage or build an ATG environment, I definitely
-encourage you to check it out.  With something like this, it would even be
-possible to stealth manage your configs with Chef-solo early on if you're looking to prove out
-configuration management for ATG-JBoss. In my experience, there's something about
-shops running this combo that makes them, in general, resistant to
-configuration management. Possibly it's the breakneck speed at which I see them
-running (often with scissors).</p>
+<p><strong> The Slippery Slope</strong>: After that, someone might decide it's a good idea to automate stopping the apache server from sending traffic during deployments and decides to do it in the same script.  Great idea! That's such an awesome idea that everyone starts adding functionality to the tiny beautiful shell script, now no longer tiny nor beautiful.</p>
+
+<p><strong>OMG GREMLINS!</strong>  Then you come back along and find all the extra stuff in your shell script that doesn't belong there.  You're horrified. You might even be feeling a little bit violated (come on, we've all been there at least once).  So what do you do? You pour some water on it. You break out the shell script into several functional bits. Now we have LOTS of gremlins instead of just one. Now you have a <em>suite</em> of scripts that are once again beautiful. But now the deployment is complex. You have a suite of <del>bash</del> <del>perl</del> <del>ruby</del> <del>python</del> scripts that also need a wiki page to describe intended flow, what to do if something doesn't work and any edge cases that you haven't gotten around to scripting yet.</p>
+
+<p><strong>The Exodus</strong>: Next up: You get a call from a buddy who is dying to have you come work for his Next Big Thing startup. So you quit your job, pack your bags and move to Silicon Valley Sitcom with ne'er a backwards glance, leaving a couple of forlorn junior sysadmins desperately reading wiki pages trying to figure out what to do with your shell scripts as a new application is launched that requires a bunch of new logic for deployment. These guys do the best they can and start tacking on if statements everywhere they need to in order to make the deployments go.</p>
+
+<p><strong>Subsistance Living</strong>: 6 months later, one of these guys leaves and the company hires 3 more guys with no understanding of the history of the deployment scripts.  Sometimes they work, sometimes they don't, people aren't entirely sure why and just self correct by hand at the command line until things work(phew!). Everyone is afraid to touch them because they are fragile, the code connecting them is obscure and there are similar logic blocks found in several sections, sometimes commented out, sometimes used, but you're not really sure whether it's necessary. The original wiki page gets updated sometimes but not often and not usually by the person maintaining the scripts but by the people using them in the middle of the night.</p>
+
+<p>And that's why I hate shell scripts and think you should never use them for deployment scaffolding.</p>
+
+<p><strong>True story</strong>: my first venture with Chef involved deconstructing an organically grown Kickstart post that had been originally written for Red Hat 3 and subsequently updated for RH 4, 5 and 6.  I was removing functionality from the postscript and rewriting it in Chef blocks when one of the admins came and yelled at me for omitting a block of host names from /etc/hosts and I was like, GUYS, those host names are for servers in a data center that was decommissioned  when I started here 3 years ago.</p>
+
+<p>You can tune in for the second half of this blog post, what I want in a decent deployment system, when it goes up next week on the <a href="http://sysadvent.blogspot.com">Sysadvent blog</a>.  Woohoo!</p>
 ]]></content>
   </entry>
   

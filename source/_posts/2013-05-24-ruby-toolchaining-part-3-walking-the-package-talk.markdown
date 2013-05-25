@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Ruby Toolchaining Part 3: Walking the Package Talk"
-date: 2013-05-18 03:16
+date: 2013-05-24 03:16
 comments: true
 categories: [ruby, packages, fpm, gems, toolchains] 
 ---
