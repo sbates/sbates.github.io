@@ -4,7 +4,7 @@
   <title><![CDATA[Bratty Redhead]]></title>
   <link href="http://blog.brattyredhead.com/atom.xml" rel="self"/>
   <link href="http://blog.brattyredhead.com/"/>
-  <updated>2013-06-28T15:38:31-05:00</updated>
+  <updated>2013-07-03T15:32:51-05:00</updated>
   <id>http://blog.brattyredhead.com/</id>
   <author>
     <name><![CDATA[Sascha Bates]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cleaning Up The Clubhouse]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/07/03/cleaning-up-the-clubhouse/"/>
+    <updated>2013-07-03T15:10:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/07/03/cleaning-up-the-clubhouse</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve been a bit reluctant to enter this discussion on my blog; partly because there are some <a href="http://rachelbythebay.com/w/2013/03/27/roadblock/">amazing</a>, <a href="http://globalcomment.com/not-so-funny-sam-morrils-rape-jokes-and-female-comedy-fans/">thoughtful</a> <a href="http://www.gamingaswomen.com/posts/2013/06/an-interview-with-jim-sterling-about-sexism-in-game-culture/">posts</a> <a href="http://io9.com/slut-shaming-and-concern-trolling-in-geek-culture-511721655">already</a> that eclipse anything I could say and also because any of these discussions seem to spark a lot of outrage and anger regardless of the actual topic content. That kind of drama is a big turnoff for me.   But I did want to say a few things about a recent experience at devopsdays because it seems to be an angle we aren&#8217;t discussing.</p>
+
+<p>At <a href="http://devopsdays.org/events/2013-mountainview/">devopsdays Silicon Valley</a> this year, one of the breakout sessions was <a href="http://dougireton.com/blog/2013/06/23/encouraging-women-in-dev-slash-ops/">&#8220;Encouraging Women in Dev/Ops,&#8221;</a> led by Doug Ireton, one of the awesome automation engineers at Nordstrom&#8217;s.  I was already dragging from Velocity and hadn&#8217;t planned to go to any sessions, much less yet another &#8220;how do we get more women in tech&#8221; discussion.</p>
+
+<p>If I sound impatient, it&#8217;s because I am a bit.  In general, I don&#8217;t have any really strong opinions on the &#8220;women in tech&#8221; discussions. This is because I feel we have the same discussions over and over again without covering any new ground or making any difference in how people think. This may actually not be a fair feeling as the discussion has certainly changed the way I think. Or, more accurately, it&#8217;s made me think about it.  I don&#8217;t actually think we should be worrying about how to get MORE women in tech as much as how to make it a comfortable place for people who are already here. Take care of that and balance will come eventually.</p>
+
+<h3>Some History</h3>
+
+<p>I entered tech during the 2000s internet boom where any warm body would do and you didn&#8217;t have to be a decent human being to keep your job. I know this because I often was not a decent human being myself. I was grumpy and petulant, at least in my head, and folks from those early days would probably agree (Kiosk level 2 support team who I pissed off in a major way and worked hard to repair that relationship, are you out there anywhere?). I did eventually grow up and become a moderately self-aware decent human being and have even managed to develop some empathy for people outside my direct life experience.</p>
+
+<p>Not only have I worked in Tech most of my adult life, my dad was a wargamer and RPGer. I was exposed to many strains of nerds and geeks growing up and some of the biggest treats of my 8 year old self involved getting to stay up late with the grownups while they played D&amp;D and maybe even being given a character sheet.</p>
+
+<p>I lived in a house with 4 other guys in college where I learned to watch Star Wars and Repo Man on repeat on one TV while playing video games on the second TV until 2am.</p>
+
+<p>What I&#8217;m trying to communicate with this history is that, while there are certainly some women in all of these lifestyle choices (wargames, rpg, tech support, web ops), we make up a small percentage. So I spent my life getting used to being one of very few women in any tech or social group. Sometimes it&#8217;s fine, sometimes it&#8217;s not fine. It largely depends on the company I&#8217;m keeping.</p>
+
+<p>Regardless, I was taught to communicate by social groups who probably shouldn&#8217;t be teaching anything. But I learned early that guys tease and insult when they like you and that you shouldn&#8217;t worry until they are polite, kind or ignore you.  That also became my style of communicating for a long time because that&#8217;s what I knew.   To this day I am comfortable with it. Dick/Boob jokes don&#8217;t bother me. Profanity doesn&#8217;t bother me. It was co-workers on the clock that introduced me to such great things in life as Triumph, the insult comic dog, South Park and all kinds of inappropriately funny youtube videos. Calling me a girl doesn&#8217;t bother me. Calling me a princess doesn&#8217;t bother me because there are plenty of boy princesses out there and I&#8217;ve called them on it.</p>
+
+<p>Things that DO bother me: overt misogyny, hatefulness and guys who constantly bitch at work about how their wife makes their life miserable.  People who won&#8217;t admit there is a problem with &#8220;isms&#8221; in the world because they themselves don&#8217;t perpetuate it or see it. There is a big difference between a dick joke in private with friends/colleagues and making one at a party where you don&#8217;t know people. Context is everything.</p>
+
+<h3>The Effects of  HTFU or GTFO</h3>
+
+<p>To be clear, I&#8217;m not saying I&#8217;ve sailed through life happily making dick jokes. I have experienced a lot of internal turmoil and emotional anguish over all-guy teams that I have been on, especially early in my career where it was still really hard to gain acceptance and professional respect.  But 10 years ago it was HTFU or GTFO. And so that&#8217;s what I did. And when you make that a condition for acceptance, you greatly shrink the available population and personality types who stick around, both men and women.</p>
+
+<p>The modern discussion of sexism (specifically because it relates to me) has taken me from an attitude of <em>&#8220;most of it doesn&#8217;t bother me and I don&#8217;t know why people care&#8221;</em> to <em>&#8220;A lot of perceived exclusionary sexism doesn&#8217;t bother me, but other people have different expectations from their professional lives now; I entirely respect that and will work to make  my professional sphere a welcoming and safe place.&#8221;</em> In order to attract the next generation of women into tech, everyone is going to have to come at least this far in their thinking.  And it&#8217;s not just sexism; it&#8217;s <a href="http://en.wikipedia.org/wiki/Ableism">ableism</a>, <a href="http://en.wikipedia.org/wiki/Genderism">genderism</a>, homophobia, and <a href="http://en.wikipedia.org/wiki/Cissexism">on</a> and <a href="http://en.wikipedia.org/wiki/Discrimination">on</a>.</p>
+
+<p>But to get back to why I&#8217;m bored with the women-in-tech discussion people keep wanting to have, I don&#8217;t see it making a diff and I&#8217;m still getting a big vibe from guys of &#8220;I don&#8217;t do it and I don&#8217;t see it and how is it possibly a problem?&#8221;  I ended up going to the discussion because I really like Doug and wanted to be supportive of his efforts.  In general, it was pretty much what I always hear and it usually boils down to &#8220;we&#8217;re really nice guys and we can&#8217;t find any women to hire.&#8221;  I get that there are not a lot of us out there. BUT…</p>
+
+<h3>Self Awareness is the Key</h3>
+
+<p>My answer to everyone who feels like this, and I gave it to the Nordstrom&#8217;s guys when we talked about it later, is this: work on your own self-awareness. I&#8217;m sure you think you&#8217;re a reasonable person who never had a sexist thought in their life.  I&#8217;m pretty sure this is not true, because even I have made pissy comments about women drivers, although only in the privacy of my own car by myself. But I still think it. And I&#8217;m a woman!</p>
+
+<p>So work on your self awareness. If you really care, go around to every woman in your professional and personal life and ask them to please offer you feedback if they feel you&#8217;ve ever done something sexist or demeaning either to them or in their presence, no matter how trivial it seems. Because I have news for you guys, we don&#8217;t offer that stuff uninvited. We expect to be scoffed at or ignored because so many people think <a href="http://therealkatie.net/blog/2012/mar/21/lighten-up/">sexism is drama</a>. Example: I have a friend I&#8217;ve worked with at two places now and it took me 3 minutes to spit out &#8220;can I offer you some feedback?&#8221; before calling him on the fact that he&#8217;d talked over and for me in a meeting, something I find particularly galling.</p>
+
+<p>None of this is going to get MORE women in tech. But it&#8217;s going to comfort the ones who are already here and word of mouth is a particularly powerful advertiser, as every viral video ever should tell you.  And honestly, I think it&#8217;s going to do more for everyone if we clean up the house first before inviting more women over and asking them to help you clean it up with them.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Screencasts: Context is Everything]]></title>
@@ -1082,180 +1125,6 @@ running (often with scissors).</p>
 <p>I mean, yeah, dot notation didn&#8217;t always work and I probably never understood why. I was like this when I first learned chef:</p>
 
 <p><img src="images/babylol.jpg" /></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Learning to Let Go (or how I stopped worrying and learned to love the bomb)]]></title>
-    <link href="http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go/"/>
-    <updated>2012-07-11T15:54:00-05:00</updated>
-    <id>http://blog.brattyredhead.com/blog/2012/07/11/learning-to-let-go</id>
-    <content type="html"><![CDATA[<p>Today I was having a conversation about consulting and how important it is to
-not be emotionally attached to your solutions. As a consultant, you exist to be
-an enabler. You help others succeed with tasks that, without your expertise, they
-might fail instead.  As consultants, our value comes from a long history of
-observing and participating in spectacular failures and fantastic
-successes. We know what works and what doesn&#8217;t work and we can articulate the
-reasons why.  But our value can be compromised if we can&#8217;t interact effectively
-with our clients. This means checking your emotions and inner schadenfreude at
-the door and working with clients to discover a solution that is practical for
-their environment.</p>
-
-<h5>BOFH</h5>
-
-<p>Back in the day, I worked on a silo&#8217;d web operations team at a big retail
-company. We knew how we liked things done and, although we might argue amongst
-ourselves, we presented a united bullying front to the dev teams.  For example,
-  we didn&#8217;t allow them to deploy apps into production when they came with the
-  caveat of &#8220;you have to restart the app every night.&#8221; We drank developer tears
-  with breakfast, and we liked it that way.</p>
-
-<p>  Guess what? Consultants don&#8217;t have that luxury. I might also argue that
-  internal operations teams no longer have that luxury, but that&#8217;s a blog for
-  another day.
-  <!-- more --></p>
-
-<p>  In that job, I saw every kind of connection leak, OOM and spectacular
-  cascading infrastructure disaster you can think of and I participated in
-  resolving several.  Eventually I moved on to consulting for a large company
-  where I designed and deployed infrastructure for large web-based
-  applications. My previous experience was not just invaluable for designing
-  infrastructure in diverse environments, It also enabled me to advise client
-  development teams on how to write robust applications and assist them in
-  tracking down performance problems during the development process.  I was
-  full of ideas! They were all brilliant! Wait, what!? Where is everyone going?
-  How can you not like my ideas?</p>
-
-<h5>Keep your WTFs to yourself</h5>
-
-<p>  As a new consultant, I had excellent technical knowledge, some decent
-  communication skills, and a host of opinions.  I knew the right way to get
-  things done and people should listen to me because <em>I was the consultant</em>.
-  But technical knowledge and opinions can only take you so far. Some people
-  aren&#8217;t suited to life with clients. Often there is no one to shield you from
-  difficult people they way your manager would in a normal job. You need to
-  work with all types of personalities, while maintaining a calm demeanor. You
-  need to be able to not take things personally. You must be capable of
-  articulating the why&#8217;s behind your ideas and speak objectively about ideas
-  from the client, even if you think it&#8217;s the worst idea since Greedo shooting
-  first.</p>
-
-<p>  You can&#8217;t say things like, &#8220;That&#8217;s the dumbest thing I&#8217;ve ever heard,&#8221; or
-  &#8220;Why in god&#8217;s name would you ever do that?&#8221;  A favorite that I had to give up
-  was, &#8220;Why do you want to make me cry?&#8221;</p>
-
-<h5>Don&#8217;t Get Attached</h5>
-
-<p>   A concept that challenged me is that there is no absolute right or wrong way
-  to design something. The corollary to that is you will always disagree with at least
-  one thing the client wants to do. Sometimes you will disagree with many.
-  Sometimes they will disagree with your solutions and expect you to implement
-  what they want, not what you want.</p>
-
-<p>  Well, WTF? You think to yourself, how am I supposed to do that? Newsflash:
-  You need to figure it out because that&#8217;s why you get paid the big bucks. As
-  an independent consultant now, I have some leeway to do my due diligence and
-  decline projects that look risky or are implementing tech stacks of which
-  I don&#8217;t approve. As an employee for a consulting company, I went where they
-  pointed me and I liked it. And I figured it out, because they paid me
-  a boatload of money to use my brain.</p>
-
-<p>  Something you will hear often as a consultant: &#8220;That&#8217;s a great idea, but
-  we&#8217;re not going to it.&#8221; A client once decided to implement mission critical
-  queuing on WebSphere Application Server&#8217;s internal message bus. I could and
-  did explain that this solution was not robust until I was blue in the face,
-  but the fact is, WebSphere MQ software is expensive and open source wasn&#8217;t an
-  option(because). <em>Retail order fulfillment queuing</em> was implemented where
-  they wanted it and I spent my days and nights reading up on how to ensure as
-  little data loss (orders, right?!) as possible if the unclustered,
-  non-redundant server went down. As an aside, I should note that this client
-  has since gone out of business.</p>
-
-<p>  You can&#8217;t be emotionally attached to your ideas. I know you think you have
-  the one true path to success.  You don&#8217;t. Regardless of how smart you are,
-  the customer knows their systems better and they know their politics better.
-  They know what can be accomplished.  Get used to having your ideas shot down
-  and don&#8217;t let it upset you. Don&#8217;t hang on to them.  You need to get over it
-  and move on. If you&#8217;re still hanging on to today&#8217;s disagreements tomorrow,
-  you won&#8217;t be able to think clearly tomorrow about new technical challenges.</p>
-
-<h5>Pick Your Battles</h5>
-
-<p>  Sometimes you&#8217;ll encounter strong opposing opinions. If you&#8217;re an IT
-  consultant, it&#8217;s guaranteed. Remember, 95% of battles do not need to be
-  fought. Just because you don&#8217;t approve of a naming convention is no reason to
-  argue, especially if another engineer is in love with it.  You might
-  implement applications that need nightly rolling restarts, even if you could
-  prove they don&#8217;t need it, just because management has been burned in the
-  past. Don&#8217;t fight it. Nightly restarts aren&#8217;t the end of the world.  You
-  might meet a team who wants to migrate all of their bash scripts verbatim
-  into configuration management. This would be a hard one for me to let go, and
-  I might try to convince people not to do it, but I would concede in the end,
-  because <strong>refactoring exists</strong>.</p>
-
-<p>  Save up your argues for when it matters. Eventually you will come upon
-  something you absolutely won&#8217;t want to compromise. If you haven&#8217;t been
-  arguing about everything up to this point, it&#8217;s likely people will actually
-  listen when you bring it up.</p>
-
-<p>  Your job isn&#8217;t to say no.  It&#8217;s to say yes.  If your first inclination is to
-  dismiss an idea or say no, stop and think about why. Do you have valid
-  concerns? What is a valid concern? A valid concern might be a high
-  availability requirement with only one database server in the plan.  That&#8217;s
-  a problem. But you still don&#8217;t get to say no. That&#8217;s not your job.  Instead
-  you should point out the very obvious risk involved in zero redundancy.
-  Several years ago, I was presented with a client&#8217;s server plan that I knew
-  would never survive the first engagement. In this case, we knew they were
-  trying to save as much money as possible, so the consulting team got together
-  in a room and came up with a perfect world scenario and then two less
-  expensive alternatives that allowed for some robustness while saving on
-  hardware expenses. I then power pointed the entire thing and presented to
-  senior management. I had been consulting for all of 3 months at the time and
-  was petrified but we won them over to one of our solutions in the end.</p>
-
-<h5>This isn&#8217;t relevant to me, I&#8217;m a full time employee</h5>
-
-<p>  Are you on an ops team? Do you work with development teams to get apps into
-  production? How about a monitoring team? Do you work with devs to create
-  coherent actionable alerts? Then you are a consultant. Developers care about
-  one thing: writing code. Some developers do care about more and have the
-  background to be interested in more, but in general, especially in big
-  companies or outsourced development, all devs care about is writing code.
-  They don&#8217;t know how anything else works. It doesn&#8217;t make them dumb, it makes
-  them part of a world of which you only see a part.</p>
-
-<p>  This makes you their enabler and a consultant. You have knowledge critical to
-  their success. It&#8217;s not just your job to provide them with an app container
-  and now buzz off.  You&#8217;re their lifeline to the rest of the infrastructure.
-  Telling them &#8220;no&#8221; or ridiculing an idea will only make them angry and
-  determined to circumvent all the sane safeguards you&#8217;ve put into place for
-  everyone&#8217;s good.</p>
-
-<p>  Instead of treating development teams like they know nothing, take a moment
-  to find out why they want to do what they&#8217;re doing.  Many times you&#8217;ll find
-  that they&#8217;ve actually just spent two solid days trying to solve a prickly
-  problem and this is the only working viable option they&#8217;ve found. Maybe your
-  perspective will help you advise them on a better way, or they could be right
-  and you could be stuck with something suboptimal. At this point, instead of
-  being grumpy about it, start figuring out ways to limit the damage or make it
-  more robust and work with your dev instead of against him.  Full time
-  employees, I&#8217;m talking to you.</p>
-
-<p>  Consulting isn&#8217;t for everyone. If you can&#8217;t learn to take deep breaths and
-  count to ten, it might not be for you. I still make mistakes and have often
-  been grateful for working remote where I can wear my rage face in private.
-  In the end, you have to be able to let it all roll over you. This isn&#8217;t your
-  infrastructure and sometimes compromises must be made.</p>
-
-<p>  For me, consulting is emotionally easier in some ways because I can accept
-  decisions with which I don&#8217;t necessarily agree, knowing that I won&#8217;t be
-  around to see the heartache in a year. All I can do is my best with whatever
-  is under my control. And my best is impressive. I am a master tweaker and
-  I document the hell out of ALL THE THINGS.  But I often see sacrifices of
-  stability for expediency and it does hurt me.  I&#8217;ve just learned to not let
-  it hurt too much. The great thing about consulting is, if this project
-  didn&#8217;t work out exactly the way you wished, the next one is right around the
-  corner, waiting for you bring it all your awesomeness.</p>
 ]]></content>
   </entry>
   
