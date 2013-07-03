@@ -36,7 +36,7 @@ My answer to everyone who feels like this, and I gave it to the Nordstrom's guys
 
 So work on your self awareness. If you really care, go around to every woman in your professional and personal life and ask them to please offer you feedback if they feel you've ever done something sexist or demeaning either to them or in their presence, no matter how trivial it seems. Because I have news for you guys, we don't offer that stuff uninvited. We expect to be scoffed at or ignored because so many people think [sexism is drama][light]. Example: I have a friend I've worked with at two places now and it took me 3 minutes to spit out "can I offer you some feedback?" before calling him on the fact that he'd talked over and for me in a meeting, something I find particularly galling.   
 
-None of this is going to get MORE women in tech. But it's going to comfort the ones who are already here and word of mouth is a particularly powerful advertiser, as every viral video ever should tell you.  And honestly, I think it's going to do more for everyone if we clean up the house first before inviting more women over and asking them to help us clean it up with them.
+None of this is going to get MORE women in tech. But it's going to comfort the ones who are already here and word of mouth is a particularly powerful advertiser, as every viral video ever should tell you.  And honestly, I think it's going to do more for everyone if we clean up the house first before inviting more women over and asking them to help us clean it up for them.
 
 [dod]: http://devopsdays.org/events/2013-mountainview/
 [light]: http://therealkatie.net/blog/2012/mar/21/lighten-up/
