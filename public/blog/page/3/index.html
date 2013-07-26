@@ -9,8 +9,7 @@
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="Today I was having a conversation about consulting and how important it is to
-not be emotionally attached to your solutions. As a consultant, you &hellip;">
+  <meta name="description" content="This post has been percolating in my brain for a long time. I mean like, long. Ever since I read a snippet from last year&#8217;s Chef Summit &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -84,6 +83,71 @@ not be emotionally attached to your solutions. As a consultant, you &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/28/attributes-origami/">Attributes Origami</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-28T23:00:00-05:00" pubdate data-updated="true">Jul 28<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
+
+<p>This post assumes some basic familiarity with Chef and node attributes. I assume that most people are going to be bored with the subject matter unless you care about nerdy details or why strings are the official preferred notation. You can get the <a href="http://wiki.opscode.com/display/chef/Cookbook+Attributes#CookbookAttributes-Notation">short version</a> on the Chef Wiki Cookbook Attributes page. I have a longer discussion here that focuses on my discovery process and evolution of thought.</p>
+
+<h4>A Quick Attribute Notation Overview</h4>
+
+<p>When I first started working with Chef, the publicly available cookbooks and wiki documentation were written in different styles.</p>
+
+<ul>
+<li>Some used <strong>symbols</strong>: node[:some][:symbol]</li>
+<li>some used <strong>strings</strong>: node[&#8216;some&#8217;][&#8216;string&#8217;]</li>
+<li>some used <strong>method_missing</strong>: node.dot.notation</li>
+</ul>
+
+
+<p>I usually refer to this last as &#8220;dot notation,&#8221; mostly because I had no idea what else to call it at first. I still call it that as it&#8217;s an intuitive reference for someone who doesn&#8217;t know much Ruby. I read up on <a href="http://ruby-doc.org/docs/ProgrammingRuby/html/ref_c_object.html#Object.method_missing">method_missing</a> in prep for this blog post, but it was a new term and concept to me.</p>
+
+<h4>O dot notation, how do I love thee?</h4>
+
+<p>Getting back to it, I <em>lurved</em> my dot notation. It was easy to type. It was easy to read. It was harder to make typos. I am the queen of typos. Anything that helps me make fewer is my favorite friend. Then Chef Summit happened and recaps happened and I was like:</p>
+
+<p><img src="images/yutakeawaymaidots.jpg" float: left /></p>
+
+<p>At first I was outraged that they were <em>oppressing</em> my dot notation and I was terrified they would deprecate it, which would make me sad. For a long time after that, I was just mad and still loved my dot notation and resolved to just keep using it anyway. This was the first time I had the urge to blog about it. I was planning to tell everyone to piss off. I loved my dot notation and I didn&#8217;t want it taken away.</p>
+
+<p><img src="images/nocanheerz.jpg" float: right /></p>
+
+<p>I mean, yeah, dot notation didn&#8217;t always work and I probably never understood why. I was like this when I first learned chef:</p>
+
+<p><img src="images/babylol.jpg" /></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -502,54 +566,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/10/02/things-i-learned-at-surge/">Things I Learned at Surge</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-10-02T00:00:00-05:00" pubdate data-updated="true">Oct 2<span>nd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Generalists are awesome. &nbsp;Value them or you&#8217;re doomed. &nbsp;They make the best diagnosticians, especially when systems are large, complex, distributed and workgroups reside in silos.</p>
-<p>Cloud is awesome. &nbsp;Except when it&#8217;s not. &nbsp;Understand your vulnerabilities. Plan for failure. Don&#8217;t abuse your ops guys. Don&#8217;t abuse your devs. &nbsp;Be interested in what others are doing even if it doesn&#8217;t (seem to) directly apply to your job.</p>
-<p>Buy a fucking SSD. &nbsp;Hack your kernel. &nbsp;</p>
-<p>DNS is sexy. &nbsp;</p>
-<p>Just because it&#8217;s up doesn&#8217;t mean it&#8217;s working.</p>
-<p>Why use IBM when we have Rabbit?</p>
-<p>Often the best solution is a hybrid. &nbsp;Don&#8217;t reinvent the internets unless you&#8217;re feeling clever.</p>
-<p>Sales guys employ dragons and fire to prosecute leads. &nbsp;Shun assholes. &nbsp;OS projects should never skip over the governance role. &nbsp;You can always tell who&#8217;s doing devops right because they are genuinely happy.</p>
-<p>Etsy used to be the anti-pattern for awesome until they experienced a culture shift causing them to become our role model for even more awesome. &nbsp;LOLcats and LOLgoats make presentations even better.</p>
-<p>The best part about Surge is knowing that I was surrounded by so many smart people. &nbsp;I love the hallway track and listening to others talk about their systems, the challenges and solutions. &nbsp;I love hearing about project goals that would never have occurred to me. &nbsp;I love all the ideas I get from all the smart people talking around me all the time.</p>
-<p>The only unfortunate part of the week was that there were several opposing talks where I would have liked to see both. &nbsp;I hope that there are some videos posted eventually.</p>
-<p />
-<p>&nbsp;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -569,6 +585,10 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/new-post/">Shenanigans!</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/03/cleaning-up-the-clubhouse/">Cleaning Up The Clubhouse</a>
@@ -604,10 +624,6 @@ ourselves, we presented a united bullying front to the dev teams.  For example,
     
       <li class="post">
         <a href="/blog/2012/12/13/shell-scripts-are-like-gremlins/">Shell Scripts Are Like Gremlins</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/15/coffee-nerdery-blue-ox/">Coffee Nerdery: Blue Ox, Minneapolis</a>
       </li>
     
   </ul>

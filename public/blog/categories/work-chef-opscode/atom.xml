@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: work chef opscode | Bratty Redhead]]></title>
+  <link href="http://blog.brattyredhead.com/blog/categories/work-chef-opscode/atom.xml" rel="self"/>
+  <link href="http://blog.brattyredhead.com/"/>
+  <updated>2013-07-26T15:07:07-05:00</updated>
+  <id>http://blog.brattyredhead.com/</id>
+  <author>
+    <name><![CDATA[Sascha Bates]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Shenanigans!]]></title>
+    <link href="http://blog.brattyredhead.com/blog/2013/07/26/new-post/"/>
+    <updated>2013-07-26T14:31:00-05:00</updated>
+    <id>http://blog.brattyredhead.com/blog/2013/07/26/new-post</id>
+    <content type="html"><![CDATA[<p><img src="images/bw-avatar.png"/></p>
+
+<p>I've been trying to think of a thoughtful and engaging way to tell everyone the news. I feel like I should reflect on the last two years of independent consulting life and offer up some deep thoughts and wise advice.  But I got nothing.</p>
+
+<p>Starting August 5th, I'll be an <a href="http://www.opscode.com/">Opscode</a> employee.</p>
+
+<p>The truth is, I'm super excited to go to work with my friends and eventually move out of the snow-addled state of MN. A big reason I am independent is because I was tired of being an Enterprise employee.  I have always been willing to consider work with small companies but I also want a basis of friendship with my co-workers.</p>
+
+<p>I'm confident enough about who I am and what I do now that I'm not interested in what I have been calling "arranged marriage" jobs - the kind where you have a few interviews, get really excited and then discover you've walked into a clusterfk egofest.  I don't want to have to evaluate companies and people on the basis of a few interviews. I also don't want to have to engage in the inevitable dominance posturing and pissing contests that seem to be inevitable with many tech teams.</p>
+
+<p>On the other hand, working with smart people is one of the best things in the world. Being independent means you're often working alone and don't get to hang with other smart people very much. It's why I'm so enthusiastic about conferences, because that's where I get to hang with my smart friends.</p>
+
+<p>You can read in the <a href="http://blog.brattyredhead.com/blog/2011/06/23/another-chapter-done/">very first post</a> on this blog about how transformational it was for me to begin working with open source software, and Chef played a pivotal role in that.  I've worked with the tool now for over 3 years and I love it.</p>
+
+<p>While I do love the product, what draws me to Opscode is their attitude about culture, both internally and the community. <a href="https://twitter.com/search?q=%23hugops&amp;src=typd">HugOps</a> is a real thing and I love that it's a lifestyle choice. Between this and the fact that I like without reservation every Opscoder I've met makes this the beginning of an exciting adventure for me.</p>
+
+<p>I expect shenanigans to ensue almost immediately.</p>
+]]></content>
+  </entry>
+  
+</feed>

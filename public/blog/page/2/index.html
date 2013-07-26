@@ -9,11 +9,11 @@
   <meta name="author" content="Sascha Bates">
 
   
-  <meta name="description" content="Irving Farm Coffee Roasters
-Location: New York, 14th St &amp; 7th Ave, Uptownish
-Espresso: Irving Farms
-Machines: La Marzocco &amp; Doge
-Coffee Art: &hellip;">
+  <meta name="description" content="Blue Ox
+Location: Chicago and 38th St, South Minneapolis, MN
+Espresso: Counter Culture Hardware: Mazzer and La Marzocco
+Coffee Art: Yes
+Drink: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -87,6 +87,81 @@ Coffee Art: &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/15/coffee-nerdery-blue-ox/">Coffee Nerdery: Blue Ox, Minneapolis</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T14:53:00-05:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong><a href="http://blueoxcoffeecompany.com">Blue Ox</a></strong><br/>
+<strong>Location</strong>: Chicago and 38th St, South Minneapolis, MN<br/>
+<strong>Espresso</strong>: Counter Culture <br/>
+<strong>Hardware</strong>: Mazzer and La Marzocco<br/>
+<strong>Coffee Art</strong>: Yes<br/>
+<strong>Drink</strong>: cappuccino<br/>
+<strong>Served in</strong>: 6oz ceramic cups<br/>
+<strong>Visited</strong>: 2012 often</p>
+
+<p><img src="/images/blueox.jpg"></p>
+
+<p>The Blue Ox coffee shop opened up about 3 blocks from my house in 2011.  I love
+them. I love that they opened up in what I consider a marginalized area of
+Minneapolis, albeit one that people are working to revitalize. I love that
+I can walk 3 blocks to get wonderful artisan coffee. Sadly, I&#8217;m super lazy and
+often stay home and make my own substandard not-really-artisan coffee instead.</p>
+
+<p>Blue Ox always has local art on the walls. Furnished with several second hand
+dinette tables and chairs, they also have a comfy futon and you&#8217;ll often find
+the windows open and the ceiling fans running instead of a/c.</p>
+
+<p>Baristas here are always willing to talk the finer points of espresso and
+coffee with you.  They have individually brewed coffee, pour over and they&#8217;ll
+make you an AeroPress Aerobie coffee if you ask.  I&#8217;ve chatted with them and
+I know they calibrate the espresso grind and length of the pull at least every
+morning, sometimes more.</p>
+
+<p>They&#8217;ve cycled through a few different brands of coffee and have recently
+started serving Counter Culture beans. When paired with the local milk used
+here, these produce a lovely, sweet  espresso drink.</p>
+
+<p>Warning, Blue Ox only serves whole milk.  There is no skim or 2% here. They
+probably have soy, although I haven&#8217;t asked.  They have locally baked pastries
+but no hot food. Today when I came in, they were also offering chips and hummus
+or salsa.</p>
+
+<p>When you combine the laid back atmosphere and super yummy coffee combined with
+proximity to my house, Blue Ox pretty much wins my &#8220;favorite coffee shop in
+Minneapolis&#8221; award.  That&#8217;s not to say there aren&#8217;t other places just as good
+and I&#8217;ll be getting to those in future posts.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -683,71 +758,6 @@ a Starbucks across the street from my hotel.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/28/attributes-origami/">Attributes Origami</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-28T23:00:00-05:00" pubdate data-updated="true">Jul 28<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>This post has been percolating in my brain for a long time. I mean like, long. Ever since I <a href="http://wiki.opscode.com/display/chef/Cookbook+Style-Guide+Outline">read a snippet</a> from last year&#8217;s Chef Summit discussing best practices regarding attributes, I&#8217;ve wanted to write something. But what I&#8217;ve got to say keeps changing.</p>
-
-<p>This post assumes some basic familiarity with Chef and node attributes. I assume that most people are going to be bored with the subject matter unless you care about nerdy details or why strings are the official preferred notation. You can get the <a href="http://wiki.opscode.com/display/chef/Cookbook+Attributes#CookbookAttributes-Notation">short version</a> on the Chef Wiki Cookbook Attributes page. I have a longer discussion here that focuses on my discovery process and evolution of thought.</p>
-
-<h4>A Quick Attribute Notation Overview</h4>
-
-<p>When I first started working with Chef, the publicly available cookbooks and wiki documentation were written in different styles.</p>
-
-<ul>
-<li>Some used <strong>symbols</strong>: node[:some][:symbol]</li>
-<li>some used <strong>strings</strong>: node[&#8216;some&#8217;][&#8216;string&#8217;]</li>
-<li>some used <strong>method_missing</strong>: node.dot.notation</li>
-</ul>
-
-
-<p>I usually refer to this last as &#8220;dot notation,&#8221; mostly because I had no idea what else to call it at first. I still call it that as it&#8217;s an intuitive reference for someone who doesn&#8217;t know much Ruby. I read up on <a href="http://ruby-doc.org/docs/ProgrammingRuby/html/ref_c_object.html#Object.method_missing">method_missing</a> in prep for this blog post, but it was a new term and concept to me.</p>
-
-<h4>O dot notation, how do I love thee?</h4>
-
-<p>Getting back to it, I <em>lurved</em> my dot notation. It was easy to type. It was easy to read. It was harder to make typos. I am the queen of typos. Anything that helps me make fewer is my favorite friend. Then Chef Summit happened and recaps happened and I was like:</p>
-
-<p><img src="images/yutakeawaymaidots.jpg" float: left /></p>
-
-<p>At first I was outraged that they were <em>oppressing</em> my dot notation and I was terrified they would deprecate it, which would make me sad. For a long time after that, I was just mad and still loved my dot notation and resolved to just keep using it anyway. This was the first time I had the urge to blog about it. I was planning to tell everyone to piss off. I loved my dot notation and I didn&#8217;t want it taken away.</p>
-
-<p><img src="images/nocanheerz.jpg" float: right /></p>
-
-<p>I mean, yeah, dot notation didn&#8217;t always work and I probably never understood why. I was like this when I first learned chef:</p>
-
-<p><img src="images/babylol.jpg" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -767,6 +777,10 @@ a Starbucks across the street from my hotel.</p>
 <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/new-post/">Shenanigans!</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2013/07/03/cleaning-up-the-clubhouse/">Cleaning Up The Clubhouse</a>
@@ -802,10 +816,6 @@ a Starbucks across the street from my hotel.</p>
     
       <li class="post">
         <a href="/blog/2012/12/13/shell-scripts-are-like-gremlins/">Shell Scripts Are Like Gremlins</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/15/coffee-nerdery-blue-ox/">Coffee Nerdery: Blue Ox, Minneapolis</a>
       </li>
     
   </ul>
