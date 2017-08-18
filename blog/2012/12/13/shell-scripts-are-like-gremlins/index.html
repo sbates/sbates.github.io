@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Shell Scripts Are Like Gremlins - Bratty Redhead</title>
+  <meta name="author" content="Sascha Bates">
+
+  
+  <meta name="description" content="Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sbates.github.com/sbates/blog/2012/12/13/shell-scripts-are-like-gremlins/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Bratty Redhead" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Junge' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Port+Lligat+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24644588-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bratty Redhead</a></h1>
+  
+    <h2>the sarcasm is free!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"> <ul class="subscription" data-subscription="rss">
+  
+  <li><a id="linkedin" href="http://linkedin.com/in/saschabates"><div></div></a></li>
+  <li><a id="github" href="https://github.com/sbates"><div></div></a></li>
+  <li><a id="twitter" href="https://twitter.com/sascha_d"><div></div></a></li>
+  
+  <li><a id="rss" href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+ 
+ <form action="http://www.duckduckgo.com/" method="get">
+   <fieldset role="search">
+   </fieldset>
+ </form>
+ 
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About Me</a></li>
+</ul>
+ 
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Shell Scripts Are Like Gremlins</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-13T20:15:00-08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><img src="/images/gremlin3.jpg"/></p>
+
+<p>Today I ended up in a heated discussion with some team mates over deployment strategies. As is often the case with this team, myself included when I don&#8217;t stop and think, we often leap right to arguing over which tool is best before discussing the problem we want to solve. It wasn&#8217;t the first time.</p>
+
+<p>The source of this discussion was brought on while we were reviewing some chef work I&#8217;m doing with a development team.  My work was mainly to assist them in getting to functioning cookbooks that also had their app logic separate from global cookbooks. I basically copied their intent wherever it made sense while shoring up design and Chef styling. One of the things they were doing was making a call to our Artifactory server for a latest snapshot of a WAR file, downloading it into the Tomcat directory and restarting Tomcat. Works for me.</p>
+
+<p>Getting to this point in the review triggered a long, heated debate over</p>
+
+<ol>
+<li>whether you ever wanted this to happen,</li>
+<li>whether you should use Chef to manage deployments, use Jenkins to kick off shell scripts or use some other orchestration tool to do something else or</li>
+<li>just copy the world by hand (well, no one really believes that last is a good idea).</li>
+</ol>
+
+
+<p>I was like, geez guys, I&#8217;m just mimicking the dev team&#8217;s functionality, why are we are arguing about this? But this has been a topic of discussion often recently and, with another team announcing yesterday they were writing a homegrown tool to manage jboss, deploy ATG ears and manage config files all retrieved from Artifactory, I don&#8217;t expect the subject to die soon.</p>
+
+<p>I don&#8217;t think there&#8217;s one right answer to how you deploy your code, but I think there are many poorly thought out ones. I&#8217;m not here to necessarily make an argument for Chef as a deployment orchestrator.  While there are people deploying with Chef at scale, I am not one of them, nor have I been. My work with Chef has been mainly in development with some provisioning and so I have a lot of theories, but that&#8217;s really all.  What I do want to talk about is why I don&#8217;t like shell scripts for deployments or orchestration and what I want in a deployment system. This is the first part of at least a 2 on this topic.</p>
+
+<p><strong>Shell Scripts are like Gremlins</strong>. You start out with one adorably cute shell script. You commented it and it does one thing really well. It&#8217;s easy to read, everyone can use it. It&#8217;s awesome! Then you accidentally spill some water on it, or feed it late one night and omgwtf is happening!?</p>
+
+<p><strong>The Fixer</strong>: Someone else comes along and found an edge case your shell script doesn&#8217;t deal with. They add in some logic for the edge case, voila, problem solved.</p>
+
+<p><strong>The Refiner</strong>: Eventually someone realizes the logic for the edge case is not specific enough and is causing deployments to fail sometimes, so they refine the logic.</p>
+
+<p><strong> The Slippery Slope</strong>: After that, someone might decide it&#8217;s a good idea to automate stopping the apache server from sending traffic during deployments and decides to do it in the same script.  Great idea! That&#8217;s such an awesome idea that everyone starts adding functionality to the tiny beautiful shell script, now no longer tiny nor beautiful.</p>
+
+<p><strong>OMG GREMLINS!</strong>  Then you come back along and find all the extra stuff in your shell script that doesn&#8217;t belong there.  You&#8217;re horrified. You might even be feeling a little bit violated (come on, we&#8217;ve all been there at least once).  So what do you do? You pour some water on it. You break out the shell script into several functional bits. Now we have LOTS of gremlins instead of just one. Now you have a <em>suite</em> of scripts that are once again beautiful. But now the deployment is complex. You have a suite of <del>bash</del> <del>perl</del> <del>ruby</del> <del>python</del> scripts that also need a wiki page to describe intended flow, what to do if something doesn&#8217;t work and any edge cases that you haven&#8217;t gotten around to scripting yet.</p>
+
+<p><strong>The Exodus</strong>: Next up: You get a call from a buddy who is dying to have you come work for his Next Big Thing startup. So you quit your job, pack your bags and move to Silicon Valley Sitcom with ne&#8217;er a backwards glance, leaving a couple of forlorn junior sysadmins desperately reading wiki pages trying to figure out what to do with your shell scripts as a new application is launched that requires a bunch of new logic for deployment. These guys do the best they can and start tacking on if statements everywhere they need to in order to make the deployments go.</p>
+
+<p><strong>Subsistance Living</strong>: 6 months later, one of these guys leaves and the company hires 3 more guys with no understanding of the history of the deployment scripts.  Sometimes they work, sometimes they don&#8217;t, people aren&#8217;t entirely sure why and just self correct by hand at the command line until things work(phew!). Everyone is afraid to touch them because they are fragile, the code connecting them is obscure and there are similar logic blocks found in several sections, sometimes commented out, sometimes used, but you&#8217;re not really sure whether it&#8217;s necessary. The original wiki page gets updated sometimes but not often and not usually by the person maintaining the scripts but by the people using them in the middle of the night.</p>
+
+<p>And that&#8217;s why I hate shell scripts and think you should never use them for deployment scaffolding.</p>
+
+<p><strong>True story</strong>: my first venture with Chef involved deconstructing an organically grown Kickstart post that had been originally written for Red Hat 3 and subsequently updated for RH 4, 5 and 6.  I was removing functionality from the postscript and rewriting it in Chef blocks when one of the admins came and yelled at me for omitting a block of host names from /etc/hosts and I was like, GUYS, those host names are for servers in a data center that was decommissioned  when I started here 3 years ago.</p>
+
+<p>You can tune in for the second half of this blog post, what I want in a decent deployment system, when it goes up next week on the <a href="http://sysadvent.blogspot.com">Sysadvent blog</a>.  Woohoo!</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sascha Bates</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-13T20:15:00-08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/deployments/'>deployments</a>, <a class='category' href='/blog/categories/gremlins/'>gremlins</a>, <a class='category' href='/blog/categories/jenkins/'>jenkins</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sbates.github.com/sbates/blog/2012/12/13/shell-scripts-are-like-gremlins/" data-via="sascha_d" data-counturl="http://sbates.github.com/sbates/blog/2012/12/13/shell-scripts-are-like-gremlins/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/09/15/coffee-nerdery-blue-ox/" title="Previous Post: Coffee Nerdery: Blue Ox, Minneapolis">&laquo; Coffee Nerdery: Blue Ox, Minneapolis</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/07/coffee-nerdery-chromatic-coffee/" title="Next Post: Coffee Nerdery: Chromatic Coffee">Coffee Nerdery: Chromatic Coffee &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>I do nerdy stuff with computers. Sometimes I talk about it here. Beware of opinions. I have them. They totally reflect my employer since I employ myself.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/05/coffee-nerdery-the-aarhus-danish-edition/">Coffee Nerdery: The Aarhus(Danish) Edition</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/02/you-dont-need-no-stinkin-training/">You Don't Need No Stinkin' Training</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/shenanigans/">Shenanigans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/03/cleaning-up-the-clubhouse/">Cleaning Up The Clubhouse</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/screencasts-i-dont-like-them/">Screencasts: Context is Everything</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/24/ruby-toolchaining-part-3-walking-the-package-talk/">Ruby Toolchaining Part 3: Walking the Package Talk</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/">Managing Your Ruby Toolchain part 2: The Package Repo Rant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">Pieces and Parts: Managing Your Ruby Toolchain (part 1)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/">Minneapolis - St Paul Infracoders Meetup Recap</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/05/devops-consulting-why-i-don-slash-t/">Devops Consulting: Why I Don't</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("sascha_d", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/sascha_d" class="twitter-follow-button" data-show-count="false">Follow @sascha_d</a>
+  
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
+  <p><a href="http://pinboard.in/u:sascha_d">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "sascha_d"; //id target for pinboard list
+  var pinboard_count = 3; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Sascha Bates -
+  The sarcasm is free! - - -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'brattyredhead';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sbates.github.com/sbates/blog/2012/12/13/shell-scripts-are-like-gremlins/';
+        var disqus_url = 'http://sbates.github.com/sbates/blog/2012/12/13/shell-scripts-are-like-gremlins/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

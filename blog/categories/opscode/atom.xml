@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: opscode | Bratty Redhead]]></title>
+  <link href="http://sbates.github.com/sbates/blog/categories/opscode/atom.xml" rel="self"/>
+  <link href="http://sbates.github.com/sbates/"/>
+  <updated>2017-08-18T12:43:54-07:00</updated>
+  <id>http://sbates.github.com/sbates/</id>
+  <author>
+    <name><![CDATA[Sascha Bates]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[You Don't Need No Stinkin' Training]]></title>
+    <link href="http://sbates.github.com/sbates/blog/2013/08/02/you-dont-need-no-stinkin-training/"/>
+    <updated>2013-08-02T19:12:00-07:00</updated>
+    <id>http://sbates.github.com/sbates/blog/2013/08/02/you-dont-need-no-stinkin-training</id>
+    <content type="html"><![CDATA[<p>This post has been languishing in my drafts since May. I still wanted to write about it and I figured I should get it out there before I officially work for Opscode and maybe say something I could get in trouble for later.</p>
+
+<p>This is another one of those things that's starting to crop up more often. Chef skills are in demand. It's a complex tool allowing you to solve a suite of problems. You want the magic Chef skills so you can put your infrastructure in order. Or you want the team you manage to get the magic skills so they can start making happiness right now. So you think, "I'll send them to training!"  I've gotten a few email queries about Chef training and one client who was planning to send their engineers to Ruby training.</p>
+
+<p>From the "this isn't news department," I'm here to tell you, it's hard to find training. Opscode does have public training classes, but they are rare because Opscode is a startup and, just like you, doesn't have an endless supply of Chef experts.  All the Chef experts I know not working for Opscode are out writing code, not running training classes.  Most of us either have jobs or long term consulting gigs or a couple of simultaneous long term consulting gigs.</p>
+
+<p>I have more news for you though, all of it good. You don't need no stinking training and neither do your engineers.</p>
+
+<h4>Recipe for a budding configuration management engineer:</h4>
+
+<p><em>1 Internet connection w/access to a web browser and IRC</em><br/>
+<em>1 decent workstation (preferably OSX or Linux but we can cope with Windows)</em><br/>
+<em>1 meaningful, not too complicated use case to solve. The use case should be relevant to their every day life at work</em></p>
+
+<p>Why don't you need training? Most sysadmins and developers are dogged and inquisitive by nature. It's what makes us engineers. We like to untangle puzzles and solve problems and often can't put something down long after it's time to go to bed because we want to try "just one more thing."</p>
+
+<p>Why don't you need training? Because Opscode has open sourced all of their training materials:
+You can [clone/fork the training materials][fund]from Github.  In exchange for your email address, Opscode will send you their <a href="http://www.opscode.com/blog/2011/08/18/chef-fundamentals-open-training-update/">open training materials</a>.</p>
+
+<p>Why don't you need training? You don't know enough to get the most of out of training. Anything complicated enough to require formal training is complicated enough that you will probably get more out of class if you arrive with some basic knowledge.</p>
+
+<p>There, now you have all the information that people who paid for the class have.  The only thing you don't have is someone to answer questions. That's ok, set up an IRC client and connect to the #chef and #learnchef channels on Freenode. If you don't have an IRC client or your company blocks IRC ports, you can connect via the <a href="http://community.opscode.com/chat">web client</a>.</p>
+
+<p>Looking for something a little more interactive? Visit [Learchef.com] - the product of much labor by Seth Vargo and Nathen Harvey. There you can find everything from introductory essays to screen casts and common use cases.</p>
+
+<p>Opscode is doing all they can to make everything you need to learn Chef freely available on the internet.  The problem with training classes is that often the material doesn't address your use case, or it provides learning and lab examples that are too hard to relate</p>
+
+<p>For the record, this topic spawned an evening of debate around the idea of training and what it's good for. Note that I'm not saying you shouldn't go to training; only that training is not required.</p>
+]]></content>
+  </entry>
+  
+</feed>

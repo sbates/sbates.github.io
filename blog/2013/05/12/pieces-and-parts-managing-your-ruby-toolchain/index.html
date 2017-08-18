@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Pieces and Parts: Managing Your Ruby Toolchain (part 1) - Bratty Redhead</title>
+  <meta name="author" content="Sascha Bates">
+
+  
+  <meta name="description" content="I recently received an email from someone who attended my ChefConf talk and asked me to expand on a few things. As I started to answer the email, I &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://sbates.github.com/sbates/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Bratty Redhead" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Junge' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Port+Lligat+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Philosopher' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-24644588-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Bratty Redhead</a></h1>
+  
+    <h2>the sarcasm is free!</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"> <ul class="subscription" data-subscription="rss">
+  
+  <li><a id="linkedin" href="http://linkedin.com/in/saschabates"><div></div></a></li>
+  <li><a id="github" href="https://github.com/sbates"><div></div></a></li>
+  <li><a id="twitter" href="https://twitter.com/sascha_d"><div></div></a></li>
+  
+  <li><a id="rss" href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+ 
+ <form action="http://www.duckduckgo.com/" method="get">
+   <fieldset role="search">
+   </fieldset>
+ </form>
+ 
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/about">About Me</a></li>
+</ul>
+ 
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Pieces and Parts: Managing Your Ruby Toolchain (Part 1)</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-12T13:12:00-07:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>I recently received an email from someone who attended my <a href="http://www.youtube.com/watch?v=pHmU0aNkENc&amp;list=PLrmstJpucjzXNMLcI5X-EjirpDd-SITd3&amp;index=28">ChefConf talk</a> and asked me to expand on a few things. As I started to answer the email, I could see it was going to turn into a dissertation, so I migrated it over into a blog post.  As I started to write the blog post, it seemed to grow into a book, so now I&#8217;ve decided to break it down into multiple posts.  In this post I&#8217;ll try to summarize the question and situational environment and cover the easiest answers first: scripting languages and RVM.</p>
+
+<p><strong>The Question</strong><br/>
+Given the dynamic nature of Ruby tooling and the uncertainty of internet connections, and given that I work in the Enterprise, how should I design my supporting infrastructure and should I make Ruby my default scripting language?</p>
+
+<p><strong>The Situation</strong><br/>
+Situated in the Enterprise, working with Red Hat/CentOS Enterprise Linux(EL).</p>
+
+<p><strong>Concerns</strong>  <br/>
+* Rapidly changing versions of gems and software on the internet<br/>
+* A constant need to download and compile Ruby (also compilers in production)<br/>
+* The dynamic nature of downloading an RVM script from the internet on every install<br/>
+* No connection to the internet (I&#8217;m not sure if this was a concern of his, but I&#8217;m betting it&#8217;s one of yours)</p>
+
+<p>Let&#8217;s look at our major parts, shall we? In this set of posts we&#8217;ll cover <br/>
+* <a href="#script">Scripting Languages</a> <br/>
+* <a href="#rvm">RVM</a><br/>
+* [Package Repositories]  <br/>
+* [Package Versions]   <br/>
+* [Ruby Management]     <br/>
+* [Rubygems]</p>
+
+<p><a id="script"><strong>Scripting Languages</strong></a><br/>
+The question was, should we go all in on Ruby as a scripting language? My answer to that is, unless everyone loves Ruby, that&#8217;s probably an unnecessary hardship to impose while also trying to adopt Chef.  Generally you find some combination of Shell, Python, Perl or Ruby on most enterprise server systems. I think you should script in the language that works best for you, where &#8220;works best&#8221; is a combination of what you&#8217;re comfortable with and what will best suit your immediate need.</p>
+
+<p>Honestly I think we&#8217;ll never move entirely away from Shell scripting and that&#8217;s ok. It&#8217;s easy to learn and suits functional tasks like cron jobs and other server-specific work. Do I think you should have a script suite in 4 different interpreted languages? Well, no. If it were me, I&#8217;d pick Shell and Ruby for my options. But there&#8217;s no reason it can&#8217;t be Shell and Python or any other combo.</p>
+
+<p>Me? I love Ruby and have an irrational dislike of Perl that stems from my early days in ops dealing with travesties of unreadable scripts. So I like Ruby first and Shell second, Python third and Perl never.  But it&#8217;s hard enough learning a new tool like Chef. Don&#8217;t impose artificial constraints on your team.</p>
+
+<p>Also, Your devs are probably already programming in Java or C or whatever. Over time most devs pick up a smattering of shell. If you force Ruby on them too it&#8217;s likely to breed resentment.</p>
+
+<p><a id="rvm"><strong>RVM</strong></a> <br/>
+While I&#8217;m not an expert on <a href="http://rvm.io">RVM</a> and other Ruby managers, I have heard that it&#8217;s not meant to be a server tool.  I do use RVM for workstation development and I&#8217;ve used <a href="http://github.com/sstephenson/rbenv/wiki">Rbenv</a> as well. I don&#8217;t mind compiling Ruby from scratch when installing it locally although I will love it when RVM gets precompiled rubies for OSX.</p>
+
+<h5>A Slight Digression on Workstation Automation</h5>
+
+<p>I&#8217;ve written workstation automation using Fletcher Nichol&#8217;s <a href="http://github.com/fnichol/chef-rvm">chef-rvm cookbook</a>.  A frustrating problem I have run into is that RVM undergoes frequent development and at first I had people coming to me because the workstation toolchain install wouldn&#8217;t work and it was almost always because the RVM version had changed and something was now wonky in the settings or install chain. So I started pinning the RVM version to install with occasional revisits to bump the version when I could.</p>
+
+<p>If you want to look at workstation automation for OSX 10.8 try a couple of these repos:</p>
+
+<ul>
+<li><a href="http://github.com/pivotal-sprout/sprout-wrap">Sprout-wrap</a> - This used to be Pivotal Workstation and is now basically an instruction page for getting going with Soloist</li>
+<li><a href="http://www.solowizard.com">SoloWizard</a> - a browser based checklist that will assemble a chef solo provisioner for your workstation.</li>
+<li>Joshua Timberman&#8217;s workstation-chef-repo and mac_os_x-cookbook for his personal collection of workstation automation</li>
+<li><a href="http://github.com/blt04/puppet-rvm">Puppet-RVM</a> - Puppet module for installing and managing RVM</li>
+<li><a href="http://boxen.github.com/">Boxen</a> - A tool for automating OSX with Puppet. Links to a blog post with details.</li>
+</ul>
+
+
+<p>I have written workstation automation but I don&#8217;t maintain it these days and I&#8217;ll probably try Soloist when I get my next new Mac.</p>
+
+<p><strong>TL;DR</strong>:<br/>
+* Use RVM on workstations not servers  <br/>
+* If you&#8217;re automating for many people over time, pin your RVM version</p>
+
+<p><strong>Wrap Up</strong>
+To keep the blog post readable, this is all I want to discuss in this first post, but I&#8217;m about to publish Part 2 as well: a rant about package repos. I&#8217;m extremely interested in feedback on this series as I was only half joking about writing a book, though it would likely be an online doc of some kind. This type of discussion evolves too quickly to commit to paper.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Sascha Bates</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-12T13:12:00-07:00" pubdate data-updated="true">May 12<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/rbenv/'>rbenv</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/rvm/'>rvm</a>, <a class='category' href='/blog/categories/scripting/'>scripting</a>, <a class='category' href='/blog/categories/toolchains/'>toolchains</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://sbates.github.com/sbates/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/" data-via="sascha_d" data-counturl="http://sbates.github.com/sbates/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/" title="Previous Post: Minneapolis - St Paul Infracoders Meetup Recap">&laquo; Minneapolis - St Paul Infracoders Meetup Recap</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/" title="Next Post: Managing Your Ruby Toolchain part 2: The Package Repo Rant">Managing Your Ruby Toolchain part 2: The Package Repo Rant &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>About Me</h1>
+  <p>I do nerdy stuff with computers. Sometimes I talk about it here. Beware of opinions. I have them. They totally reflect my employer since I employ myself.</p>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/05/coffee-nerdery-the-aarhus-danish-edition/">Coffee Nerdery: The Aarhus(Danish) Edition</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/08/02/you-dont-need-no-stinkin-training/">You Don't Need No Stinkin' Training</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/26/shenanigans/">Shenanigans</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/03/cleaning-up-the-clubhouse/">Cleaning Up The Clubhouse</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/28/screencasts-i-dont-like-them/">Screencasts: Context is Everything</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/24/ruby-toolchaining-part-3-walking-the-package-talk/">Ruby Toolchaining Part 3: Walking the Package Talk</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/">Managing Your Ruby Toolchain part 2: The Package Repo Rant</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">Pieces and Parts: Managing Your Ruby Toolchain (part 1)</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/">Minneapolis - St Paul Infracoders Meetup Recap</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/04/05/devops-consulting-why-i-don-slash-t/">Devops Consulting: Why I Don't</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("sascha_d", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/sascha_d" class="twitter-follow-button" data-show-count="false">Follow @sascha_d</a>
+  
+</section>
+
+
+<section>
+  <h1>My Pinboard</h1>
+  <ul id="pinboard_linkroll">Fetching linkroll...</ul>
+  <p><a href="http://pinboard.in/u:sascha_d">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "sascha_d"; //id target for pinboard list
+  var pinboard_count = 3; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/javascripts/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Sascha Bates -
+  The sarcasm is free! - - -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'brattyredhead';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://sbates.github.com/sbates/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/';
+        var disqus_url = 'http://sbates.github.com/sbates/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

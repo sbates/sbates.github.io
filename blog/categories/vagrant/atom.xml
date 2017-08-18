@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: vagrant | Bratty Redhead]]></title>
+  <link href="http://sbates.github.com/sbates/blog/categories/vagrant/atom.xml" rel="self"/>
+  <link href="http://sbates.github.com/sbates/"/>
+  <updated>2017-08-18T12:43:54-07:00</updated>
+  <id>http://sbates.github.com/sbates/</id>
+  <author>
+    <name><![CDATA[Sascha Bates]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Minneapolis - St Paul Infracoders Meetup Recap]]></title>
+    <link href="http://sbates.github.com/sbates/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap/"/>
+    <updated>2013-05-07T10:34:00-07:00</updated>
+    <id>http://sbates.github.com/sbates/blog/2013/05/07/minneapolis-st-paul-infracoders-meetup-recap</id>
+    <content type="html"><![CDATA[<p>Last night we had a fun second meetup of the <a href="http://www.meetup.com/Twin-Cities-Infracoders">Twin Cities Infracoders group</a>.  On the docket were presentations and demos for Vagrant and Sensu.  We had about 18 people show up and a lively discussion ensued on why you'd want to use something like Vagrant and implementation strategies.</p>
+
+<p>Most of us have partnered with development teams who have asked for things that are difficult to provide or unwise and one of the best use cases for Vagrant is the ability to hand someone a development environment homogenous to the team and easy to troubleshoot. It's homogenous because everyone uses the same base OS box file and also uses the same provisioner to create the environment, whether that's Chef, Puppet or Bash scripts or anything else. It also shortens time required to bootstrap a new team member.</p>
+
+<p><a href="http://www.linkedin.com/in/mpgoetz">Mike Goetz</a> and <a href="http://www.linkedin.com/in/thomasduffield">Tom Duffield</a> gave us a great compressed Wordpress install demo on a local VM with Vagrant and Chef. Then they gave us a second demo of spinning up two ec2 instances to separate the front and back end pieces of Wordpress.</p>
+
+<p>After Vagrant, we ran through some Sensu slides and looked at some basic info about Sensu.  There were technical difficulties around the demos we were working on so demoing was minimal but discussion around why Sensu, how Sensu and when you might switch was great and we're looking forward to a more detailed demo at next month's meetup.</p>
+
+<h5>Here is the collection of tools and links from last night:</h5>
+
+<p><a href="http://www.vagrantup.com/">Vagrant</a><br/>
+<a href="http://docs.vagrantup.com/v2/plugins/index.html">Vagrant Plugins</a><br/>
+<a href="http://sensuapp.org/">Sensu</a><br/>
+<a href="http://slides.sensuapp.org/">Sean Porter's Slides</a><br/>
+Wordpress Demo(this link will be available shortly)</p>
+
+<h5>Coming up:</h5>
+
+<p>Next month's meetup, hosted again at the Nerdery, will be a presentation on using Selenium for automated testing and QA as well as our enhanced Sensu Server and client nodes deployed with Vagabond on LXCs inside a Vagrant VM.  I hope we get a great turnout.</p>
+
+<p>On another note, I have been talking lately about how I want to organize a Chef hackday. After last night's discussions around tooling and workflow, I think it might be nice to instead do a tool-agnostic Workflow Tooling hack and help day. Many of us have gotten workflows configured successfully, but depending on your experience beating on the Ruby toolchain, it can be challenging the first couple times you do it.  The Nerdery said they would probably be willing to host and I was thinking about asking CoCo Minneapolis if they had any interest in hosting.</p>
+
+<p>I'll post up a question in the meetup group about location and date preferences to see if I get enough interest to make it a thing. I'll also send someone to shill at the monthly DevOps meetup that I can never attend due to my work travel schedule.</p>
+
+<p>If you haven't made it out to an Infracoder meetup yet, I hope you because we are having some great tech discussions and getting to hear about other people's uses cases for things is fascinating. Also, the Nerdery takes super great care of us and feeds us Pizza for dinner.</p>
+]]></content>
+  </entry>
+  
+</feed>

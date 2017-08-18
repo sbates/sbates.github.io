@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: devops | Bratty Redhead]]></title>
+  <link href="http://sbates.github.com/sbates/blog/categories/devops/atom.xml" rel="self"/>
+  <link href="http://sbates.github.com/sbates/"/>
+  <updated>2017-08-18T12:43:54-07:00</updated>
+  <id>http://sbates.github.com/sbates/</id>
+  <author>
+    <name><![CDATA[Sascha Bates]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Managing Your Ruby Toolchain part 2: The Package Repo Rant]]></title>
+    <link href="http://sbates.github.com/sbates/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant/"/>
+    <updated>2013-05-17T09:23:00-07:00</updated>
+    <id>http://sbates.github.com/sbates/blog/2013/05/17/managing-your-ruby-toolchain-part-2-the-package-repo-rant</id>
+    <content type="html"><![CDATA[<p><strong>TL;DR</strong> Use package repos for all your static software</p>
+
+<p>Last weekend I wrote a <a href="http://blog.brattyredhead.com/blog/2013/05/12/pieces-and-parts-managing-your-ruby-toolchain/">blog post</a> that started exploring standards for managing your Ruby toolchains. To review, I had a query from someone on how to cope with the dynamic nature of Ruby-based tooling and managing a Chef infrastructure. and the fact that you don't always want to go to the internet to get stuff, it's a pain to be compiling things on servers all the time AND to do that, you need a compiler which is regarding as a Bad Thing<sup>TM</sup> in Production.</p>
+
+<p>The question came to me via a talk I did at Chef conf and I'm going to use Chef examples, but, unless someone tells me different, I'm going to come down on the side of you can use this advice with Puppet and CFEngine and any other CM tool out there. It works without CM too, but why would you ever?</p>
+
+<p>In this blog post, I want to talk about why I am so adamant about package repositories and offer some real world examples.  I pick on Tomcat a lot here. Nothing against Tomcat. It's something most people understand and that I have also had personal experience with it not being managed as a package and creating much distributed pain.</p>
+
+<h2>Broken Record Much?</h2>
+
+<p>I can't shut up about package repos. Why am I so passionate about the need for all package repos all the time and to have a team actively managing and grooming them?</p>
+
+<p>As part of the decentralization of Ops teams and the rise of DevOps, we now see multiple autonomous teams simultaneously working on similar projects but not collaborating or communicating on infrastructure.  It behooves the infrastructure managers, whether that's ops or devops or the tools team or a central collaborative group comprised of reps from all the teams, to own and groom a collection of package repositories.</p>
+
+<p><strong>But Why?</strong> <br/>
+With the rise of self-service, all you can eat virtual machines, development teams are expected and want to be independent from the corporate server supply chain.  Unfortunately this also decouples them from people they depend on: infrastructure and middleware experts(Yes Ops, that's you). They may sail gayly on and do their best or trudge forward grudgingly, resenting all of the extra work they now have to do because the Enterprise wants to be "like a startup." Either way, they're going to move forward, and when you don't offer them ways to easily use software, they'll figure out ways to [cope][]; ways that will horrify you when you discover them.</p>
+
+<p><strong>I work at a startup because Enterprise is stupid like that.</strong><br/>
+Nope. It's not only the Enterprise that needs to fear the chaos of unmanaged, difficult to use infrastructure. Say your whole startup is fewer than 20 people? You're the "devops engineer" and you work with a 5 person dev team.  The dev team may or may not include you in everything.  You might not know of actions they've taken to [cope][] with problems you don't even know they have. They don't realize there could be a simple solution to their problems because they are brilliant startup devs and they will just figure it out.  Then they'll hand you their giant shiny mud pie and you will cry because you could have saved them a bunch of work with a few well placed repos and a web proxy.</p>
+
+<p>Package repos create a beautiful garden where you static software can flourish and discourages tarball weeds from springing up in the cracks everywhere.</p>
+
+<p><strong>If you establish a well known, central location for packages, people will know to look there first for an existing package that meets their needs. And they will ask to place packages they need there as well.</strong></p>
+
+<p>Ex: In the situation where someone thinks</p>
+
+<blockquote><p><em>"I need Tomcat7 and Red Hat only ships with Tomcat5"</em></p></blockquote>
+
+<p>Their correlating thought will NOT be</p>
+
+<blockquote><p><em>"I should go download that from the internet and store it on the jumphost"</em></p></blockquote>
+
+<p>but instead</p>
+
+<blockquote><p><em>"I wonder if we have that in our custom repo?"</em></p></blockquote>
+
+<p>or in an even more mature organization</p>
+
+<blockquote><p><em>"I should include our Tomcat cookbook in my runlist and override the attributes that are unique for my situation"</em></p></blockquote>
+
+<h3>When you make package repos easy to access and use, you</h3>
+
+<ul>
+<li>Eliminate several slightly different copies of software (ex: tomcat) floating around your infrastructure.</li>
+<li>Eliminate several slightly different versions of packages deployed to Production.</li>
+<li>Discourage placing random tarballs in version control or Chef cookbook files.</li>
+<li>Make your configuration management tool easy and intuitive to use.</li>
+</ul>
+
+
+<h3>The Problem With Tarballs - a Real Life Example</h3>
+
+<p>Config management tools are designed to be idempotent, which means they only do things once and ensure things look the same regardless of how many times you run the the same process.  <em>Tarballs subvert the use of configuration management primitives</em>, requiring the use of non-idempotent execute blocks to manipulate them.  Real world example:</p>
+
+<p>Without a package repo in place, this happens:
+``` ruby
+remote_file "/tmp/tomcat7.tar.gz" do
+  source "https://www.sometomcaturl.com"
+  not_if { File.exists?("#{node[:tomcat][:home]}/bin") }
+end</p>
+
+<p>execute "extract_tomcat" do
+  command "tar xf /tmp/tomcat7.tar.gz"
+  cwd "opt"
+  not_if { File.exists?("#{node[:tomcat][:home]}/bin") }
+  only_if { File.exists?("/tmp/tomcat7.tar.gz") }
+end
+```</p>
+
+<p>Or this utter travesty:
+``` ruby
+bash "install_tomcat6" do</p>
+
+<pre><code>tomcat_version_name = "apache-tomcat-#{node.tomcat.version}"
+tomcat_version_name_tgz = "#{tomcat_version_name}.tar.gz"
+user "root"
+code &lt;&lt;-EOH
+  curl --proxy https://aproxy.com:8080/ --user user:pass https://myartifactoryurl.com/artifactory/ext-release-local/apache-tomcat/apache-tomcat/#{node.tomcat.version}/#{tomcat_version_name_tgz} -o /tmp/#{tomcat_version_name_tgz}
+  tar -zxf /tmp/#{tomcat_version_name_tgz} -C /tmp
+  rm /tmp/#{tomcat_version_name_tgz}
+  mv /tmp/#{tomcat_version_name} #{node.tomcat.install_path}
+  chown -R #{node.tomcat.run_user}:#{node.tomcat.run_group} #{node.tomcat.install_path}
+  chmod -R 755 #{node.tomcat.install_path}
+  rm -rf #{node.tomcat.install_path}/webapps/ROOT
+EOH
+</code></pre>
+
+<p>end
+```
+Notice that they very carefully delete that tarball when they are done, ensuring that it will be re-downloaded 30 minutes later on the next run. They also untar the file and then move it to the install location without checking to see if anything is already there.  Again, 30 minutes later the entire process happens again despite whatever is already there.</p>
+
+<p>Now look at what happens with a package repo in place:
+<code>ruby
+package 'tomcat7' do    
+  action :install  
+end  
+</code>
+You may have to customize config files and init scripts, but this is a far simpler and less error prone way to install the base software.</p>
+
+<p>In this case, Chef knows what OS you are using, what your package manager should be, repository connection details and how to install the package. Puppet does the exact same thing. So does every other config management system in the history of ever.  The less code you have to write and the less verification code you have to write, they happier you'll be and the people who come after you will be.</p>
+
+<h3>The End</h3>
+
+<p>I've heard a lot of complaints from ops and tools folks that devs do "crazy" stuff and they are much affronted that the devs don't seem to understand the unpublished rules of operationalizing apps and the best way to use tools, and omg did you see the travesty of a Tomcat cookbook they wrote?</p>
+
+<p>I have spent years on ops teams, tools teams and automation teams now. I have been one of those self-righteous, affronted peeps.  This behavior doesn't scale, yo.</p>
+
+<p>One of the best messages that DevOps has for all of us is, if you don't like the way someone's doing something, talk to them and find out why. You'll probably learn that there were great reasons for everything, including "I didn't know how to do it, Chef is hard, Tomcat is hard, and I was just a Java developer until you guys started making me do all this automation stuff without telling me the rules or offering guidelines, so I copied another team's Tomcat cookbook. I had no idea it's crap. It installs Tomcat and that's all I care about."</p>
+
+<p>Indeed. That's all they care about. If you care about more than just the install, maybe you should reach out and offer to partner with them on the parts you care about.  Don't like the way devs are building application infrastructure? Well maybe you should do it for them. Provide them with a consistant VM build from a stable package repo and possibly infrastructure cookbooks with sane defaults and overrideable parameters. Chances are good devs don't like recreating that crappy Tomcat wheel any more than you like them doing it. It's likely they will be pathetically grateful because, while they are coping with the tasks they've been handed, they don't really know what to do in detail and researching JVM tuning parameters is not their idea of a good time.</p>
+
+<p>Why am I telling you this story? Because I believe that a major piece of your infrastructure stability is created with package repos. Making them easy to find, use and contribute to will help smooth any number of peripheral problems you are trying to solve.  In my next post I'll talk about practical considerations for repositories, packages and toolchains.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Devops Consulting: Why I Don't]]></title>
+    <link href="http://sbates.github.com/sbates/blog/2013/04/05/devops-consulting-why-i-don-slash-t/"/>
+    <updated>2013-04-05T20:33:00-07:00</updated>
+    <id>http://sbates.github.com/sbates/blog/2013/04/05/devops-consulting-why-i-don-slash-t</id>
+    <content type="html"><![CDATA[<p>I had an <a href="https://twitter.com/sascha_d/status/319889574367215616">interesting exchange</a> with <a href="https://twitter.com/adamhjk">Adam Jacob</a> yesterday on Twitter around devops consulting. It's a topic I've discussed often with friends as we work out how to spread the devops message in our consulting adventures.  After the Twitter chat, I'm motivated to say a few words about devops consulting, not because there was an argument, but because it's something I've thought about often since I started independent consulting and I think it's important.</p>
+
+<p> The twitterings began with me trolling Adam on a topic about which I learned my first, best lessons from him.  Two years ago, my ideas around devops were still mostly unformed when I saw him give his <em>"What is Devops"</em> and <em>"The No Assholes Rule"</em> vignettes at Velocity. These two 5 minute segments clarified several nebulous thoughts I'd been having and form the base for how I approach devops today.</p>
+
+<p>My trolling quickly transformed into an exchange as to whether devops consulting is a valid thing.  Here's my take:</p>
+
+<h4>Devops is The New Black</h4>
+
+<p>As far as toolmakers, tool-consumers and recruiters are all concerned, devops is the new black. I get frustrated with the "slap a devops on it and they will come" attitude we see prevailing. It makes me want to never use the word <em>"devops"</em> to describe anything ever because of things like this:</p>
+
+<ul>
+<li><p>If it's a tool for scaling or automation or monitoring or cloud, it's now a "devops tool".</p></li>
+<li><p>If you have a job for some poor schlub to do production support for the dev team, you call it "looking for a devops engineer with build experience."</p></li>
+<li><p>A tooling company has a giant virtual sticker on the website: "Designed by devops."</p></li>
+<li><p>If you want to get some other poor schlub to join your overworked ops team you call it a "devops engineering" position but it's really just another day in the life of duct-taping together prod.</p></li>
+</ul>
+
+
+<p>I already hear colleagues succumbing to the terminology "devops Tool" because it's a phrase understood by (or at least familiar to) upper management and business users. I can even see the day when I give in and start calling things devops tools. This makes me sad.</p>
+
+<h4>Emo Devops</h4>
+
+<p> Call me cynical, but this sort of devaluation discourages me and has turned me into something of a hipster goth. You know, the girl in all black with the black nail polish listening to Bauhaus and denying she's goth because she transcends labels in her non-originality. I can make fun of this girl because I was her in high school.</p>
+
+<p> But as I see tool companies and recruiters slapping devops across everything and large companies begging for the devops panacea, I become less and less inclined to talk about devops and the hipster goth in me is damned if she's going to cash in on all the quick bucks of devops consulting.</p>
+
+<h4>Devops Consulting - Why I Don't</h4>
+
+<p>Last year I had a company try to hire me as a devops consultant, but the very idea made me shudder. It felt utterly pretentious even though they had the best of intentions and were knowledgeable about devops.  My business card says Devops Enthusiast. That's it. I love it and I try to live it every day I walk into an office, whether it's my home office, a client office or any other place with people in it.</p>
+
+<p>But my business card will never say Devops Consultant. Why not?</p>
+
+<p><em>Devops Isn't a Deliverable</em> - When I get done with you, you don't have a devops. It's possible that the things we're working on will bring you closer to a lifestyle and culture that is devops. And that's super.  Working at scale demands extraordinary feats of technical prowess, but it also demands empathy and trust, key components of devops culture. I expect this to be a natural byproduct of my tenure, not the thing I craft.</p>
+
+<p><em>Consultants Have No Moral Authority</em> - This is the classic water and horse thing. You can hire someone to tell you how to do devops, but unless everyone is signed on and excited, it's going to be the consultant and the person who hired the consultant drinking from the trough and a bunch of other horses standing around dehydrating.  I have no desire to earn a living doing this.</p>
+
+<p><em>I'm Not Qualified</em> - I learn new things every day and I often remind myself that devops isn't just me preaching DevOplyness, but also involves me actively empathizing with and trusting people I find difficult or frustrating to work with.  This stuff is hard, and I'm not even close to perfect. I'd rather lead by example than preach. I feel like a hypocrite telling other people how to put their house in order when I'm still cleaning my own.</p>
+
+<p><em>I'd Rather Be Crafting</em> - Let's face it. If I say Devops Consultant, that's management consulting. As much as I've considered going into management because of the ignorance I see in charge of stuff, <strong>I'd rather be making things</strong>. This is a selfish thing, right? I love to CLI and hack on Ruby and play with Chef and figure out why stuff is broken, mentor newer engineers and coach devs on how to operationalize their apps. I don't get to do that if I'm teaching senior management about devops. It's why I like consulting. There's always a new problem to solve.</p>
+
+<h4>Is Continuous Delivery a valid Euphemism for devops?</h4>
+
+<p>This was also touched on yesterday. Jeff Sussna wrote a <a href="http://blog.ingineering.it/post/43356457789/devops-er-continuous-delivery">well-articulated article</a> for why we should just call it Continuous Delivery instead of devops.  I think Adam and I were not actually disagreeing about anything in our chat today, unless he was postulating that CD is as nebulous as devops. I don't think it is. I think Continuous Delivery is a measurable deliverable and a valid consulting field. If done right, it results in not just a great pipeline, but also devops culture because CD should be impossible with crappy culture.</p>
+
+<h4>What About devops?</h4>
+
+<p>I know some folks who are doing the devops consulting thing. They generally <em>want</em> to do the management consulting thing and they believe wholeheartedly in devops as cultural shift and in
+<a href="http://www.opscode.com/blog/2010/07/16/what-devops-means-to-me/">CAMS</a>, which I think is the key to making it work, if that's what you really want to do.<br/>
+There are also some super fantastic companies with amazing cultures; some calling it devops, others not but still living the lifestyle. I'm not panning everything calling itself devops. However, the more I see vendors and recruiters latch onto the word and commoditize it without sincerity, the less I want to actually associate with the word myself and the more grains of salt I require when I get yet another email from someone telling me about their great devops job for which I'd be a perfect fit.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why Isn't This Funny?]]></title>
+    <link href="http://sbates.github.com/sbates/blog/2012/09/04/why-isnt-this-funny/"/>
+    <updated>2012-09-04T23:11:00-07:00</updated>
+    <id>http://sbates.github.com/sbates/blog/2012/09/04/why-isnt-this-funny</id>
+    <content type="html"><![CDATA[<p><img src="http://sbates.github.com/sbates/images/cczqi.jpg"/></p>
+
+<p><strong>tl;dr</strong>: As a sysadmin, whenever someone tweets something snarky about sysadmins,
+I feel a little put down. As a result, I try to think twice about snarky stuff
+I might tweet about devs or other teams. And so, I think sysadmins posting snarky captioned
+images about devs and then adding the devops hashtag is mean and
+inappropriate.</p>
+
+<p>I've seen this captioned image circulating all day with the devops hashtag on Twitter. For the
+record, I don't think this picture is funny. In the right context, it might
+be funny. If it were, say, a slide in a deck pointing to how things are or
+used to be without devops, I'd laugh. My issue is seeing tweeted with the devops hashtag
+and having it billed as funny.</p>
+
+<p>Now I love me some snark. But I think it's too easy to be
+snarky and mean on Twitter,  because there isn't a lot of consequence and we
+tend to live within a circle of our peers who often think alike.  The snark
+factor often goes up around conference time when many of us are congregating
+in once place and competing to sound smart and funny in 140 characters or
+less. I've commented before that I think people are too often mean on Twitter
+in the name of being witty or complaining about speakers without ever
+thinking about what that speaker might feel if he sees that tweet later.</p>
+
+<p>So why does this caption bother me? I have a long history of unfiltered snark
+and smart ass remarks. Consulting since 2006 taught me a lot about active
+filtering and my introduction to DevOps caused me to implement additional filtering for the
+sake of my emotional attachment to an ideal.</p>
+
+<p>As someone who's signed on as a big fan of DevOps culture, I spend a lot of
+patrolling my cynicism and preventing disparaging remarks from escaping the
+filter. I think when you espouse certain ideals, you're responsible all the
+time for representing them.</p>
+
+<p>I sometimes see cynical, catty remarks about sysadmins or ops from people who
+can only have come from a long life of development and, even though I haven't
+technically done ops in 7 years, I've been sysadminly all my long life and
+I am affronted every time by those remarks. Recently I heard a professional dev
+say to someone in a beginners programming workshop, "If you want
+to understand/master the install of the programming tools, you're probably
+better off as a sysadmin not a programmer." The guy who said is a super nice
+guy, but that remark still got a side-eye from me.</p>
+
+<p>If DevOps is a movement that promotes collaboration, communication, respect
+and friendship between functional teams, I don't think a sincere proponent
+would post this kind of caption. While it makes some folks feel validated,
+it's just fueling the fire that walls people off from each other.  I don't
+think we can all get along when folks are throwing up cynical remarks
+perpetuating stereotypes of bad development practices.</p>
+
+<p>While there are many successful DevOps teams out there, there are far more
+silos in transition or bitter adversaries who haven't yet heard of DevOps.
+I can't believe that only some developers or sysadmins are capable of transcending the usual barriers;
+I have to believe that any and all are able to transcend them or what's the
+point?   But it's the more entrenched and cynical cases that will be the most
+difficult to move ideologically and emotionally and I feel that humor like
+this can only alienate.</p>
+
+<p>I don't want to pick on anyone specifically because I see this kind of humor
+from all disciplines all the time and it makes me increasingly uncomfortable each
+time. If we're actually going to all be in this together, we need to jump in
+with both feet. So I thought I would speak up for a moment and say something.
+If a thing can only be funny by being rude about someone else, maybe it's not
+actually funny at all.</p>
+]]></content>
+  </entry>
+  
+</feed>
